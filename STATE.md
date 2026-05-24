@@ -19,7 +19,7 @@
 | Slice | 内容 | 状态 | 主导 Agent | Branch | PR | 备注 |
 |-------|------|------|-----------|--------|-----|------|
 | S0 | 契约层 + 脚手架 | ✅ Done | 林品臣(Spec) | main | - | contracts/* 全部落地，tsc + build 通过 |
-| S1 | Engine Loop 重构 | 🟡 In Progress | engine | - | - | 依赖 S0 ✅ |
+| S1 | Engine Loop 重构 | ✅ Done | engine | - | - | 依赖 S0 ✅，含向后兼容桩 |
 | S2 | Tools + Golden Data | 🟡 In Progress | tools / data | - | - | 依赖 S0 ✅，可与 S1/S3 并行 |
 | S3 | 10 类卡片 + 状态规范 | 🟡 In Progress | ui | - | - | 依赖 S0 ✅，可与 S1/S2 并行 |
 | S4 | DSP-1 + DSP-2 闭环 | ⚪ Pending | engine + eval | - | - | 依赖 S1/S2/S3 |
