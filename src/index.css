@@ -103,6 +103,26 @@
   @apply font-semibold;
 }
 
+/* Tables (remarkGfm) */
+.markdown-body table {
+  @apply w-full border-collapse my-3 text-sm;
+}
+.markdown-body thead {
+  @apply border-b border-neutral-700;
+}
+.markdown-body th {
+  @apply text-left px-2 py-1.5 text-xs font-medium text-neutral-400 uppercase tracking-wider;
+}
+.markdown-body td {
+  @apply px-2 py-1.5 text-neutral-300 border-b border-neutral-800;
+}
+.markdown-body tr:last-child td {
+  @apply border-b-0;
+}
+.markdown-body tbody tr:hover {
+  @apply bg-neutral-800/50;
+}
+
 /* Animation */
 @keyframes fadeIn {
   from {
