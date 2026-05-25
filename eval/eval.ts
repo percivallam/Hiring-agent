@@ -38,11 +38,15 @@ loadEnv();
 
 // ─── 加载数据文件 ───
 
-const resumesData = JSON.parse(fs.readFileSync(path.resolve(__dirname, '..', 'src', 'data', 'resumes.json'), 'utf-8'));
-const jobsData     = JSON.parse(fs.readFileSync(path.resolve(__dirname, '..', 'src', 'data', 'jobs.json'), 'utf-8'));
+function loadDataFile(filename: string): any {
+  const raw = JSON.parse(fs.readFileSync(path.resolve(__dirname, '..', 'src', 'data', filename), 'utf-8'));
+  return raw._meta ? raw.data : raw;
+}
+const resumesData = loadDataFile('resumes.json');
+const jobsData    = loadDataFile('jobs.json');
 const pipelineData = JSON.parse(fs.readFileSync(path.resolve(__dirname, '..', 'src', 'data', 'pipeline.json'), 'utf-8'));
-const marketData   = JSON.parse(fs.readFileSync(path.resolve(__dirname, '..', 'src', 'data', 'market.json'), 'utf-8'));
-const salaryData   = JSON.parse(fs.readFileSync(path.resolve(__dirname, '..', 'src', 'data', 'salary.json'), 'utf-8'));
+const marketData  = JSON.parse(fs.readFileSync(path.resolve(__dirname, '..', 'src', 'data', 'market.json'), 'utf-8'));
+const salaryData  = JSON.parse(fs.readFileSync(path.resolve(__dirname, '..', 'src', 'data', 'salary.json'), 'utf-8'));
 
 // ─── 本地工具执行 ───
 
