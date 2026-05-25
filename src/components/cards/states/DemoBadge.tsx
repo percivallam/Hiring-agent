@@ -1,5 +1,6 @@
 import { BeakerIcon } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { useShowDemo } from '@/store/devStore';
 
 interface DemoBadgeProps {
   visible?: boolean;
@@ -7,7 +8,8 @@ interface DemoBadgeProps {
 }
 
 export function DemoBadge({ visible = true, className }: DemoBadgeProps) {
-  if (!visible) return null;
+  const devMode = useShowDemo();
+  if (!devMode || !visible) return null;
 
   return (
     <div
