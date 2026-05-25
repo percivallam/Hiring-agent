@@ -1,7 +1,7 @@
 # HireAgent v1.2 项目状态
 
 > 最后更新: 2026-05-26 by PM Agent
-> Active Slice: S5
+> Active Slice: 全部完成 ✅
 > Active Branch: main
 
 ---
@@ -9,7 +9,7 @@
 ## 总体进度
 
 ```
-[████████████████░░░░] S0-S4 ✅ Done → S5 可启动
+[████████████████████] S0-S7 全部完成 ✅
 ```
 
 ---
@@ -23,9 +23,9 @@
 | S2 | Tools + Golden Data | ✅ Done | tools / data | - | - | 依赖 S0 ✅ |
 | S3 | 10 类卡片 + 状态规范 | ✅ Done | ui | - | - | 依赖 S0 ✅ |
 | S4 | DSP-1 + DSP-2 闭环 | ✅ Done | engine + eval | main | - | eval 29/32, brilliance 5.0/5 |
-| S5 | Memory + DSP-3 闭环 | 🟡 In Progress | engine + eval | - | - | 依赖 S4 ✅ |
-| S6 | DSP-4(壳) + DSP-5 闭环 | ⚪ Pending | tools(demo) + ui + eval | - | - | 依赖 S5 |
-| S7 | Self-Improve 闭环 + polish | 🟡 In Progress | engine + eval | - | - | Engine: collector/classifier/optimizer ✅ |
+| S5 | Memory + DSP-3 闭环 | ✅ Done | engine + eval | main | - | autoRecall+autoSave, DSP-3 5 cases |
+| S6 | DSP-4(壳) + DSP-5 闭环 | ✅ Done | tools(demo) + ui + eval | main | - | DSP-4/5 6 eval cases |
+| S7 | Self-Improve 闭环 + polish | ✅ Done | engine + eval | main | - | collector/classifier/optimizer ready |
 
 状态图例: ⚪ Pending / 🟡 In Progress / 🟢 Review / ✅ Done / 🔴 Blocked
 
