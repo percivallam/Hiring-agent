@@ -9,6 +9,7 @@ export {
   rawPipelineToAnalysisData,
   rawMarketToAnalysisData,
   rawSalaryToBenchmarkData,
+  extractTrend,
 } from './mappers';
 export type {
   RawResume,
@@ -20,6 +21,7 @@ export type {
   RawPipeline,
   RawMarketRole,
   RawSalaryRole,
+  WeeklyHistoryEntry,
 } from './mappers';
 export {
   tokenize,

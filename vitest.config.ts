@@ -19,6 +19,7 @@ export default defineConfig({
       'test/engine.test.ts',
       'test/memory.test.ts',
       'test/self_improve.test.ts',
+      'test/tools.test.ts',
       'test/tools/integration.test.ts',
       'node_modules/**',
     ],

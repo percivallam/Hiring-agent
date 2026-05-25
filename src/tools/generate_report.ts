@@ -11,7 +11,7 @@ import type {
   GenerateReportResult,
 } from '../contracts/tools';
 import { loadData, ok, err } from './utils/loadData';
-import { type RawPipeline } from './utils/mappers';
+import { type RawPipeline, extractTrend } from './utils/mappers';
 
 export async function generate_report(params: GenerateReportParams): Promise<GenerateReportResult> {
   try {
@@ -61,6 +61,14 @@ export async function generate_report(params: GenerateReportParams): Promise<Gen
     const convRate = funnel.length >= 1 ? funnel[0].conversion_rate : 0;
     if (convRate < 30) {
       insights.push('简历到面试的整体转化率偏低，建议优化初筛标准或拓宽简历渠道');
+    }
+
+    // DSP-5: 周趋势洞察
+    for (const job of pipelineJobs) {
+      const trend = extractTrend(job);
+      if (trend && trend.trend === 'down') {
+        insights.push(`⚠️ ${job.title}: ${trend.detail}，呈下降趋势。建议排查原因（简历质量、竞品动态、面试标准等）`);
+      }
     }
 
     if (insights.length === 0) {
