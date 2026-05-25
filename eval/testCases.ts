@@ -258,6 +258,58 @@ export const TEST_CASES: TestCase[] = [
     expectNoError: true,
   },
 
+  // ── S5 DSP-3: 跨会话记忆唤醒 ──
+  {
+    id: 'D11',
+    name: 'DSP-3 - 张三记忆唤醒',
+    description: '提及张三时应自动召回候选人的历史备注（薪资敏感/OPPO offer/二面记录）',
+    role: 'hm',
+    input: '上次聊到张三，他那个薪资的问题现在有进展吗？',
+    expectText: true,
+    expectNoError: true,
+    relaxed: true,
+  },
+  {
+    id: 'D12',
+    name: 'DSP-3 - 张三面试回顾',
+    description: '询问张三的面试历史，应召回二面记录',
+    role: 'hr',
+    input: '张三之前面试情况怎么样？我记得二面好像有点问题',
+    expectText: true,
+    expectNoError: true,
+    relaxed: true,
+  },
+  {
+    id: 'D13',
+    name: 'DSP-3 - 张明远默认无记忆',
+    description: '张明远没有预埋记忆，应优雅处理无记忆情况',
+    role: 'hm',
+    input: '告诉我张明远的详细情况',
+    expectText: true,
+    expectNoError: true,
+    relaxed: true,
+  },
+  {
+    id: 'D14',
+    name: 'DSP-3 - 写入候选人备注',
+    description: 'LLM 应在对话中主动写入候选人关键信息',
+    role: 'hm',
+    input: '钱一鸣期望薪资 180 万，技术很强但沟通有点问题',
+    expectText: true,
+    expectNoError: true,
+    relaxed: true,
+  },
+  {
+    id: 'D15',
+    name: 'DSP-3 - 跨会话用户偏好',
+    description: 'HR 角色的偏好应被记住并在后续对话中使用',
+    role: 'hr',
+    input: '我需要一份详细的推荐系统市场分析报告',
+    expectText: true,
+    expectNoError: true,
+    relaxed: true,
+  },
+
   // ── S4 兜底测试 ──
   {
     id: 'FB01', name: '兜底 - 天气查询',
@@ -328,7 +380,8 @@ export function getTestStats() {
     exception: TEST_CASES.filter(c => c.id.startsWith('X')),
     role: TEST_CASES.filter(c => c.id.startsWith('R')),
     dsp1: TEST_CASES.filter(c => c.id.startsWith('D0') && parseInt(c.id.slice(1)) <= 5),
-    dsp2: TEST_CASES.filter(c => c.id.startsWith('D0') && parseInt(c.id.slice(1)) > 5),
+    dsp2: TEST_CASES.filter(c => c.id.startsWith('D0') && parseInt(c.id.slice(1)) > 5 && parseInt(c.id.slice(1)) <= 10),
+    dsp3: TEST_CASES.filter(c => c.id.startsWith('D1')),
     fallback: TEST_CASES.filter(c => c.id.startsWith('FB')),
   };
   return { total: TEST_CASES.length, byCategory };

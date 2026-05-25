@@ -203,12 +203,13 @@ export class AIEngine {
         }
 
         // 尝试从用户输入提取候选人名，召回 candidate 记忆
-        const nameMatch = userInput.match(/张三|李四|王五|张明远|陈晓|赵磊|刘洋/g);
+        const nameMatch = userInput.match(/张三|李四|王五|张明远|李雨桐|钱一鸣|陈晓|赵磊|刘洋/g);
         if (nameMatch) {
-          // 简单映射：名字 → candidate_id（demo 用）
+          // 简单映射：名字 → candidate_id（从 src/data/resumes.json 的 id 对齐）
           const nameToId: Record<string, string> = {
-            '张三': 'cand_001', '李四': 'cand_002', '王五': 'cand_003',
-            '张明远': 'cand_008', '陈晓': 'cand_004', '赵磊': 'cand_005', '刘洋': 'cand_011',
+            '张三': 'res_007', '张明远': 'res_001', '李雨桐': 'res_002',
+            '钱一鸣': 'res_021', '李四': 'res_004', '王五': 'res_005',
+            '陈晓': 'res_006', '赵磊': 'res_008', '刘洋': 'res_009',
           };
           for (const name of nameMatch) {
             const cid = nameToId[name];
