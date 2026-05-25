@@ -310,6 +310,16 @@ export const TEST_CASES: TestCase[] = [
     relaxed: true,
   },
 
+  // ── S6 DSP-4: 面试包壳 ──
+  { id: 'D16', name: 'DSP-4 - 张三面试包', description: '为张三准备面试包', role: 'hm', input: '帮我准备张三的面试包，岗位是推荐算法', expectText: true, expectNoError: true, relaxed: true },
+  { id: 'D17', name: 'DSP-4 - 张明远面试包', description: '为张明远准备面试包', role: 'hm', input: '给张明远准备一套面试题，我周五要面他', expectText: true, expectNoError: true, relaxed: true },
+  { id: 'D18', name: 'DSP-4 - 缺参数引导', description: '缺少参数时应引导', role: 'hm', input: '帮我生成面试题', expectText: true, expectNoError: true, relaxed: true },
+
+  // ── S6 DSP-5: 周报洞察 ──
+  { id: 'D19', name: 'DSP-5 - 周报总览', description: '本周招聘进展', role: 'hm', input: '这周招聘进展怎么样', expectedToolCalls: ['analyze_pipeline'], expectText: true, expectNoError: true },
+  { id: 'D20', name: 'DSP-5 - 月报生成', description: '月度招聘报告', role: 'hr', input: '给我生成本月的招聘月报', expectText: true, expectNoError: true, relaxed: true },
+  { id: 'D21', name: 'DSP-5 - 部门周报', description: '按部门筛选', role: 'hm', input: '算法部门的招聘进度怎么样', expectText: true, expectNoError: true, relaxed: true },
+
   // ── S4 兜底测试 ──
   {
     id: 'FB01', name: '兜底 - 天气查询',
@@ -381,7 +391,9 @@ export function getTestStats() {
     role: TEST_CASES.filter(c => c.id.startsWith('R')),
     dsp1: TEST_CASES.filter(c => c.id.startsWith('D0') && parseInt(c.id.slice(1)) <= 5),
     dsp2: TEST_CASES.filter(c => c.id.startsWith('D0') && parseInt(c.id.slice(1)) > 5 && parseInt(c.id.slice(1)) <= 10),
-    dsp3: TEST_CASES.filter(c => c.id.startsWith('D1')),
+    dsp3: TEST_CASES.filter(c => c.id.startsWith('D1') && parseInt(c.id.slice(1)) <= 15),
+    dsp4: TEST_CASES.filter(c => c.id.startsWith('D1') && parseInt(c.id.slice(1)) > 15 && parseInt(c.id.slice(1)) <= 18),
+    dsp5: TEST_CASES.filter(c => c.id.startsWith('D1') && parseInt(c.id.slice(1)) > 18),
     fallback: TEST_CASES.filter(c => c.id.startsWith('FB')),
   };
   return { total: TEST_CASES.length, byCategory };
