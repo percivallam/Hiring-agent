@@ -31,3 +31,5 @@ export {
   extractHighlights,
   extractGaps,
 } from './fuzzyMatch';
+export { getReferralsForCandidate, formatReferralNote } from './referral';
+export type { ReferralRecord } from './referral';
