@@ -19,6 +19,8 @@ export function ChatView() {
     stopThinking,
     setEngine,
     switchSession,
+    pendingTrigger,
+    clearTrigger,
   } = useChatStore();
   const { role } = useUserStore();
   const { currentSessionId, createSession } = useSessionStore();
@@ -155,6 +157,14 @@ export function ChatView() {
   const handleQuickAction = useCallback((message: string) => {
     handleSend(message);
   }, [handleSend]);
+
+  // ── 响应侧边栏快捷操作 ──
+  useEffect(() => {
+    if (pendingTrigger) {
+      handleSend(pendingTrigger);
+      clearTrigger();
+    }
+  }, [pendingTrigger]);
 
   const handleCardClick = useCallback(async (_cardId: string, payload: any) => {
     // AI 引擎模式下，卡片点击转为发送消息

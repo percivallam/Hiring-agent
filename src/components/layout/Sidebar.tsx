@@ -44,7 +44,7 @@ const shortcuts: Record<UserRole, { label: string; icon: typeof Search; message:
 export function Sidebar() {
   const { sessions, currentSessionId, createSession, setCurrentSession } = useSessionStore();
   const { role } = useUserStore();
-  const { addUserMessage } = useChatStore();
+  const { triggerSend } = useChatStore();
   const [collapsed, setCollapsed] = useState(false);
 
   const handleNewChat = () => {
@@ -52,7 +52,7 @@ export function Sidebar() {
   };
 
   const handleShortcutClick = (message: string) => {
-    addUserMessage(message);
+    triggerSend(message);
   };
 
   const pinnedSessions = sessions.filter(s => s.pinned && s.role === role);

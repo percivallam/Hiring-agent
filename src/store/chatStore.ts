@@ -63,8 +63,11 @@ interface ChatState {
   currentStep: number;
   engine: IConversationEngine | null;
   _sessionId: string | null;
+  pendingTrigger: string | null;
   addMessage: (msg: MessageWithoutIdAndTimestamp) => void;
   addUserMessage: (content: string) => void;
+  triggerSend: (content: string) => void;
+  clearTrigger: () => void;
   startThinking: (steps: string[]) => void;
   updateThinkingStep: (step: number) => void;
   stopThinking: () => void;
@@ -81,6 +84,10 @@ export const useChatStore = create<ChatState>((set, get) => ({
   currentStep: -1,
   engine: null,
   _sessionId: null,
+  pendingTrigger: null,
+
+  triggerSend: (content) => set({ pendingTrigger: content }),
+  clearTrigger: () => set({ pendingTrigger: null }),
 
   addMessage: (msg) => {
     const m = { ...msg, id: generateId(), timestamp: Date.now() } as Message;
