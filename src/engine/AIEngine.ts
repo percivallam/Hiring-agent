@@ -193,9 +193,38 @@ export class AIEngine {
 
   getWelcomeMessage(): { type: string; content: string } {
     const m: Record<UserRole, string> = {
-      hm: '你好！我是 HireAgent，你的 AI 招聘合伙人。\\n\\n我可以帮你：\\n· 搜索和筛选候选人\\n· 查看 Pipeline 和数据\\n· 撰写 JD\\n· 对标薪酬\\n· 对比候选人\\n· 生成消息模板和面试题\\n· 分析风险\\n\\n直接告诉我你需要什么。',
-      hr: '你好！我是 HireAgent，你的 AI 招聘助手。\\n\\n我可以帮你：\\n· 全局 Pipeline 监控\\n· 搜索和筛选候选人\\n· 招聘数据分析\\n· 生成沟通模板\\n· 薪酬对标\\n\\n直接告诉我你需要什么。',
-      candidate: '你好！我是 HireAgent，你的 AI 职业顾问。\\n\\n我可以帮你：\\n· 发现匹配的岗位\\n· 查看申请进度\\n· 面试准备建议\\n· 简历优化建议\\n· 了解目标团队\\n\\n直接告诉我你感兴趣的方向。',
+      hm: `你好！我是 HireAgent，你的 AI 招聘合伙人。
+
+我可以帮你：
+· 搜索和筛选候选人
+· 查看 Pipeline 和数据
+· 撰写 JD
+· 对标薪酬
+· 对比候选人
+· 生成消息模板和面试题
+· 分析风险
+
+直接告诉我你需要什么。`,
+      hr: `你好！我是 HireAgent，你的 AI 招聘助手。
+
+我可以帮你：
+· 全局 Pipeline 监控
+· 搜索和筛选候选人
+· 招聘数据分析
+· 生成沟通模板
+· 薪酬对标
+
+直接告诉我你需要什么。`,
+      candidate: `你好！我是 HireAgent，你的 AI 职业顾问。
+
+我可以帮你：
+· 发现匹配的岗位
+· 查看申请进度
+· 面试准备建议
+· 简历优化建议
+· 了解目标团队
+
+直接告诉我你感兴趣的方向。`,
     };
     return { type: 'text', content: m[this.role] };
   }

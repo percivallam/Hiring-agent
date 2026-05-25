@@ -24,8 +24,7 @@ export function ChatView() {
   const { currentSessionId, createSession } = useSessionStore();
 
   const engineRef = useRef<AIEngine | null>(null);
-  const initializedRef = useRef(false);
-  const hasWelcomed = useRef(false);
+  const prevSessionRef = useRef<string | null>(null);
 
   // ── 会话：无当前会话时自动创建，有则加载消息 ──
   useEffect(() => {
@@ -36,7 +35,7 @@ export function ChatView() {
     }
   }, [currentSessionId]);
 
-  // ── 引擎 ──
+  // ── 引擎 + 欢迎语 ──
   useEffect(() => {
     const apiKey = import.meta.env.VITE_DEEPSEEK_API_KEY;
     const baseUrl = '/api/deepseek';
@@ -44,20 +43,33 @@ export function ChatView() {
 
     engineRef.current = new AIEngine(role, apiKey, baseUrl, model);
     setEngine(engineRef.current as any);
+  }, [role]);
 
-    if (!initializedRef.current) {
-      initializedRef.current = true;
-      // 仅在无历史消息时显示欢迎语
-      const cur = useChatStore.getState().messages;
-      if (cur.length === 0 && !hasWelcomed.current) {
-        hasWelcomed.current = true;
-        const welcome = engineRef.current.getWelcomeMessage();
-        if (welcome.content) {
-          setTimeout(() => addMessage({ type: 'text', role: 'agent', content: welcome.content } as any), 100);
-        }
+  // ── 新会话欢迎语 ──
+  useEffect(() => {
+    if (!currentSessionId || currentSessionId === prevSessionRef.current) return;
+    prevSessionRef.current = currentSessionId;
+
+    const cur = useChatStore.getState().messages;
+    if (cur.length === 0) {
+      const welcome = engineRef.current?.getWelcomeMessage();
+      if (welcome?.content) {
+        setTimeout(() => addMessage({ type: 'text', role: 'agent', content: welcome.content } as any), 100);
       }
     }
-  }, [role, addMessage, setEngine]);
+  }, [currentSessionId, addMessage]);
+
+  // ── 会话自动命名（第一条用户消息做标题） ──
+  const autoNameSession = useCallback((content: string) => {
+    const { currentSessionId: sid } = useSessionStore.getState();
+    if (!sid) return;
+    const sessions = useSessionStore.getState().sessions;
+    const s = sessions.find((x) => x.id === sid);
+    if (s && s.title === '新对话') {
+      const title = content.slice(0, 20) + (content.length > 20 ? '...' : '');
+      useSessionStore.getState().updateSessionTitle(sid, title);
+    }
+  }, []);
 
   // ── 自动保存到本地文件（每 30s + 页面退出时） ──
   useEffect(() => {
@@ -109,6 +121,7 @@ export function ChatView() {
   const handleSend = useCallback(async (input: string) => {
     if (!engineRef.current) return;
     addUserMessage(input);
+    autoNameSession(input);
 
     try {
       const result = await engineRef.current.processInput(input);
