@@ -1,7 +1,7 @@
 # HireAgent v1.2 项目状态
 
-> 最后更新: 2026-05-25 by 林品臣
-> Active Slice: S1 / S2 / S3 (可并行)
+> 最后更新: 2026-05-25 by UI Agent
+> Active Slice: S4
 > Active Branch: main
 
 ---
@@ -9,7 +9,7 @@
 ## 总体进度
 
 ```
-[████████░░░░░░░░░░░░] S0 ✅ Done → S1/S2/S3 并行启动
+[████████████░░░░░░░░] S0 ✅ Done → S1/S2/S3 ✅ Done → S4 可启动
 ```
 
 ---
@@ -20,9 +20,9 @@
 |-------|------|------|-----------|--------|-----|------|
 | S0 | 契约层 + 脚手架 | ✅ Done | 林品臣(Spec) | main | - | contracts/* 全部落地，tsc + build 通过 |
 | S1 | Engine Loop 重构 | ✅ Done | engine | - | - | 依赖 S0 ✅，含向后兼容桩 |
-| S2 | Tools + Golden Data | 🟡 In Progress | tools / data | - | - | 依赖 S0 ✅，可与 S1/S3 并行 |
-| S3 | 10 类卡片 + 状态规范 | 🟡 In Progress | ui | - | - | 依赖 S0 ✅，可与 S1/S2 并行 |
-| S4 | DSP-1 + DSP-2 闭环 | ⚪ Pending | engine + eval | - | - | 依赖 S1/S2/S3 |
+| S2 | Tools + Golden Data | ✅ Done | tools / data | - | - | 依赖 S0 ✅ |
+| S3 | 10 类卡片 + 状态规范 | ✅ Done | ui | - | - | 依赖 S0 ✅ |
+| S4 | DSP-1 + DSP-2 闭环 | 🟡 In Progress | engine + eval | - | - | 依赖 S1/S2/S3 ✅ |
 | S5 | Memory + DSP-3 闭环 | ⚪ Pending | engine + eval | - | - | 依赖 S4 |
 | S6 | DSP-4(壳) + DSP-5 闭环 | ⚪ Pending | tools(demo) + ui + eval | - | - | 依赖 S5 |
 | S7 | Self-Improve 闭环 + polish | ⚪ Pending | engine + eval | - | - | 依赖 S6 |
