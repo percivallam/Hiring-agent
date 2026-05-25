@@ -13,6 +13,10 @@ export { C9_MemoryRecallCard } from './C9_MemoryRecallCard';
 export { C10_ClarificationCard } from './C10_ClarificationCard';
 export { CardRenderer } from './CardRenderer';
 
+// S5/S6 新增组件
+export { ConflictBanner } from './states/ConflictBanner';
+export { MockInterviewPanel } from './MockInterviewPanel';
+
 // 共享态组件
 export { LoadingSkeleton } from './states/LoadingSkeleton';
 export { EmptyHint } from './states/EmptyHint';
