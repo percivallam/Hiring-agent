@@ -395,7 +395,12 @@ export class AIEngine {
     if (parsed.text) cards.push({ type: 'text', role: 'agent', content: parsed.text });
     if (parsed.cards) for (const c of parsed.cards) {
       if (c.data && typeof c.data === 'object' && !WR.has(c.type)) { const { data, ...r } = c; cards.push({ ...r, ...data }); }
-      else cards.push(c);
+      else {
+        if (WR.has(c.type) && c.data) {
+          c.data = { matchHighlights: [], gapPoints: [], tags: [], avatar: null, experience: 0, education: '', salary: '', matchScore: 0, ...c.data };
+        }
+        cards.push(c);
+      }
     }
     if (parsed.quickActions?.length) cards.push({ type: 'quick_actions', title: '快捷操作', actions: parsed.quickActions });
     return cards;
