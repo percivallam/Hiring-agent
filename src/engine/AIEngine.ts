@@ -398,10 +398,20 @@ export class AIEngine {
 
   private buildCards(parsed: ParsedResponse): EngineCard[] {
     const WR = new Set(['candidate_card', 'profile_card', 'analytics']);
+    const ARR_KEYS = ['candidates', 'skills', 'career', 'projects', 'tech_stack', 'highlights',
+      'requirements', 'nice_to_have', 'pipeline', 'dimensions', 'tags', 'alerts',
+      'categories', 'questions', 'items', 'options', 'actions', 'insights',
+      'benchmarks', 'funnel', 'data', 'interview_history', 'match_highlights', 'gap_points'];
     const cards: EngineCard[] = [];
     if (parsed.text) cards.push({ type: 'text', role: 'agent', content: parsed.text });
     if (parsed.cards) for (const c of parsed.cards) {
-      if (c.data && typeof c.data === 'object' && !WR.has(c.type)) { const { data, ...r } = c; cards.push({ ...r, ...data }); }
+      if (c.data && typeof c.data === 'object' && !WR.has(c.type)) {
+        const { data, ...r } = c;
+        for (const key of ARR_KEYS) {
+          if (data[key] === undefined || data[key] === null) (data as any)[key] = [];
+        }
+        cards.push({ ...r, ...data });
+      }
       else {
         if (WR.has(c.type) && c.data) {
           c.data = { matchHighlights: [], gapPoints: [], tags: [], avatar: null, experience: 0, education: '', salary: '', matchScore: 0, ...c.data };
