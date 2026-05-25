@@ -1,0 +1,152 @@
+{
+  "_meta": {
+    "version": "v1.0",
+    "dsp_hooks": {
+      "DSP-1": "岗位列表故意不包含 BSP工程师/嵌入式底层/固件开发等方向，触发 Engine 调用 market_analysis + LLM 接管生成岗位画像"
+    },
+    "generated_at": "2026-05-25",
+    "total_count": 10
+  },
+  "data": [
+    {
+      "id": "job_001",
+      "title": "高级推荐算法工程师",
+      "department": "数据智能部",
+      "location": "北京",
+      "level": "P7-P8",
+      "openDays": 45,
+      "targetCount": 2,
+      "status": "urgent",
+      "description": "负责公司核心推荐系统的算法研发与优化，包括召回、排序、重排等全链路。深度参与用户画像、特征工程、模型训练与部署。",
+      "requirements": ["5年以上推荐系统/计算广告经验", "精通 PyTorch/TensorFlow", "有大规模稀疏模型训练经验", "主导过 DAU 千万级以上推荐系统"],
+      "nice_to_have": ["多模态推荐经验", "强化学习背景", "有团队管理经验", "发表过 RecSys/KDD 论文"],
+      "salary_range": "100-180万"
+    },
+    {
+      "id": "job_002",
+      "title": "大模型应用开发工程师",
+      "department": "AI平台部",
+      "location": "深圳",
+      "level": "P7-P8",
+      "openDays": 30,
+      "targetCount": 3,
+      "status": "open",
+      "description": "基于大语言模型构建 AI 应用产品。负责 Prompt 工程、RAG 系统、Agent 框架开发，对接业务场景落地。",
+      "requirements": ["3年以上 NLP/大模型方向经验", "熟悉 LangChain/LlamaIndex 等框架", "有 RAG 或 Agent 系统落地经验", "Python 精通"],
+      "nice_to_have": ["开源项目贡献", "多模态模型经验", "模型推理优化经验"],
+      "salary_range": "80-160万"
+    },
+    {
+      "id": "job_003",
+      "title": "后端架构师",
+      "department": "基础架构部",
+      "location": "北京",
+      "level": "P8-P9",
+      "openDays": 60,
+      "targetCount": 1,
+      "status": "urgent",
+      "description": "负责公司级后端架构设计与演进，包括微服务治理、云原生基础设施、分布式存储与计算。需要有大规模系统设计经验。",
+      "requirements": ["8年以上后端开发经验", "精通分布式系统设计", "有大规模微服务治理经验", "主导过 QPS 10万+ 系统架构"],
+      "nice_to_have": ["Kubernetes 深度使用经验", "Service Mesh 相关经验", "开源项目 PMC 或 Committer"],
+      "salary_range": "150-250万"
+    },
+    {
+      "id": "job_004",
+      "title": "前端技术专家",
+      "department": "用户体验部",
+      "location": "上海",
+      "level": "P7-P8",
+      "openDays": 25,
+      "targetCount": 1,
+      "status": "open",
+      "description": "负责公司核心产品前端架构设计与性能优化。技术栈 React/TypeScript，涉及数据可视化、编辑器等复杂前端场景。",
+      "requirements": ["5年以上前端开发经验", "精通 React/TypeScript", "有大型前端项目架构经验", "熟悉前端性能优化"],
+      "nice_to_have": ["数据可视化经验", "微前端架构经验", "WebAssembly 经验"],
+      "salary_range": "60-100万"
+    },
+    {
+      "id": "job_005",
+      "title": "数据平台负责人",
+      "department": "数据平台部",
+      "location": "杭州",
+      "level": "P8-P9",
+      "openDays": 35,
+      "targetCount": 1,
+      "status": "open",
+      "description": "负责公司数据平台整体架构与技术规划，包括实时/离线数仓、数据治理、BI 平台。需要 8 年以上数据工程经验及团队管理能力。",
+      "requirements": ["8年以上数据工程经验", "精通 Spark/Flink/Hive 生态", "有数据治理体系搭建经验", "3年以上技术管理经验"],
+      "nice_to_have": ["数据湖/湖仓一体经验", "实时数仓建设经验", "开源数据项目贡献"],
+      "salary_range": "130-220万"
+    },
+    {
+      "id": "job_006",
+      "title": "广告算法工程师",
+      "department": "商业化部",
+      "location": "北京",
+      "level": "P7-P8",
+      "openDays": 38,
+      "targetCount": 2,
+      "status": "open",
+      "description": "负责公司广告系统的算法迭代，包括 CTR/CVR 预估、自动出价、广告检索与排序。推动商业化收入增长。",
+      "requirements": ["3年以上广告算法/推荐系统经验", "精通 CTR/CVR 预估模型", "熟悉 OCPX/RTB 等广告机制", "有大规模稀疏特征工程经验"],
+      "nice_to_have": ["强化学习出价经验", "多广告位联合优化经验", "有商业化收入负责经验"],
+      "salary_range": "90-160万"
+    },
+    {
+      "id": "job_007",
+      "title": "搜索算法工程师",
+      "department": "搜索事业部",
+      "location": "杭州",
+      "level": "P6-P7",
+      "openDays": 20,
+      "targetCount": 2,
+      "status": "open",
+      "description": "负责公司搜索产品的算法优化，包括 Query 理解、召回、排序、多模态搜索。提升搜索满意度和转化率。",
+      "requirements": ["3年以上搜索/信息检索经验", "熟悉 Query 理解/NLP 相关技术", "有搜索排序模型迭代经验", "精通 Elasticsearch 等检索引擎"],
+      "nice_to_have": ["多模态搜索经验", "知识图谱构建经验", "有搜索业务指标负责经验"],
+      "salary_range": "70-130万"
+    },
+    {
+      "id": "job_008",
+      "title": "高级产品经理（AIGC方向）",
+      "department": "AI平台部",
+      "location": "深圳",
+      "level": "P7-P8",
+      "openDays": 28,
+      "targetCount": 1,
+      "status": "open",
+      "description": "负责公司 AIGC 产品线的规划与落地，包括 AI 助手、智能创作工具等。需要理解大模型能力边界并转化为产品方案。",
+      "requirements": ["5年以上产品经理经验", "有大模型/AI产品经验", "数据驱动思维，熟练使用 SQL", "有 0-1 产品落地经验"],
+      "nice_to_have": ["技术背景（CS相关专业）", "有创作者工具产品经验", "英语流利"],
+      "salary_range": "80-140万"
+    },
+    {
+      "id": "job_009",
+      "title": "云原生基础设施工程师",
+      "department": "基础架构部",
+      "location": "杭州",
+      "level": "P7-P8",
+      "openDays": 32,
+      "targetCount": 2,
+      "status": "open",
+      "description": "负责公司云原生基础设施的建设与运维，包括 Kubernetes 集群管理、CI/CD 平台、可观测性体系。推动基础设施即代码。",
+      "requirements": ["5年以上运维/基础设施经验", "精通 Kubernetes 和容器生态", "有 Terraform/Pulumi 等 IaC 经验", "熟悉 Prometheus/Grafana 可观测性栈"],
+      "nice_to_have": ["有 Service Mesh 落地经验", "Go 开发能力", "多云管理经验"],
+      "salary_range": "70-130万"
+    },
+    {
+      "id": "job_010",
+      "title": "数据科学家（用户增长）",
+      "department": "用户增长部",
+      "location": "北京",
+      "level": "P6-P7",
+      "openDays": 18,
+      "targetCount": 2,
+      "status": "open",
+      "description": "负责用户增长方向的数据分析与建模，包括用户生命周期分析、增长实验设计、因果推断。驱动数据化增长决策。",
+      "requirements": ["3年以上数据科学/数据分析经验", "精通 SQL 和 Python", "有 A/B 测试设计与分析经验", "熟悉因果推断/ uplift modeling"],
+      "nice_to_have": ["用户增长方向经验", "Tableau/Looker 等 BI 工具", "有机器学习建模经验"],
+      "salary_range": "60-100万"
+    }
+  ]
+}

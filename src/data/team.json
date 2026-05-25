@@ -1,0 +1,142 @@
+{
+  "teams": {
+    "team_rec_algo": {
+      "teamName": "推荐算法团队",
+      "members": [
+        {
+          "name": "张明远",
+          "role": "Tech Lead",
+          "skills": [
+            "推荐系统",
+            "深度学习",
+            "PyTorch"
+          ],
+          "level": "P8"
+        },
+        {
+          "name": "李雨桐",
+          "role": "算法工程师",
+          "skills": [
+            "CTR预估",
+            "模型压缩",
+            "PyTorch"
+          ],
+          "level": "P7"
+        },
+        {
+          "name": "王小明",
+          "role": "算法工程师",
+          "skills": [
+            "召回",
+            "图神经网络",
+            "TensorFlow"
+          ],
+          "level": "P6"
+        },
+        {
+          "name": "陈芳",
+          "role": "算法实习生",
+          "skills": [
+            "Python",
+            "基础ML"
+          ],
+          "level": "实习"
+        }
+      ],
+      "gaps": [
+        {
+          "skill": "大模型/LLM",
+          "urgency": "high",
+          "description": "推荐算法向大模型方向演进，团队无LLM经验"
+        },
+        {
+          "skill": "工程架构",
+          "urgency": "medium",
+          "description": "缺少线上部署和性能优化经验"
+        },
+        {
+          "skill": "AB测试与因果推断",
+          "urgency": "medium",
+          "description": "实验设计依赖数据团队"
+        }
+      ],
+      "recommendations": [
+        "优先招聘1名大模型方向P7+",
+        "张明远带内部LLM培训",
+        "招聘ML平台工程师负责推理优化"
+      ],
+      "afterHireSimulation": {
+        "candidateName": "王浩然",
+        "improvedSkills": [
+          "大模型/LLM经验",
+          "研究能力"
+        ],
+        "newGaps": [
+          "工程落地能力仍需补充"
+        ]
+      }
+    },
+    "team_backend": {
+      "teamName": "基础架构团队",
+      "members": [
+        {
+          "name": "吴晓峰",
+          "role": "架构师",
+          "skills": [
+            "Go",
+            "Kubernetes",
+            "微服务"
+          ],
+          "level": "P8"
+        },
+        {
+          "name": "周睿",
+          "role": "资深工程师",
+          "skills": [
+            "Java",
+            "分布式系统",
+            "MySQL"
+          ],
+          "level": "P8"
+        },
+        {
+          "name": "刘斌",
+          "role": "后端开发",
+          "skills": [
+            "Go",
+            "Redis",
+            "Kafka"
+          ],
+          "level": "P6"
+        },
+        {
+          "name": "赵琳",
+          "role": "后端开发",
+          "skills": [
+            "Java",
+            "Spring",
+            "MySQL"
+          ],
+          "level": "P5"
+        }
+      ],
+      "gaps": [
+        {
+          "skill": "云原生/Service Mesh",
+          "urgency": "medium",
+          "description": "吴晓峰是唯一云原生专家，bus factor高"
+        },
+        {
+          "skill": "安全架构",
+          "urgency": "low",
+          "description": "团队缺少安全领域专长"
+        }
+      ],
+      "recommendations": [
+        "招聘1名云原生P7分担压力",
+        "内部培养安全架构能力"
+      ],
+      "afterHireSimulation": null
+    }
+  }
+}

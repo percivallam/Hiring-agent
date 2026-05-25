@@ -1,0 +1,160 @@
+{
+  "_meta": {
+    "version": "v1.0",
+    "dsp_hooks": {
+      "DSP-1": "bsp_firmware_engineer 方向提供 BSP/嵌入式底层人才市场数据，当 jobs.json 中无此岗位时，Engine 可调用 market_analysis 获取供需信息，LLM 基于此生成岗位画像建议"
+    },
+    "generated_at": "2026-05-25",
+    "total_directions": 15
+  },
+  "recommendation_engineer": {
+    "totalCandidates": "全国约 8,000-12,000 人",
+    "activeCandidates": "约 2,000 人（最近3个月有活动）",
+    "topCompanies": ["字节跳动 (18%)", "阿里巴巴 (15%)", "快手 (12%)", "美团 (9%)", "腾讯 (7%)"],
+    "cityDistribution": [{"label": "北京", "value": 35}, {"label": "杭州", "value": 25}, {"label": "上海", "value": 20}, {"label": "深圳", "value": 15}, {"label": "其他", "value": 5}],
+    "salaryRange": {"p25": 60, "p50": 90, "p75": 140},
+    "demandTrend": "近6个月需求增长 25%，大模型相关岗位分流部分人才",
+    "avgTimeToHire": "45-60 天",
+    "insights": ["大模型热潮导致传统推荐算法人才供给收紧", "应届生供给充足但 5 年以上经验人才稀缺", "字节跳动和快手是最大的人才输出方"]
+  },
+  "llm_engineer": {
+    "totalCandidates": "全国约 3,000-5,000 人",
+    "activeCandidates": "约 1,500 人",
+    "topCompanies": ["腾讯 (20%)", "百度 (15%)", "字节跳动 (12%)", "阿里 (10%)", "初创公司 (25%)"],
+    "cityDistribution": [{"label": "北京", "value": 40}, {"label": "深圳", "value": 25}, {"label": "上海", "value": 18}, {"label": "杭州", "value": 12}, {"label": "其他", "value": 5}],
+    "salaryRange": {"p25": 80, "p50": 120, "p75": 180},
+    "demandTrend": "需求爆发式增长，同比增长 150%+",
+    "avgTimeToHire": "35-50 天",
+    "insights": ["真正的LLM应用落地人才极度稀缺，多为预训练研究员转方向", "大量候选人仅有 Prompt 工程经验，缺乏系统构建能力", "薪酬溢价严重，需做好 Sell 方案"]
+  },
+  "backend_architect": {
+    "totalCandidates": "全国约 5,000-8,000 人",
+    "activeCandidates": "约 800 人",
+    "topCompanies": ["阿里巴巴 (22%)", "字节跳动 (18%)", "华为 (12%)", "腾讯 (10%)", "蚂蚁集团 (8%)"],
+    "cityDistribution": [{"label": "北京", "value": 30}, {"label": "杭州", "value": 28}, {"label": "深圳", "value": 22}, {"label": "上海", "value": 15}, {"label": "其他", "value": 5}],
+    "salaryRange": {"p25": 100, "p50": 150, "p75": 220},
+    "demandTrend": "稳定增长，云原生方向需求上升",
+    "avgTimeToHire": "60-90 天",
+    "insights": ["P8+ 级别候选人多为被动求职，触达难度大", "杭州和深圳是主要人才聚集地", "薪酬竞争激烈，建议提升股权激励比例"]
+  },
+  "bsp_firmware_engineer": {
+    "totalCandidates": "全国约 2,000-3,000 人",
+    "activeCandidates": "约 500 人",
+    "topCompanies": ["华为 (25%)", "大疆 (15%)", "小米 (12%)", "蔚来 (10%)", "海康威视 (8%)"],
+    "cityDistribution": [{"label": "深圳", "value": 35}, {"label": "上海", "value": 25}, {"label": "北京", "value": 18}, {"label": "杭州", "value": 12}, {"label": "其他", "value": 10}],
+    "salaryRange": {"p25": 40, "p50": 65, "p75": 95},
+    "demandTrend": "智能硬件/汽车电子/IoT 推动需求稳步增长 15%",
+    "avgTimeToHire": "45-70 天",
+    "insights": ["BSP人才高度集中在硬件大厂，纯互联网公司招聘难度极大", "候选人多为硬件背景，对互联网文化适应需评估", "建议通过硬件猎头渠道或与硬件厂商建立人才互换关系", "DSP-1: 如果库中无此岗位，LLM 应基于此市场数据生成岗位画像建议"]
+  },
+  "embedded_iot": {
+    "totalCandidates": "全国约 5,000-8,000 人",
+    "activeCandidates": "约 1,200 人",
+    "topCompanies": ["华为 (18%)", "小米 (15%)", "大疆 (12%)", "蔚来 (10%)", "海康威视 (8%)"],
+    "cityDistribution": [{"label": "深圳", "value": 30}, {"label": "上海", "value": 25}, {"label": "北京", "value": 20}, {"label": "杭州", "value": 15}, {"label": "其他", "value": 10}],
+    "salaryRange": {"p25": 45, "p50": 70, "p75": 100},
+    "demandTrend": "IoT/智能家居/车联网推动需求年增 20%",
+    "avgTimeToHire": "40-60 天",
+    "insights": ["嵌入式人才以硬件公司为主，互联网公司吸引力有限", "RTOS/Linux 双栈人才最稀缺", "车规级嵌入式人才薪资溢价 30%+"]
+  },
+  "frontend_expert": {
+    "totalCandidates": "全国约 15,000-20,000 人",
+    "activeCandidates": "约 5,000 人",
+    "topCompanies": ["字节跳动 (18%)", "腾讯 (15%)", "阿里巴巴 (12%)", "美团 (10%)", "百度 (7%)"],
+    "cityDistribution": [{"label": "北京", "value": 30}, {"label": "上海", "value": 25}, {"label": "深圳", "value": 22}, {"label": "杭州", "value": 18}, {"label": "其他", "value": 5}],
+    "salaryRange": {"p25": 40, "p50": 65, "p75": 95},
+    "demandTrend": "需求稳定，可视化/编辑器等细分方向有溢价",
+    "avgTimeToHire": "30-45 天",
+    "insights": ["前端人才供给充足但专家级稀缺", "React/TypeScript 已是标配", "可视化方向有额外 15% 薪酬溢价"]
+  },
+  "data_engineer": {
+    "totalCandidates": "全国约 10,000-15,000 人",
+    "activeCandidates": "约 3,000 人",
+    "topCompanies": ["阿里巴巴 (15%)", "字节跳动 (12%)", "美团 (10%)", "快手 (8%)", "腾讯 (7%)"],
+    "cityDistribution": [{"label": "北京", "value": 30}, {"label": "杭州", "value": 25}, {"label": "上海", "value": 22}, {"label": "深圳", "value": 18}, {"label": "其他", "value": 5}],
+    "salaryRange": {"p25": 55, "p50": 80, "p75": 120},
+    "demandTrend": "实时数仓和数据湖需求推动增长 30%",
+    "avgTimeToHire": "35-50 天",
+    "insights": ["Flink 实时计算能力是当前最热门方向", "数据治理经验者享受 20% 溢价", "候选人集中在大厂，中小企业难抢"]
+  },
+  "devops_sre": {
+    "totalCandidates": "全国约 8,000-12,000 人",
+    "activeCandidates": "约 2,500 人",
+    "topCompanies": ["阿里巴巴 (15%)", "字节跳动 (12%)", "腾讯 (10%)", "华为 (8%)", "蚂蚁集团 (7%)"],
+    "cityDistribution": [{"label": "北京", "value": 28}, {"label": "杭州", "value": 25}, {"label": "深圳", "value": 22}, {"label": "上海", "value": 20}, {"label": "其他", "value": 5}],
+    "salaryRange": {"p25": 55, "p50": 80, "p75": 120},
+    "demandTrend": "云原生推动 SRE 需求年增 25%",
+    "avgTimeToHire": "35-55 天",
+    "insights": ["Kubernetes 专精人才最稀缺", "可观测性方向有额外溢价", "DevOps 文化落地好的候选人供不应求"]
+  },
+  "search_engineer": {
+    "totalCandidates": "全国约 3,000-5,000 人",
+    "activeCandidates": "约 800 人",
+    "topCompanies": ["百度 (18%)", "字节跳动 (15%)", "阿里巴巴 (12%)", "腾讯 (10%)", "小红书 (8%)"],
+    "cityDistribution": [{"label": "北京", "value": 35}, {"label": "杭州", "value": 25}, {"label": "上海", "value": 20}, {"label": "深圳", "value": 15}, {"label": "其他", "value": 5}],
+    "salaryRange": {"p25": 60, "p50": 90, "p75": 135},
+    "demandTrend": "多模态搜索推动需求增长 20%",
+    "avgTimeToHire": "40-55 天",
+    "insights": ["搜索人才被推荐/大模型方向分流严重", "多模态搜索经验者供不应求", "百度仍是最大的人才输出方"]
+  },
+  "advertising_engineer": {
+    "totalCandidates": "全国约 5,000-8,000 人",
+    "activeCandidates": "约 1,500 人",
+    "topCompanies": ["字节跳动 (25%)", "快手 (18%)", "腾讯 (15%)", "阿里巴巴 (12%)", "百度 (8%)"],
+    "cityDistribution": [{"label": "北京", "value": 40}, {"label": "上海", "value": 25}, {"label": "深圳", "value": 18}, {"label": "杭州", "value": 12}, {"label": "其他", "value": 5}],
+    "salaryRange": {"p25": 70, "p50": 100, "p75": 150},
+    "demandTrend": "字节/快手/腾讯持续扩招，需求年增 30%",
+    "avgTimeToHire": "40-55 天",
+    "insights": ["字节跳动是广告算法人才最大雇主和输出方", "OCPX/自动出价方向最热", "商业化压力导致人才流动性高"]
+  },
+  "data_scientist_growth": {
+    "totalCandidates": "全国约 5,000-8,000 人",
+    "activeCandidates": "约 1,500 人",
+    "topCompanies": ["字节跳动 (20%)", "快手 (15%)", "腾讯 (12%)", "美团 (10%)", "小红书 (8%)"],
+    "cityDistribution": [{"label": "北京", "value": 32}, {"label": "上海", "value": 28}, {"label": "深圳", "value": 20}, {"label": "杭州", "value": 15}, {"label": "其他", "value": 5}],
+    "salaryRange": {"p25": 55, "p50": 80, "p75": 120},
+    "demandTrend": "增长团队扩招推动需求年增 25%",
+    "avgTimeToHire": "35-50 天",
+    "insights": ["因果推断/Uplift Modeling 能力是差异化点", "统计学背景候选人更受青睐", "增长方向的 DS 需要更多业务直觉"]
+  },
+  "product_manager_ai": {
+    "totalCandidates": "全国约 2,000-3,000 人",
+    "activeCandidates": "约 500 人",
+    "topCompanies": ["字节跳动 (20%)", "腾讯 (15%)", "百度 (12%)", "阿里巴巴 (10%)", "初创公司 (25%)"],
+    "cityDistribution": [{"label": "北京", "value": 35}, {"label": "深圳", "value": 25}, {"label": "上海", "value": 22}, {"label": "其他", "value": 18}],
+    "salaryRange": {"p25": 60, "p50": 90, "p75": 140},
+    "demandTrend": "大模型产品化推动需求激增 200%+",
+    "avgTimeToHire": "45-70 天",
+    "insights": ["AIGC 产品经理是目前最稀缺的产品方向", "需要同时懂技术和用户场景，复合型人才极少", "建议放宽要求培养潜力人选"]
+  },
+  "computer_vision": {
+    "totalCandidates": "全国约 8,000-12,000 人",
+    "activeCandidates": "约 2,000 人",
+    "topCompanies": ["字节跳动 (15%)", "商汤 (12%)", "腾讯 (10%)", "海康威视 (8%)", "旷视 (7%)"],
+    "cityDistribution": [{"label": "北京", "value": 30}, {"label": "上海", "value": 25}, {"label": "深圳", "value": 22}, {"label": "杭州", "value": 15}, {"label": "其他", "value": 8}],
+    "salaryRange": {"p25": 60, "p50": 90, "p75": 140},
+    "demandTrend": "自动驾驶/视频理解推动稳定需求",
+    "avgTimeToHire": "40-55 天",
+    "insights": ["CV 人才供给相对充足，竞争激烈", "多模态/3D视觉方向有溢价", "AI 四小龙人才外溢明显"]
+  },
+  "security_engineer": {
+    "totalCandidates": "全国约 5,000-8,000 人",
+    "activeCandidates": "约 1,000 人",
+    "topCompanies": ["奇安信 (12%)", "阿里巴巴 (10%)", "腾讯 (8%)", "华为 (7%)", "深信服 (7%)"],
+    "cityDistribution": [{"label": "北京", "value": 35}, {"label": "上海", "value": 25}, {"label": "深圳", "value": 20}, {"label": "成都", "value": 10}, {"label": "其他", "value": 10}],
+    "salaryRange": {"p25": 55, "p50": 80, "p75": 120},
+    "demandTrend": "数据安全法推动需求稳步增长",
+    "avgTimeToHire": "45-60 天",
+    "insights": ["安全人才整体偏少，合规和数据安全方向最热", "白帽黑客型人才供不应求"]
+  },
+  "mobile_engineer": {
+    "totalCandidates": "全国约 20,000-30,000 人",
+    "activeCandidates": "约 6,000 人",
+    "topCompanies": ["字节跳动 (15%)", "腾讯 (12%)", "阿里巴巴 (10%)", "快手 (8%)", "美团 (7%)"],
+    "cityDistribution": [{"label": "北京", "value": 28}, {"label": "上海", "value": 25}, {"label": "深圳", "value": 22}, {"label": "杭州", "value": 15}, {"label": "其他", "value": 10}],
+    "salaryRange": {"p25": 50, "p50": 75, "p75": 110},
+    "demandTrend": "Flutter/跨端框架推动需求结构变化",
+    "avgTimeToHire": "30-45 天",
+    "insights": ["iOS/Android 原生人才供给充足", "跨端框架经验者更受欢迎", "客户端整体需求增速放缓"]
+  }
+}

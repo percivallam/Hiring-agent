@@ -1,0 +1,147 @@
+{
+  "_meta": {
+    "version": "v1.0",
+    "dsp_hooks": {
+      "DSP-1": "bsp_engineer 条目提供 BSP/嵌入式底层薪酬对标数据，配合 market.json 支撑 LLM 岗位画像生成"
+    },
+    "generated_at": "2026-05-25",
+    "total_positions": 12
+  },
+  "recommendation_engineer": {
+    "position": "推荐算法工程师",
+    "benchmarks": [
+      {"company": "字节跳动", "level": "2-1/2-2", "salaryRange": "80-150万", "median": 110},
+      {"company": "阿里巴巴", "level": "P7/P8", "salaryRange": "100-160万", "median": 130},
+      {"company": "快手", "level": "K3B/K4A", "salaryRange": "90-140万", "median": 115},
+      {"company": "美团", "level": "L7/L8", "salaryRange": "80-130万", "median": 105},
+      {"company": "小红书", "level": "高级/资深", "salaryRange": "70-120万", "median": 90}
+    ],
+    "marketMedian": 110,
+    "recommendation": "对标 P7 级别建议 100-130 万总包，P8 建议 130-180 万。当前市场 5 年以上推荐算法工程师供不应求，建议在面试通过后快速出 Offer。股权部分可做差异化。"
+  },
+  "llm_engineer": {
+    "position": "大模型应用开发工程师",
+    "benchmarks": [
+      {"company": "腾讯", "level": "T9/T10", "salaryRange": "100-180万", "median": 140},
+      {"company": "百度", "level": "T7/T8", "salaryRange": "90-160万", "median": 120},
+      {"company": "字节跳动", "level": "2-1/2-2", "salaryRange": "100-170万", "median": 130},
+      {"company": "Minimax", "level": "资深/专家", "salaryRange": "120-200万", "median": 160},
+      {"company": "智谱AI", "level": "高级/资深", "salaryRange": "110-180万", "median": 140}
+    ],
+    "marketMedian": 135,
+    "recommendation": "大模型领域人才争夺激烈，建议 P7 级别 120-160 万，P8 级别 160-220 万。初创公司现金+期权包更具竞争力，需突出业务场景和技术成长空间。"
+  },
+  "backend_architect": {
+    "position": "后端架构师",
+    "benchmarks": [
+      {"company": "阿里巴巴", "level": "P8/P9", "salaryRange": "150-250万", "median": 200},
+      {"company": "字节跳动", "level": "2-2/3-1", "salaryRange": "140-240万", "median": 180},
+      {"company": "华为", "level": "18/19级", "salaryRange": "120-200万", "median": 160},
+      {"company": "蚂蚁集团", "level": "P8/P9", "salaryRange": "140-220万", "median": 180},
+      {"company": "腾讯", "level": "T10/T11", "salaryRange": "130-220万", "median": 170}
+    ],
+    "marketMedian": 180,
+    "recommendation": "P8 级别架构师竞争最激烈，建议总包 150-200 万。当前岗位已开放 60 天未关闭，建议重新评估 JD 要求或上调薪酬预算。可考虑放宽到 P7+ 潜力人选。"
+  },
+  "frontend_expert": {
+    "position": "前端技术专家",
+    "benchmarks": [
+      {"company": "字节跳动", "level": "2-1/2-2", "salaryRange": "60-100万", "median": 80},
+      {"company": "腾讯", "level": "T9/T10", "salaryRange": "55-95万", "median": 75},
+      {"company": "阿里巴巴", "level": "P7/P8", "salaryRange": "60-100万", "median": 80},
+      {"company": "美团", "level": "L7/L8", "salaryRange": "55-90万", "median": 70}
+    ],
+    "marketMedian": 75,
+    "recommendation": "前端薪酬整体低于算法和后端，P7 建议 60-80 万。可视化方向有溢价空间。"
+  },
+  "data_platform_lead": {
+    "position": "数据平台负责人",
+    "benchmarks": [
+      {"company": "字节跳动", "level": "2-2/3-1", "salaryRange": "130-220万", "median": 170},
+      {"company": "阿里巴巴", "level": "P8/P9", "salaryRange": "140-230万", "median": 180},
+      {"company": "美团", "level": "L8/L9", "salaryRange": "120-200万", "median": 150},
+      {"company": "快手", "level": "K4A/K4B", "salaryRange": "110-190万", "median": 145}
+    ],
+    "marketMedian": 160,
+    "recommendation": "数据平台负责人属于稀缺岗位，需要同时具备数据工程和团队管理能力。建议 P8 级别 130-180 万，P9 级别 180-250 万。"
+  },
+  "search_engineer": {
+    "position": "搜索算法工程师",
+    "benchmarks": [
+      {"company": "百度", "level": "T7/T8", "salaryRange": "70-130万", "median": 95},
+      {"company": "字节跳动", "level": "2-1/2-2", "salaryRange": "80-140万", "median": 105},
+      {"company": "阿里巴巴", "level": "P7/P8", "salaryRange": "80-140万", "median": 110},
+      {"company": "腾讯", "level": "T9/T10", "salaryRange": "75-135万", "median": 100},
+      {"company": "小红书", "level": "高级/资深", "salaryRange": "65-120万", "median": 85}
+    ],
+    "marketMedian": 95,
+    "recommendation": "搜索算法整体薪酬略低于推荐方向，P7 建议 80-120 万。多模态搜索经验者另有 15% 溢价。"
+  },
+  "advertising_engineer": {
+    "position": "广告算法工程师",
+    "benchmarks": [
+      {"company": "字节跳动", "level": "2-1/2-2", "salaryRange": "90-160万", "median": 120},
+      {"company": "快手", "level": "K3B/K4A", "salaryRange": "85-150万", "median": 115},
+      {"company": "腾讯", "level": "T9/T10", "salaryRange": "80-150万", "median": 110},
+      {"company": "阿里巴巴", "level": "P7/P8", "salaryRange": "80-140万", "median": 105}
+    ],
+    "marketMedian": 110,
+    "recommendation": "广告算法人才竞争激烈，字节系薪资领跑。P7 建议 100-140 万，需突出商业化增长空间。"
+  },
+  "data_scientist": {
+    "position": "数据科学家（用户增长）",
+    "benchmarks": [
+      {"company": "字节跳动", "level": "2-1/2-2", "salaryRange": "65-120万", "median": 85},
+      {"company": "快手", "level": "K3B/K4A", "salaryRange": "60-110万", "median": 80},
+      {"company": "腾讯", "level": "T9/T10", "salaryRange": "55-100万", "median": 75},
+      {"company": "美团", "level": "L7/L8", "salaryRange": "55-100万", "median": 70}
+    ],
+    "marketMedian": 75,
+    "recommendation": "增长方向数据科学家整体薪酬低于算法岗，P6-P7 建议 60-100 万。因果推断/Uplift Modeling 能力有溢价。"
+  },
+  "product_manager_ai": {
+    "position": "高级产品经理（AIGC方向）",
+    "benchmarks": [
+      {"company": "字节跳动", "level": "2-1/2-2", "salaryRange": "90-160万", "median": 120},
+      {"company": "腾讯", "level": "T9/T10", "salaryRange": "80-150万", "median": 110},
+      {"company": "百度", "level": "T7/T8", "salaryRange": "75-140万", "median": 100},
+      {"company": "Minimax", "level": "高级/资深", "salaryRange": "100-180万", "median": 130}
+    ],
+    "marketMedian": 110,
+    "recommendation": "AIGC 产品经理薪酬已追平算法岗，极度稀缺。P7 建议 100-150 万，需配合强力 Sell 方案和业务自主权。"
+  },
+  "bsp_engineer": {
+    "position": "BSP/嵌入式开发工程师",
+    "benchmarks": [
+      {"company": "华为", "level": "15/16级", "salaryRange": "50-90万", "median": 70},
+      {"company": "大疆", "level": "高级/资深", "salaryRange": "45-80万", "median": 60},
+      {"company": "小米", "level": "高级/资深", "salaryRange": "40-75万", "median": 55},
+      {"company": "蔚来", "level": "P7/P8", "salaryRange": "50-85万", "median": 65},
+      {"company": "海康威视", "level": "高级/资深", "salaryRange": "40-70万", "median": 50}
+    ],
+    "marketMedian": 60,
+    "recommendation": "BSP 岗位整体薪酬低于互联网算法/后端岗。硬件大厂为主，互联网公司若招聘此方向需上浮 20-30% 做吸引力补偿。深圳是主战场，人才对薪酬的敏感度低于对技术方向的兴趣。"
+  },
+  "devops_sre": {
+    "position": "云原生基础设施工程师",
+    "benchmarks": [
+      {"company": "阿里巴巴", "level": "P7/P8", "salaryRange": "70-130万", "median": 95},
+      {"company": "字节跳动", "level": "2-1/2-2", "salaryRange": "65-120万", "median": 90},
+      {"company": "腾讯", "level": "T9/T10", "salaryRange": "60-115万", "median": 85},
+      {"company": "华为", "level": "15/16级", "salaryRange": "55-100万", "median": 75}
+    ],
+    "marketMedian": 85,
+    "recommendation": "云原生基础设施工程师需求旺盛，P7 建议 70-110 万。Kubernetes 专精人才有 15% 溢价。"
+  },
+  "embedded_iot": {
+    "position": "嵌入式/IoT 开发工程师",
+    "benchmarks": [
+      {"company": "华为", "level": "15/16级", "salaryRange": "50-95万", "median": 70},
+      {"company": "小米", "level": "高级/资深", "salaryRange": "45-85万", "median": 60},
+      {"company": "大疆", "level": "高级/资深", "salaryRange": "45-80万", "median": 60},
+      {"company": "蔚来", "level": "P7/P8", "salaryRange": "55-90万", "median": 70}
+    ],
+    "marketMedian": 65,
+    "recommendation": "嵌入式/IoT 人才集中在硬件/汽车公司，车规级方向薪资溢价 30%。互联网公司招聘需考虑文化适配。"
+  }
+}
