@@ -64,7 +64,14 @@ const MEMORY_TOOL_DEFS: ToolDefinition[] = [
   },
 ];
 
-const ALL_TOOL_DEFS = [...TOOL_DEFINITIONS, ...MEMORY_TOOL_DEFS];
+// Deduplicate tool definitions to prevent API errors
+const seenNames = new Set<string>();
+const ALL_TOOL_DEFS = [...TOOL_DEFINITIONS, ...MEMORY_TOOL_DEFS].filter(t => {
+  const name = t.function?.name;
+  if (!name || seenNames.has(name)) return false;
+  seenNames.add(name);
+  return true;
+});
 
 // ══════════════════════════════════════════
 // Types
