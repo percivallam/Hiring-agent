@@ -39,9 +39,7 @@ export function ChatView() {
   // ── 引擎 ──
   useEffect(() => {
     const apiKey = import.meta.env.VITE_DEEPSEEK_API_KEY;
-    const baseUrl = import.meta.env.DEV
-      ? '/api/deepseek'
-      : (import.meta.env.VITE_DEEPSEEK_BASE_URL || 'https://api.deepseek.com');
+    const baseUrl = '/api/deepseek';
     const model = import.meta.env.VITE_DEEPSEEK_MODEL;
 
     engineRef.current = new AIEngine(role, apiKey, baseUrl, model);
@@ -90,6 +88,11 @@ export function ChatView() {
   // ── window 全局工具 ──
   useEffect(() => {
     (window as any).__isUsingModel = () => engineRef.current?.isConfigured() || false;
+    (window as any).__getModelConfig = () => ({
+      provider: 'deepseek',
+      apiKey: import.meta.env.VITE_DEEPSEEK_API_KEY || '',
+      model: import.meta.env.VITE_DEEPSEEK_MODEL || 'deepseek-chat',
+    });
     (window as any).__exportChatData = () => {
       const json = exportAllData();
       const blob = new Blob([json], { type: 'application/json' });

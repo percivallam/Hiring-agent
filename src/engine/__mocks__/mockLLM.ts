@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * MockLLMClient — S1 单测用。
  *

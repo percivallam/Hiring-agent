@@ -1,0 +1,274 @@
+{
+  "_meta": {
+    "version": "v1.0",
+    "description": "内推关系数据：候选人与其推荐人之间的内推记录，含推荐语和关系类型。用于展示招聘内推网络。",
+    "generated_at": "2026-05-26",
+    "total_referrals": 24
+  },
+  "referrals": [
+    {
+      "id": "ref_001",
+      "candidate_id": "res_001",
+      "candidate_name": "张明远",
+      "referrer_name": "张总",
+      "referrer_title": "CTO办公室",
+      "relationship": "前同事",
+      "recommendation": "张明远是我在阿里的前同事，技术能力一流。在淘宝推荐系统主导过核心项目，CTR提升12%是同方向最好的。管理8人团队经验证明他有带团队的能力。强烈推荐。",
+      "date": "2026-04-28",
+      "status": "已面试"
+    },
+    {
+      "id": "ref_002",
+      "candidate_id": "res_012",
+      "candidate_name": "林佳怡",
+      "referrer_name": "李工",
+      "referrer_title": "推荐算法工程师",
+      "relationship": "前同事（字节）",
+      "recommendation": "林佳怡是我在字节的同事，成长速度很快。从快手到字节一年多，精排模型上手非常快。年轻有冲劲，唯一需要关注的是管理经验还不足2年。建议给P7，重点培养leadership。",
+      "date": "2026-04-30",
+      "status": "已面试"
+    },
+    {
+      "id": "ref_003",
+      "candidate_id": "res_021",
+      "candidate_name": "钱一鸣",
+      "referrer_name": "猎头-锐仕方达",
+      "referrer_title": "猎头顾问",
+      "relationship": "猎头推荐",
+      "recommendation": "钱一鸣目前在初创公司做算法负责人，0-1经验丰富。但近两年跳槽频繁（百度→快手→初创），需要面试中确认离职原因。如果稳定性问题能解释清楚，技术能力是完全过关的。",
+      "date": "2026-05-02",
+      "status": "待面试"
+    },
+    {
+      "id": "ref_004",
+      "candidate_id": "res_031",
+      "candidate_name": "郭子豪",
+      "referrer_name": "王经理",
+      "referrer_title": "数据智能部",
+      "relationship": "前同事（小米）",
+      "recommendation": "郭子豪在小米做推荐系统，全链路经验扎实。多模态推荐模型有落地经验。小米P8级别，技术扎实。适合作为对比卡中「小米背景」的参照候选人。",
+      "date": "2026-04-25",
+      "status": "已面试"
+    },
+    {
+      "id": "ref_005",
+      "candidate_id": "res_025",
+      "candidate_name": "石磊",
+      "referrer_name": "陈总",
+      "referrer_title": "基础架构部",
+      "relationship": "前上级（阿里）",
+      "recommendation": "石磊是我在阿里带过的下属。交易核心链路架构升级他是主力，支撑双11峰值50万QPS。现在带12人架构组，管理能力很强。P8级别，被动看机会，需要好的方案才能说服他。",
+      "date": "2026-04-20",
+      "status": "已接触"
+    },
+    {
+      "id": "ref_006",
+      "candidate_id": "res_002",
+      "candidate_name": "李雨桐",
+      "referrer_name": "猎头-CGL",
+      "referrer_title": "猎头顾问",
+      "relationship": "猎头推荐",
+      "recommendation": "李雨桐在字节做推荐精排，抖音电商方向。模型推理优化从30ms到10ms是亮点。但5年经验属于独立贡献者阶层，没有带人经验。适合做执行层P7。",
+      "date": "2026-04-28",
+      "status": "已面试"
+    },
+    {
+      "id": "ref_007",
+      "candidate_id": "res_032",
+      "candidate_name": "蔡佳琪",
+      "referrer_name": "周教授",
+      "referrer_title": "上海交大计算机视觉实验室",
+      "relationship": "博士导师",
+      "recommendation": "蔡佳琪是我带过的博士生，CV方向基础非常扎实，CVPR/ICCV发表3篇。在商汤做自动驾驶感知，工程落地也还行。但他对纯互联网公司的业务方向兴趣一般，建议面的时候多聊聊业务场景。",
+      "date": "2026-05-01",
+      "status": "已面试"
+    },
+    {
+      "id": "ref_008",
+      "candidate_id": "res_042",
+      "candidate_name": "万鹏飞",
+      "referrer_name": "林总监",
+      "referrer_title": "PMO办公室",
+      "relationship": "前同事（字节）",
+      "recommendation": "万鹏飞在字节做TPM，协调推荐系统跨部门项目非常靠谱，交付准时率95%。前高级工程师转项目管理，技术理解力比普通PM强很多。适合做大型项目的PM。",
+      "date": "2026-04-15",
+      "status": "待接触"
+    },
+    {
+      "id": "ref_009",
+      "candidate_id": "res_026",
+      "candidate_name": "潘越",
+      "referrer_name": "猎头-科锐国际",
+      "referrer_title": "猎头顾问",
+      "relationship": "猎头推荐",
+      "recommendation": "潘越在大疆做嵌入式BSP开发，无人机飞控系统。BSP/底层方向人才集中在硬件厂，互联网公司一般没对口岗位。如果贵司有IoT或智能硬件方向可以考虑。",
+      "date": "2026-05-10",
+      "status": "不匹配"
+    },
+    {
+      "id": "ref_010",
+      "candidate_id": "res_030",
+      "candidate_name": "孟浩然",
+      "referrer_name": "孙工",
+      "referrer_title": "商业化部",
+      "relationship": "前同事（字节）",
+      "recommendation": "孟浩然是我在穿山甲团队的前同事，广告算法能力扎实。快手的OCPX自动出价策略做得很漂亮。字节→快手6年，商业化方向经验丰富。推荐给商业化部。",
+      "date": "2026-04-25",
+      "status": "已转推荐"
+    },
+    {
+      "id": "ref_011",
+      "candidate_id": "res_015",
+      "candidate_name": "朱文婷",
+      "referrer_name": "李姐",
+      "referrer_title": "HRBP",
+      "relationship": "HR渠道",
+      "recommendation": "朱文婷在美团做数据平台，Hive/Spark/Flink都熟。数据建模经验4年，适合数据平台部的中坚力量。性格踏实，面试时话不多但技术问答很到位。",
+      "date": "2026-05-10",
+      "status": "已面试"
+    },
+    {
+      "id": "ref_012",
+      "candidate_id": "res_036",
+      "candidate_name": "何嘉文",
+      "referrer_name": "赵工",
+      "referrer_title": "安全部",
+      "relationship": "前同事（奇安信）",
+      "recommendation": "何嘉文在奇安信就是做APT威胁检测的，安全研究能力很强。去了蚂蚁后做数据安全体系建设，方向更偏企业安全了。希望留在成都，如果我们成都有安全岗位可以对接。",
+      "date": "2026-05-05",
+      "status": "待确认"
+    },
+    {
+      "id": "ref_013",
+      "candidate_id": "res_004",
+      "candidate_name": "陈思远",
+      "referrer_name": "猎头-Hays",
+      "referrer_title": "猎头顾问",
+      "relationship": "猎头推荐",
+      "recommendation": "陈思远在百度做搜索排序，ACM金牌背景，工程能力强。搜索结果满意度提升5%，多模态搜索排序有经验。对推荐方向有兴趣，可以面看看。",
+      "date": "2026-05-08",
+      "status": "已面试"
+    },
+    {
+      "id": "ref_014",
+      "candidate_id": "res_005",
+      "candidate_name": "刘静怡",
+      "referrer_name": "陈经理",
+      "referrer_title": "产品部",
+      "relationship": "前同事（百度）",
+      "recommendation": "刘静怡在百度做AI产品经理，推过文心一言的产品化落地。对AI产品的理解比普通PM深，懂技术边界。但3年经验产品sense还需要打磨。适合P6-P7。",
+      "date": "2026-05-03",
+      "status": "已面试"
+    },
+    {
+      "id": "ref_015",
+      "candidate_id": "res_040",
+      "candidate_name": "梁浩然",
+      "referrer_name": "刘工",
+      "referrer_title": "数据平台部",
+      "relationship": "前同事（京东）",
+      "recommendation": "梁浩然在京东做数据仓库建设，建模基础扎实。去了滴滴后扩展到Flink实时方向，现在是数仓+实时双修。数据建模经验丰富，适合数据平台部。",
+      "date": "2026-05-12",
+      "status": "已面试"
+    },
+    {
+      "id": "ref_016",
+      "candidate_id": "res_035",
+      "candidate_name": "顾晓宇",
+      "referrer_name": "黄总",
+      "referrer_title": "基础设施部",
+      "relationship": "行业相识",
+      "recommendation": "顾晓宇在华为做云计算架构，百万级并发实例调度。华为18级，薪酬天花板很高。阿里的飞天背景+华为云架构，履历非常漂亮。被动看机会，需要强力方案才能说服。",
+      "date": "2026-03-20",
+      "status": "已接触"
+    },
+    {
+      "id": "ref_017",
+      "candidate_id": "res_034",
+      "candidate_name": "唐雅琪",
+      "referrer_name": "张姐",
+      "referrer_title": "增长部",
+      "relationship": "行业推荐",
+      "recommendation": "唐雅琪在小红书做用户增长，次日留存提升15%的成绩很亮眼。社交裂变增长模型的设计思路清晰。数据驱动型PM，对AIGC方向有兴趣。可以面面AIGC产品经理岗。",
+      "date": "2026-05-15",
+      "status": "待面试"
+    },
+    {
+      "id": "ref_018",
+      "candidate_id": "res_008",
+      "candidate_name": "吴晓峰",
+      "referrer_name": "校友会",
+      "referrer_title": "清华校友",
+      "relationship": "校友推荐",
+      "recommendation": "吴晓峰是清华电子系校友，在华为做LTE协议栈开发，5G方向。通信底层能力很强，但对互联网业务方向比较陌生。如果招聘方向是底层基础设施可以考虑。",
+      "date": "2026-05-05",
+      "status": "待确认"
+    },
+    {
+      "id": "ref_019",
+      "candidate_id": "res_003",
+      "candidate_name": "王浩然",
+      "referrer_name": "杨研究员",
+      "referrer_title": "AI研究院",
+      "relationship": "学术合作",
+      "recommendation": "王浩然在微软亚研和腾讯AI Lab的经历非常亮眼，NeurIPS/ICML/ACL都有发表。混元大模型对齐训练的主力。偏学术方向，工程落地能力需要面试考察。",
+      "date": "2026-04-20",
+      "status": "已面试"
+    },
+    {
+      "id": "ref_020",
+      "candidate_id": "res_006",
+      "candidate_name": "赵一鸣",
+      "referrer_name": "猎头-Michael Page",
+      "referrer_title": "猎头顾问",
+      "relationship": "猎头推荐",
+      "recommendation": "赵一鸣在华为2012实验室做分布式系统，国内T10-T11级别。GaussDB和MindSpore都有参与。技术功底扎实但偏研究，落地经验需考察。被动看机会。",
+      "date": "2026-04-18",
+      "status": "待接触"
+    },
+    {
+      "id": "ref_021",
+      "candidate_id": "res_007",
+      "candidate_name": "张三",
+      "referrer_name": "周经理",
+      "referrer_title": "数据智能部",
+      "relationship": "前同事（苏宁）",
+      "recommendation": "张三是我在苏宁的前同事，技术能力没得说。推荐系统全链路都做过，A/B实验平台是他从0搭的。腾讯这两年做视频推荐，效果也很好。唯一的问题是他现在的薪资预期比较高，上次面过卡在130万。后来听说OPPO给了140万+期权。如果能争取到更好package可以再谈。",
+      "date": "2025-11-10",
+      "status": "已面试（薪资卡点）"
+    },
+    {
+      "id": "ref_022",
+      "candidate_id": "res_033",
+      "candidate_name": "邓思涵",
+      "referrer_name": "徐工",
+      "referrer_title": "前端组",
+      "relationship": "前同事（网易）",
+      "recommendation": "邓思涵在网易做云音乐前端，后来去了字节飞书。协同编辑CRDT这块做得不错，微前端架构也有经验。家庭原因希望回广州，如果我们有广州前端岗位可以对接。",
+      "date": "2026-05-01",
+      "status": "待确认"
+    },
+    {
+      "id": "ref_023",
+      "candidate_id": "res_041",
+      "candidate_name": "方悦然",
+      "referrer_name": "汪导",
+      "referrer_title": "北大NLP实验室",
+      "relationship": "硕士导师",
+      "recommendation": "方悦然硕士期间做NLP方向，BERT和Prompt工程基础扎实。去快手两年多成长很快，已经能独立负责内容理解模型了。对大模型应用方向兴趣浓厚。年轻有潜力，建议给成长空间。",
+      "date": "2026-05-05",
+      "status": "待面试"
+    },
+    {
+      "id": "ref_024",
+      "candidate_id": "res_050",
+      "candidate_name": "孔祥瑞",
+      "referrer_name": "梁工",
+      "referrer_title": "数据库组",
+      "relationship": "前同事（Oracle）",
+      "recommendation": "孔祥瑞在IBM做数据库内核开发，PostgreSQL存储引擎方向。十年数据库内核经验，非常稀缺。但他一直在外资公司，对互联网公司的节奏和工作方式可能需要适应期。技术上绝对没问题。",
+      "date": "2026-05-10",
+      "status": "待面试"
+    }
+  ]
+}

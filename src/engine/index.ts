@@ -5,14 +5,7 @@ export type { EngineResult, EngineResponse, CardActionPayload } from './Conversa
 
 // 导出新版 AIEngine（S1）
 export { AIEngine } from './AIEngine';
-export type {
-  ChatInput,
-  ChatOutput,
-  LLMResponse,
-  LLMClient,
-  OpenAIToolDef,
-  AIEngineConfig,
-} from './AIEngine';
+export type { AIEngineResult } from './AIEngine';
 
 // 导出止损模块
 export { checkMaxSteps, checkMaxToolCalls, checkTimeout, detectLoop } from './stop_guards';
