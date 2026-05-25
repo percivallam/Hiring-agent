@@ -100,6 +100,17 @@ export class MemoryManager implements MemoryAdapter {
       };
     }
 
+    // candidate 层：返回全部非归档记忆
+    if (params.layer === 'candidate' && params.candidate_id) {
+      const all = items.filter((item) => !item.summary.includes('[archived]'));
+      const trimmed = all.slice(0, limit);
+      if (trimmed.length === 0) {
+        return { ok: true, data: [], meta: this.meta(), hint: '暂无该候选人的记忆' };
+      }
+      return { ok: true, data: trimmed, meta: this.meta() };
+    }
+
+    // session / user 层：关键词匹配
     const scored = items
       .map((item) => ({ item, score: keywordMatch(item.summary, params.query) }))
       .filter((x) => x.score > 0)
