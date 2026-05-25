@@ -129,8 +129,17 @@ rm .locks/${ROLE}-${SLICE}-*.lock
 3. 写 docs/slices/<slice>-<role>.md
 4. 如果有未完成的事 → .handoff/<接收者>-<topic>.md
 5. 删除 .locks/ 下你的锁
-6. 输出"切片 <slice> 已完成,可以关窗"
+6. 运行 ./deploy.sh 自动 push → Vercel 自动上线
+7. 输出"切片 <slice> 已完成,可以关窗"
 ```
+
+### 6.1 一键部署
+
+```bash
+./deploy.sh   # build → commit → push → Vercel 自动上线
+```
+
+无需手动 git push，无需登录 Vercel。只要 commit 了就能跑。
 
 ---
 
