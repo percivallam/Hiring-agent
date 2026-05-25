@@ -25,7 +25,7 @@
 | S4 | DSP-1 + DSP-2 闭环 | ✅ Done | engine + eval | main | - | eval 29/32, brilliance 5.0/5 |
 | S5 | Memory + DSP-3 闭环 | 🟡 In Progress | engine + eval | - | - | 依赖 S4 ✅ |
 | S6 | DSP-4(壳) + DSP-5 闭环 | ⚪ Pending | tools(demo) + ui + eval | - | - | 依赖 S5 |
-| S7 | Self-Improve 闭环 + polish | ⚪ Pending | engine + eval | - | - | 依赖 S6 |
+| S7 | Self-Improve 闭环 + polish | 🟡 In Progress | engine + eval | - | - | Engine: collector/classifier/optimizer ✅ |
 
 状态图例: ⚪ Pending / 🟡 In Progress / 🟢 Review / ✅ Done / 🔴 Blocked
 
