@@ -13,8 +13,9 @@ export function TagGroup({
   maxTags = 5,
   className
 }: TagGroupProps) {
-  const displayTags = tags.slice(0, maxTags);
-  const remaining = tags.length - maxTags;
+  const safe = tags ?? [];
+  const displayTags = safe.slice(0, maxTags);
+  const remaining = safe.length - maxTags;
 
   const sizeClasses = {
     sm: 'px-2 py-0.5 text-xs',

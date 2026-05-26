@@ -366,7 +366,15 @@ export class AIEngine {
     const ARR_KEYS = ['candidates', 'skills', 'career', 'projects', 'tech_stack', 'highlights',
       'requirements', 'nice_to_have', 'pipeline', 'dimensions', 'tags', 'alerts',
       'categories', 'questions', 'items', 'options', 'actions', 'insights',
-      'benchmarks', 'funnel', 'data', 'interview_history', 'match_highlights', 'gap_points'];
+      'benchmarks', 'funnel', 'data', 'interview_history', 'match_highlights', 'gap_points',
+      'careerHistory', 'notes'];
+    // WR 兜底：覆盖旧 ProfileCard / CandidateCard / AnalyticsCard 需要的所有字段
+    const WR_DEFAULTS: Record<string, any> = {
+      matchHighlights: [], gapPoints: [], tags: [], avatar: null,
+      experience: 0, education: '', salary: '', matchScore: 0,
+      skills: [], careerHistory: [], notes: [], name: '',
+      currentCompany: '', currentTitle: '',
+    };
     const cards: EngineCard[] = [];
     if (parsed.text) cards.push({ type: 'text', role: 'agent', content: parsed.text });
     if (parsed.cards) for (const c of parsed.cards) {
@@ -378,8 +386,22 @@ export class AIEngine {
         cards.push({ ...r, ...data });
       }
       else {
-        if (WR.has(c.type) && c.data) {
-          c.data = { matchHighlights: [], gapPoints: [], tags: [], avatar: null, experience: 0, education: '', salary: '', matchScore: 0, ...c.data };
+        if (WR.has(c.type)) {
+          // 确保 data 存在；LLM 可能把字段直接挂在 c 上，没有 data 包裹
+          if (!c.data || typeof c.data !== 'object') {
+            // 从 c 平级提取已知字段
+            const raw: any = {};
+            for (const [k, v] of Object.entries(c)) {
+              if (k !== 'type' && k !== 'data') raw[k] = v;
+            }
+            c.data = raw;
+          }
+          // 兜底缺失字段
+          for (const [key, def] of Object.entries(WR_DEFAULTS)) {
+            if (c.data[key] === undefined || c.data[key] === null) {
+              c.data[key] = def;
+            }
+          }
         }
         cards.push(c);
       }
