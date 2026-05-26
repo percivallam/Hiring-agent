@@ -259,27 +259,44 @@ interface ApiMessage {
   tool_call_id?: string;
 }
 
-async function callDeepSeek(messages: ApiMessage[]): Promise<any> {
-  const res = await fetch(`${DEEPSEEK_BASE_URL}/v1/chat/completions`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${DEEPSEEK_API_KEY}`,
-    },
-    body: JSON.stringify({
-      model: DEEPSEEK_MODEL,
-      messages,
-      tools: TOOLS,
-      temperature: 0.7,
-      max_tokens: 2000,
-    }),
-  });
-
-  if (!res.ok) {
-    const text = await res.text();
-    throw new Error(`API ${res.status}: ${text.slice(0, 200)}`);
+async function callDeepSeek(messages: ApiMessage[], retries = 2): Promise<any> {
+  for (let attempt = 0; attempt <= retries; attempt++) {
+    const ctrl = new AbortController();
+    const t = setTimeout(() => ctrl.abort(), 30_000); // 30s timeout
+    try {
+      const res = await fetch(`${DEEPSEEK_BASE_URL}/v1/chat/completions`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${DEEPSEEK_API_KEY}`,
+        },
+        body: JSON.stringify({
+          model: DEEPSEEK_MODEL,
+          messages,
+          tools: TOOLS,
+          temperature: 0.7,
+          max_tokens: 1500,
+        }),
+        signal: ctrl.signal,
+      });
+      clearTimeout(t);
+      if (!res.ok) {
+        const text = await res.text();
+        throw new Error(`API ${res.status}: ${text.slice(0, 200)}`);
+      }
+      return res.json();
+    } catch (err: any) {
+      clearTimeout(t);
+      if (attempt === retries) throw err;
+      if (err.name === 'AbortError') {
+        console.log(`      [retry] attempt ${attempt + 1}/${retries + 1} (timeout)`);
+        await new Promise(r => setTimeout(r, 2000));
+      } else {
+        throw err;
+      }
+    }
   }
-  return res.json();
+  throw new Error('unreachable');
 }
 
 // ─── JSON 解析 ───

@@ -2,332 +2,439 @@
   HireAgent 自动化评测报告
 ════════════════════════════════════════════════════════════
 
-  总计: 32  通过: 29  失败: 3  总耗时: 162.2s
+  总计: 43  通过: 39  失败: 4  总耗时: 4297.5s
 
 ── 分类统计 ──
-  intent: 4/5 通过
+  intent: 2/5 通过
   format: 12/12 通过
   exception: 3/3 通过
   role: 2/2 通过
   dsp1: 5/5 通过
-  dsp2: 2/4 通过
+  dsp2: 4/4 通过
+  dsp3: 5/6 通过
+  dsp4: 3/3 通过
+  dsp5: 1/1 通过
   fallback: 10/10 通过
 
 ── 详细结果 ──
 
 ❌ [E01] 意图识别 - 搜索候选人
-   工具调用: [search_candidates, search_candidates, search_candidates]
+   工具调用: [search_candidates]
    卡片类型: [text]
-   文本内容: 我已在候选人库中搜索了推荐系统方向、5年以上经验的人选，使用了多个关键词组合（推荐系统、推荐算法、算法工程师等），但目前数据库中**没有找到匹配的候选人**。
-
-建议可以尝试以下方式：
-1. **扩大
-   ⚠️  期望卡片 candidate_list，实际: [text]
-   耗时: 6486ms
-
-✅ [E02] 意图识别 - 查看招聘进度
-   工具调用: [list_jobs, analyze_pipeline]
-   卡片类型: [text]
-   文本内容: 我帮你梳理了当前所有在招岗位的招聘进展，以下是整体情况：
+   文本内容: 找到了！以下是 **5年以上推荐系统经验** 的候选人，共5位：
 
 ---
 
-## 📊 整体招聘概况
+### 📋 候选人列表
 
-**10个在招岗位 · 共18个HC · 已开放天数 18-60天**
+| 姓名 | 当前公司 | 职位 | 经验 | 学历 | 状态 |
+|:---:|:---:|
+   ⚠️  期望卡片 candidate_list，实际: [text]
+   耗时: 5007ms
 
-### 🟢 进展健康（4个
-   耗时: 4889ms
+❌ [E02] 意图识别 - 查看招聘进度
+   工具调用: [list_jobs, analyze_pipeline, market_analysis, market_analysis, market_analysis]
+   卡片类型: [无]
+   文本内容: 
+   ⚠️  异常: terminated
+   耗时: 3305860ms
 
-✅ [E03] 意图识别 - 薪酬对标
-   工具调用: [salary_benchmark, market_analysis, salary_benchmark]
-   卡片类型: [text, quick_actions]
-   文本内容: 抱歉，目前系统中没有收录「推荐算法」岗位的薪酬对标数据，暂时无法给出精确的 P7 级别市场薪酬范围。
-
-不过我可以帮你做以下几件事来获取参考信息：
-
-1️⃣ **查看在招岗位** — 我可以列出当前公
-   耗时: 6063ms
+❌ [E03] 意图识别 - 薪酬对标
+   工具调用: [salary_benchmark, market_analysis, list_jobs]
+   卡片类型: [无]
+   文本内容: 
+   ⚠️  异常: terminated
+   耗时: 662821ms
 
 ✅ [E04] 意图识别 - 列出岗位
    工具调用: [list_jobs]
    卡片类型: [text]
-   文本内容: 目前有 **10个在招岗位**，我帮你按优先级整理如下：
+   文本内容: 目前共有 **10个在招岗位**，以下是完整列表：
 
----
-
-### 🔴 紧急岗位（建议优先关注）
-
-| 岗位 | 部门 | 地点 | 级别 | 薪资范围 |
-|------|------|
-   耗时: 3506ms
+| 岗位名称 | 部门 | 地点 | 级别 | 薪资范围 | 状态 |
+|---------|------|------|------|-----
+   耗时: 5963ms
 
 ✅ [E05] 意图识别 - 市场分析
-   工具调用: [market_analysis, salary_benchmark, market_analysis, salary_benchmark, search_candidates, market_analysis, salary_benchmark, search_candidates]
-   卡片类型: [text, candidate_list]
-   文本内容: 根据当前工具查询结果，我来给您做一个客观分析：
+   工具调用: [market_analysis, salary_benchmark, market_analysis, salary_benchmark, search_candidates, search_candidates, search_candidates]
+   卡片类型: [text, candidate_list, market_analysis]
+   文本内容: 从当前数据来看，**大模型工程师整体属于高度稀缺人才，招聘难度较大**。
 
-**一、市场数据情况**
-- 目前工具中未收录专门的大模型工程师市场分析报告和薪酬对标数据，这本身就说明该岗位属于**新兴高稀缺岗位**，市场数据积累
-   耗时: 9826ms
+📊 **市场现状分析：**
+1. **人才供给极度紧缺**：在候选人库中仅匹配到2名大模型相关候选人，说明市面上活跃的大模
+   耗时: 14115ms
 
 ✅ [F01] 卡片格式 - candidate_list
-   工具调用: [list_jobs, search_candidates, get_candidate_profile, get_candidate_profile, get_candidate_profile, get_candidate_profile]
+   工具调用: [search_candidates, market_analysis, salary_benchmark]
    卡片类型: [text, candidate_list]
-   文本内容: 找到了。目前公司在招 **高级推荐算法工程师（P7-P8，北京，年薪100-180万）**，状态 **紧急**，和推荐系统方向完美匹配。
-
-库里搜到 **4 位候选人**，按匹配度排序如下：
-
-**�
-   耗时: 10159ms
+   文本内容: 找到了 **5位** 推荐系统方向的候选人，背景都不错，主要来自一线大厂。以下是概要：
+   耗时: 9111ms
 
 ✅ [F02] 卡片格式 - text 消息必有
    工具调用: [无]
    卡片类型: [text]
-   文本内容: 你好！我是 **HireAgent**，你的 AI 招聘专家。别跟我客套，直接说需求就行。
-
-我能帮你干这些事：
+   文本内容: 你好！我是 **HireAgent**，你的专属 AI 招聘专家。我可以帮你搞定招聘全流程，具体能力如下：
 
 ---
 
 ### 🔍 候选人搜索与筛选
-- 按关键词、技能、公司、经验年限搜人
--
-   耗时: 2796ms
+- 按关键词、技能、公司、经验年限等条件搜索候选
+   耗时: 3442ms
 
 ✅ [X01] 异常处理 - 无关问题
    工具调用: [无]
    卡片类型: [text]
    文本内容: 我是 HireAgent，AI招聘专家，专注于帮您解决招聘相关的问题。天气信息不在我的服务范围内。
 
-请问您是想聊聊某个岗位的招聘进展，还是需要我帮您搜索候选人、分析市场数据？请告诉我您的需求。
-   耗时: 1023ms
+请问您需要我帮忙做什么？比如：
+- 搜索候选人
+- 查看在招岗位
+- 分析招聘Pipeline
+-
+   耗时: 1813ms
 
 ✅ [X02] 异常处理 - 极短输入
    工具调用: [无]
    卡片类型: [text]
-   文本内容: 好的，我是 HireAgent，你的 AI 招聘专家。请告诉我你的需求，比如：
+   文本内容: 好的，我准备好了。我是 HireAgent，你的 AI 招聘专家。
 
-- **搜索候选人**：需要什么岗位、技能、经验？
-- **查看岗位**：想了解当前在招的职位？
-- **市场分析**
-   耗时: 1524ms
+请告诉我你的需求，例如：
+
+- **搜索候选人**：告诉我岗位关键词、经验要求、技能等
+- **查看岗位**：列出当前在招岗位
+-
+   耗时: 2015ms
 
 ✅ [X03] 异常处理 - 无匹配候选人
-   工具调用: [search_candidates, search_candidates, search_candidates, market_analysis, salary_benchmark]
+   工具调用: [search_candidates, search_candidates, search_candidates, search_candidates]
    卡片类型: [text]
    文本内容: {
-
-  "thinking": "工具搜索结果显示，当前候选人库中没有任何量子计算相关的候选人（中文关键词"量子计算"、"量子"、"quantum computing"均无结果），市场分析和薪酬对标
-   耗时: 6074ms
+  "thinking": "用户要求基于工具返回的数据给出最终回复。我用"量子计算"、"quantum computing"、"量子"、"quantum"等多个关键词搜索了候选人库，结果均为空，
+   耗时: 7789ms
 
 ✅ [R01] 多角色 - HR 视角
-   工具调用: [analyze_pipeline, list_jobs, market_analysis, market_analysis, market_analysis, salary_benchmark, salary_benchmark]
-   卡片类型: [text]
-   文本内容: 好的，以下是本周招聘数据全景分析报告：
+   工具调用: [analyze_pipeline, list_jobs]
+   卡片类型: [text, pipeline_overview, analytics]
+   文本内容: 📊 **本周招聘周报（截至W20）**
 
-```json
-{
-  "thinking": "用户询问本周招聘数据，我通过analyze_pipeline获取了整体Pipeline概览，通过list_j
-   耗时: 15003ms
+**整体概览：** 10个在招岗位，18个HC。
+- 🟢 健康（4个）：大模型应用开发、前端技术专家、广告算法、搜索算法、云原生、数据科学家
+- 🟡 风
+   耗时: 11425ms
 
 ✅ [R02] 多角色 - 候选人视角
    工具调用: [list_jobs]
    卡片类型: [text]
-   文本内容: 太好了！我找到了几个算法工程师相关的岗位，来看看哪个最适合你 👇
+   文本内容: 我们目前有以下 **算法工程师** 相关的岗位在招，我帮你梳理一下：
 
 ---
 
-## 🔍 目前在招的算法工程师岗位
+### 🔥 算法工程师相关岗位
 
 | 岗位 | 地点 | 级别 | 薪资范围 |
-|------|:----:|:
-   耗时: 3604ms
+|------|:----:|:-
+   耗时: 5810ms
 
 ✅ [D01] DSP-1 - BSP 工程师
-   工具调用: [search_candidates, search_candidates, search_candidates, list_jobs, market_analysis]
+   工具调用: [search_candidates, search_candidates, market_analysis, list_jobs, search_candidates, search_candidates]
    卡片类型: [text]
-   文本内容: 抱歉，目前系统中没有找到匹配「BSP 工程师」的候选人数据，市场分析数据也未收录该角色。
+   文本内容: 目前候选人库中暂未搜到匹配的 BSP 工程师候选人。我查了多个关键词组合（BSP工程师、嵌入式Linux驱动开发、BSP嵌入式软件工程师等），均无命中。
 
-从当前在招岗位来看，公司更偏向算法、后端、AI 应用、数据工程等方向，暂无 BSP 相关的岗位在招。
-
-建议
-   耗时: 5984ms
+建议您可以：
+1️⃣ **确认一下这个岗位是
+   耗时: 9663ms
 
 ✅ [D02] DSP-1 - 嵌入式驱动
-   工具调用: [search_candidates, list_jobs, search_candidates, search_candidates, market_analysis, salary_benchmark]
-   卡片类型: [text]
-   文本内容: {
-  "thinking": "用户急需招聘嵌入式Linux驱动工程师（5年+经验）。当前在招岗位列表中没有该职位，候选人库中也搜不到匹配的人选。市场分析和薪酬对标也暂无数据。需要如实告知用户当前情
-   耗时: 7690ms
+   工具调用: [list_jobs, search_candidates, search_candidates, search_candidates, search_candidates, market_analysis, salary_benchmark]
+   卡片类型: [text, quick_actions]
+   文本内容: 坦白说，目前系统里没有「嵌入式 Linux 驱动工程师」的在招岗位，候选人库中也搜不到匹配的人选。市场分析和薪酬数据同样缺失。
+
+建议你先做两件事：
+1️⃣ **确认是否有对应的 JD** — 如果岗
+   耗时: 10154ms
 
 ✅ [D03] DSP-1 - 固件工程师
-   工具调用: [market_analysis, salary_benchmark, search_candidates, search_candidates, search_candidates, market_analysis, salary_benchmark]
-   卡片类型: [text, market_analysis]
-   文本内容: 您好！我查询了系统数据，目前我们的人才库中**固件工程师（Firmware Engineer）**的候选人资源相对有限。不过根据行业经验，我为您梳理了以下分析：
-
-## 📊 固件工程师市场概况
-
-|
-   耗时: 9357ms
+   工具调用: [search_candidates, market_analysis, salary_benchmark, search_candidates, search_candidates, search_candidates, search_candidates]
+   卡片类型: [text, quick_actions]
+   文本内容: 根据系统查询结果，目前工具库中固件工程师（Firmware Engineer）的候选人数据较少，搜索了多个关键词（固件工程师、Firmware Engineer、嵌入式工程师、嵌入式固件）均未匹配到有
+   耗时: 11862ms
 
 ✅ [D04] DSP-1 - 底层驱动
-   工具调用: [search_candidates, market_analysis, search_candidates, list_jobs]
+   工具调用: [list_jobs, search_candidates, market_analysis, salary_benchmark]
    卡片类型: [text]
-   文本内容: 目前系统内没有 Linux 内核/驱动方向的候选人数据，公司现有的在招岗位也没有直接匹配的职位。不过别急，我给你整理了一份全面的来源建议和策略。
+   文本内容: 好的，情况清楚了。给你一个直接的分析和建议：
 
 ---
 
-**当前结论：**
-- **内部候选人库*
-   耗时: 8700ms
+**现状总结：**
+
+1. **内部岗位：** 当前10个在招岗位中，**没有直接匹配 Linux 内核/驱动的职位**。如果你需要为此方向招
+   耗时: 9605ms
 
 ✅ [D05] DSP-1 - 芯片验证
-   工具调用: [search_candidates, market_analysis, salary_benchmark, search_candidates, search_candidates, list_jobs]
-   卡片类型: [text, quick_actions]
-   文本内容: 我搜了一圈，目前的情况是这样的：
+   工具调用: [list_jobs, search_candidates, market_analysis, salary_benchmark]
+   卡片类型: [text]
+   文本内容: 目前系统中没有芯片验证工程师的在招岗位，也没有相关的市场对标数据。
 
-**候选人库：** 以「芯片验证工程师」「UVM」「SystemVerilog」等关键词搜索，库内暂无匹配的候选人。
+---
 
-**在招岗位：** 目前公司开放的 10 个
-   耗时: 7814ms
+我来跟你梳理一下情况：
+
+**现状：**
+1. ✅ 你需要的岗位是：**芯片验证工程师**，核心技能 **UVM**
+2
+   耗时: 7478ms
 
 ✅ [D06] DSP-2 - 推荐系统找人
    工具调用: [search_candidates]
    卡片类型: [text, candidate_list]
-   文本内容: 找到 **4 位** 推荐系统方向、5 年以上经验的候选人，以下是详细信息：
-   耗时: 4778ms
+   文本内容: 找到 **5 位** 推荐系统方向的候选人，经验均在 5 年以上，来自阿里、字节、腾讯、小米等大厂。以下是详细列表：
+   耗时: 7388ms
 
-❌ [D07] DSP-2 - Golang 后端
-   工具调用: [search_candidates, search_candidates, list_jobs, get_job_detail, market_analysis, salary_benchmark]
-   卡片类型: [text, jd_card]
-   文本内容: 我搜了一下候选人库，目前没有直接匹配的 Golang 后端候选人记录。
-
-不过有一个好消息——你们公司目前在招的**后端架构师（job_003）** 这个岗位，P8-P9，北京，薪资150-250万，
-   ⚠️  期望卡片 candidate_list，实际: [text, jd_card]
-   耗时: 9419ms
-
-❌ [D08] DSP-2 - 前端工程师
+✅ [D07] DSP-2 - Golang 后端
    工具调用: [search_candidates, search_candidates, search_candidates]
    卡片类型: [text]
-   文本内容: 目前系统中暂未搜索到匹配的候选人，以下是正式回复：
+   文本内容: {
+  "thinking": "用户要求找Golang后端且有大厂背景的候选人。我尝试了多种搜索关键词（"Golang 后端 大厂"、"Golang 后端开发"、"Go 后端"），但工具返回的结果均
+   耗时: 7890ms
 
-{
-  "thinking": "尝试了三次不同关键词搜索 React 前端工程师候选人，均未返回结果。系统候选人库中当前没有该方向的候选人数据。
-   ⚠️  期望卡片 candidate_list，实际: [text]
-   耗时: 5346ms
+✅ [D08] DSP-2 - 前端工程师
+   工具调用: [search_candidates, search_candidates, search_candidates]
+   卡片类型: [text, candidate_list, quick_actions]
+   文本内容: 为您找到了 **4 位 React 方向的前端工程师**，均来自一线互联网公司，经验 5-6 年，薪资范围在 50-90 万之间。以下是候选人概览：
+   耗时: 10366ms
 
 ✅ [D09] DSP-2 - 数据平台
-   工具调用: [search_candidates, get_candidate_profile]
+   工具调用: [search_candidates, get_candidate_profile, market_analysis, salary_benchmark]
    卡片类型: [text, candidate_list]
-   文本内容: 找到了1位高度匹配的候选人，来自**美团**，数据平台 + 实时计算背景，Flink 和 Spark 都是实战经验。
-   耗时: 6073ms
+   文本内容: 搜到一位非常对口的候选人，简单说下情况：
 
-✅ [D10] DSP-2 - 全栈工程师
-   工具调用: [list_jobs, search_candidates, search_candidates, search_candidates, get_candidate_profile]
-   卡片类型: [text, candidate_list, analytics]
-   文本内容: 我查了一下，目前候选人库里直接匹配「全栈+架构」的候选人不多。不过有一位值得关注的候选人——许子豪，当前在 B 站做全栈工程师，5年经验，主导过百万级并发的直播互动架构和弹幕引擎，前后端都能打（Rea
-   耗时: 9494ms
+**冯晓宇 | 美团 数据开发专家**
+- 4年经验，北邮硕士，大厂背景
+- 技能栈：Spark + Flink + Hive + Kafka + Java
+   耗时: 9080ms
+
+❌ [D10] DSP-2 - 全栈工程师
+   工具调用: [list_jobs, search_candidates, search_candidates, search_candidates, search_candidates]
+   卡片类型: [text]
+   文本内容: {
+
+  "thinking": "目前候选人库中没有找到匹配的全栈工程师候选人。同时我列出了当前在招的岗位供参考，其中后端架构师（job_003）和前端技术专家（job_004）与'全栈+架构'能力
+   ⚠️  期望卡片 candidate_list，实际: [text]
+   耗时: 11343ms
+
+✅ [D11] DSP-3 - 张三记忆唤醒
+   工具调用: [search_candidates, list_jobs, search_candidates, analyze_pipeline]
+   卡片类型: [text, pipeline_overview]
+   文本内容: 我查了一下，系统中没有找到名为「张三」的候选人记录。我搜索了全名和姓氏都没有匹配结果。
+
+可能的原因有：
+1️⃣ 名字可能记错了，能否确认一下全名或英文名？
+2️⃣ 候选人可能还没入库，需要我手动添加
+   耗时: 10820ms
+
+✅ [D12] DSP-3 - 张三面试回顾
+   工具调用: [search_candidates, list_jobs, analyze_pipeline]
+   卡片类型: [text]
+   文本内容: {
+
+  "thinking": "用户问的是\"张三\"的面试情况，但系统中没有找到名为\"张三\"的候选人记录。我搜索了候选人库，没有匹配结果。查看了所有在招岗位的Pipeline数据，也没有任何
+   耗时: 9214ms
+
+✅ [D13] DSP-3 - 张明远默认无记忆
+   工具调用: [search_candidates, list_jobs]
+   卡片类型: [text]
+   文本内容: 目前系统中没有找到名为"张明远"的候选人记录。请问：
+
+1. **张明远是已经沟通过的候选人吗？** 如果是，他可能在其他系统中，或者您能提供更多信息（如邮箱、手机号、应聘的岗位）我帮您进一步查找。
+
+   耗时: 4750ms
+
+✅ [D14] DSP-3 - 写入候选人备注
+   工具调用: [search_candidates, list_jobs]
+   卡片类型: [text]
+   文本内容: 好的，现在情况清楚了。钱一鸣不在候选人库里，应该是你线下接触的候选人。我来分析一下他的情况：
+
+---
+
+## 钱一鸣情况分析
+
+### 薪资匹配度
+期望 **180万**，目前最匹配的岗位：
+
+| 
+   耗时: 8390ms
+
+✅ [D15] DSP-3 - 跨会话用户偏好
+   工具调用: [market_analysis, salary_benchmark, market_analysis, salary_benchmark, market_analysis, salary_benchmark, market_analysis, salary_benchmark]
+   卡片类型: [text, market_analysis, salary_benchmark]
+   文本内容: 您好，很遗憾，当前系统中暂未收录推荐系统相关的市场分析数据和薪酬对标数据。不过，基于行业通用知识和招聘实践，我为您整理了一份**推荐系统市场分析报告框架**，可以为您提供有价值的参考方向。
+
+---
+
+   耗时: 16818ms
+
+✅ [D16] DSP-4 - 张三面试包
+   工具调用: [search_candidates, list_jobs, get_job_detail, generate_interview_questions]
+   卡片类型: [text, jd_card, analytics]
+   文本内容: 系统中没有找到名为「张三」的候选人记录，因此无法直接拉取档案生成面试包。
+
+但我已拉取到最匹配的岗位——**高级推荐算法工程师（job_001）**，以下是面试包预准备内容：
+
+---
+
+### 📌
+   耗时: 17647ms
+
+✅ [D17] DSP-4 - 张明远面试包
+   工具调用: [search_candidates, list_jobs]
+   卡片类型: [text]
+   文本内容: 候选人库中没有直接搜到"张明远"的记录。请问张明远是已经投递了某个岗位，还是你想针对某个岗位给他出题？我先看看几个可能性较大的岗位。
+
+另外，你方便告诉我他是面试哪个岗位吗？这样我能精准地准备面试题。
+   耗时: 4261ms
+
+✅ [D18] DSP-4 - 缺参数引导
+   工具调用: [list_jobs]
+   卡片类型: [text]
+   文本内容: 目前有10个在招岗位，你可以告诉我具体为哪个岗位生成面试题？或者我直接帮你推荐最紧急的岗位？我先列出来：
+
+**紧急岗位：**
+1. **高级推荐算法工程师**（北京，P7-P8，急招）
+2. **后
+   耗时: 3464ms
+
+✅ [D19] DSP-5 - 周报总览
+   工具调用: [list_jobs, analyze_pipeline, market_analysis, market_analysis, market_analysis]
+   卡片类型: [text, pipeline_overview, analytics, quick_actions]
+   文本内容: ## 📊 本周招聘周报 — 整体进展
+
+**当前在招：10个岗位 / 18个HC | 本周发出 Offer：0 份 | 在流程中候选人：约 40+ 人**
+
+### ✅ 进展健康（4个岗位）
+| 岗
+   耗时: 17445ms
+
+✅ [D20] DSP-5 - 月报生成
+   工具调用: [list_jobs, analyze_pipeline, market_analysis, market_analysis, salary_benchmark, salary_benchmark, salary_benchmark]
+   卡片类型: [text, pipeline_overview, analytics, analytics]
+   文本内容: 📊 **本月招聘月报（2026年5月）**
+
+**一、整体概况**
+当前在招岗位 **10个**，总HC **18个**，已发放Offer **1个**（大模型应用开发工程师）。
+Pipeline整
+   耗时: 18712ms
+
+✅ [D21] DSP-5 - 部门周报
+   工具调用: [list_jobs, analyze_pipeline, analyze_pipeline, analyze_pipeline, analyze_pipeline]
+   卡片类型: [text, pipeline_overview, analytics]
+   文本内容: 算法部门目前有 **4个在招岗位，共9个HC**。整体来看喜忧参半，我按岗位逐一说明：
+
+## ✅ 进展健康的岗位
+
+**① 大模型应用开发工程师（AI平台部）** — 已开放30天
+- 进展最顺利，
+   耗时: 14423ms
 
 ✅ [FB01] 兜底 - 天气查询
    工具调用: [无]
    卡片类型: [text]
-   文本内容: 我是 HireAgent，你的AI招聘专家，专注于招聘相关的事务。天气信息不在我的职责范围内。
+   文本内容: 我是 HireAgent，你的 AI 招聘专家。我的职责是帮你搞定招聘相关的事务，比如搜候选人、分析岗位、看薪酬数据等。
 
-如果你有招聘相关需求，比如：
-- **搜索候选人**
-- **查看岗位详情**
-- **分析市场薪酬*
-   耗时: 1173ms
+**天气问题我回答不了，但我能帮你解决招聘问题。**
+
+来，告诉我你今天想推
+   耗时: 2173ms
 
 ✅ [FB02] 兜底 - 无意义输入
    工具调用: [无]
    卡片类型: [text]
-   文本内容: 你好！看起来你只是随手打了"asdfghjkl"，是想测试我是否在线吗？😄
+   文本内容: 你好！看起来你输入了一些随机的字符 😄
 
-我在这里，随时准备帮你处理招聘相关的工作。请问有什么我可以帮你的？比如：
+请问有什么我可以帮你的？我是 HireAgent，你的 AI 招聘专家。你可以：
 
-- 🔍 **搜索候选人** — 告诉我岗位
-   耗时: 1933ms
+- 🔍 **搜索候选人** — 告诉我职位、技能或经验要求
+- 📋 
+   耗时: 1911ms
 
 ✅ [FB03] 兜底 - 空输入
-   工具调用: [list_jobs]
+   工具调用: [无]
    卡片类型: [text]
-   文本内容: 好的，你这边目前有 **10个在招岗位**。我帮你梳理一下最紧急和关键的几个：
+   文本内容: 好的，我是 HireAgent，AI 招聘专家。请问你正在招聘什么岗位？告诉我职位名称或 JD，我可以帮你：
 
----
-
-### 🚨 紧急岗位（尽快推进）
-| 岗位 | 级别 | 薪资 | 已开放天数 |
-|------|---
-   耗时: 3316ms
+1. **搜索候选人** — 按关键词、技能、公司、经验筛选
+2. **分析市场 & 薪
+   耗时: 2594ms
 
 ✅ [FB04] 兜底 - 你是谁
    工具调用: [无]
    卡片类型: [text]
-   文本内容: 我是 HireAgent，你的 AI 招聘专家。
+   文本内容: 我是 HireAgent，AI 招聘专家。我是专门为招聘场景设计的智能助手，专注于帮助用人经理高效完成人才搜寻、候选人评估、市场分析等工作。
 
-我的核心能力是帮你高效完成招聘任务——搜索候选人、分析人才市场、对标薪酬、管理招聘流程、生成面试题和沟通模板等。
-
-有什么招聘需求，直接说。
-   耗时: 1091ms
+我的能力包括：
+- 🔍 **候选人搜索** — 按技能
+   耗时: 2450ms
 
 ✅ [FB05] 兜底 - 感谢
    工具调用: [无]
    卡片类型: [text]
-   文本内容: 您好！我是 HireAgent，您的 AI 招聘专家。很高兴为您服务！🎯
+   文本内容: 不客气！我是 HireAgent，你的 AI 招聘专家。很高兴能为你服务！😊
 
-请告诉我您需要什么帮助？比如：
+请问你今天需要我做些什么呢？以下是一些我可以协助的方向：
 
-1️⃣ **搜索候选人** — 告诉我职位关键词、技能要求等
-2️⃣ **查看在招岗位*
-   耗时: 1901ms
+---
+
+**🔍 候选人搜索**
+- 按技能、经验、公司
+   耗时: 2812ms
 
 ✅ [FB06] 兜底 - 政治敏感
    工具调用: [无]
    卡片类型: [text]
-   文本内容: 抱歉，我无法查询或提供任何人的身份证号等个人敏感信息。这类信息属于高度隐私数据，不在我的可访问范围内，也不应该通过这种方式获取。
+   文本内容: 抱歉，我无法查询或获取任何人的身份证号、护照号等个人敏感身份信息。这类信息涉及个人隐私和数据安全，不在我的可访问范围内。
 
-如果你是在招聘流程中需要核实候选人的身份信息，建议通过正规背调渠道或
-   耗时: 1413ms
+如果你在招聘流程中需要核实候选人的身份信息，建议通过公司正规的背调流程或HR
+   耗时: 1800ms
 
 ✅ [FB07] 兜底 - 数学计算
    工具调用: [无]
    卡片类型: [text]
-   文本内容: 当然，1+1 = 2。
-
-不过我是 HireAgent，你的AI招聘专家，更擅长帮你找人、分析市场和推进招聘流程。有什么招聘需求可以告诉我，我来帮你搞定！
-   耗时: 1045ms
+   文本内容: 1+1 = 2。不过我是 HireAgent，你的 AI 招聘专家，更擅长帮你找人、分析市场、优化招聘流程。有什么招聘需求需要我帮忙吗？比如搜索候选人、分析岗位薪酬、查看招聘进度等。
+   耗时: 2049ms
 
 ✅ [FB08] 兜底 - 超长输入
-   工具调用: [list_jobs]
-   卡片类型: [text]
-   文本内容: 目前我们有 **10个在招岗位**，其中 **高级推荐算法工程师** 和 **后端架构师** 标记为 **紧急** 状态。
+   工具调用: [list_jobs, search_candidates, search_candidates, search_candidates, search_candidates, search_candidates, search_candidates, search_candidates, search_candidates]
+   卡片类型: [text, pipeline_overview, candidate_list]
+   文本内容: 收到！50个「招聘」我get到了，你急我也急。
 
-您想针对哪个岗位找人？或者我直接按优先级最高的来推荐候选人？
-   耗时: 1917ms
+我快速扫了一遍全局，以下是**现状总览**：
+
+📋 **在招岗位数：10个**，其中紧急岗位 2 个
+
+✅ **已在候选人库中匹配到的（可直接推进）
+   耗时: 19291ms
 
 ✅ [FB09] 兜底 - 角色名
-   工具调用: [无]
+   工具调用: [list_jobs]
    卡片类型: [text]
-   文本内容: 好的，我来帮你优化简历！不过我需要先了解一下你的情况。
+   文本内容: 太好了！我们公司目前有多个技术方向的岗位在招。现在让我为你提供简历优化的帮助。
 
-能先告诉我以下信息吗？
+不过，我需要先了解一下你的情况，才能给出最精准的建议。请问你能告诉我以下信息吗？
 
-1. **你目前的职位/角色是什么？**
-2. **你希望应聘什么类型的岗位？**
-3. **你目前的工作年限？**
-   耗时: 1575ms
+---
+
+### 📋 请先告诉我
+   耗时: 4680ms
 
 ✅ [FB10] 兜底 - 表情符号
    工具调用: [无]
    卡片类型: [text]
-   文本内容: 哈哈，看起来你今天心情不错！😊👍🎉
+   文本内容: 哈哈，看起来你心情不错！🎉
 
-有什么招聘方面的事需要我帮忙的吗？比如：
+有什么我可以帮你的吗？比如：
 
-- **找人** — 搜索候选人
-- **看岗位** — 查看在招职位
-- **分析市场** — 薪资对标或市场
-   耗时: 1274ms
+- 🔍 **找候选人** — 告诉我职位关键词、经验要求或技能
+- 📊 **看市场数据** — 某个岗位的薪酬对标或市场分析
+- �
+   耗时: 1835ms
 
