@@ -12,12 +12,16 @@ interface MessageBubbleProps {
 
 export function MessageBubble({ message, className }: MessageBubbleProps) {
   const isUser = message.role === 'user';
-  const [displayContent, setDisplayContent] = useState(isUser ? message.content : '');
-  const [isTyping, setIsTyping] = useState(!isUser);
+  // 历史消息（超过 3 秒的）直接显示全文，不重放打字机
+  const isFresh = Date.now() - message.timestamp < 3000;
+  const [displayContent, setDisplayContent] = useState(
+    isUser || !isFresh ? message.content : '',
+  );
+  const [isTyping, setIsTyping] = useState(!isUser && isFresh);
 
-  // Typewriter effect for agent messages
+  // Typewriter effect for agent messages — 仅对新消息生效
   useEffect(() => {
-    if (isUser) return;
+    if (isUser || !isFresh) return;
 
     let index = 0;
     const content = message.content;
@@ -34,7 +38,7 @@ export function MessageBubble({ message, className }: MessageBubbleProps) {
     }, 18);
 
     return () => clearInterval(timer);
-  }, [message.content, isUser]);
+  }, [message.content, isUser, isFresh]);
 
   if (isUser) {
     return (
