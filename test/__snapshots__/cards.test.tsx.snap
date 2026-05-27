@@ -289,16 +289,15 @@ exports[`C2 ProfileCard > renders live mode with full profile 1`] = `
               width="24"
               xmlns="http://www.w3.org/2000/svg"
             >
+              <path
+                d="M16 20V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"
+              />
               <rect
                 height="14"
                 rx="2"
-                ry="2"
                 width="20"
                 x="2"
-                y="7"
-              />
-              <path
-                d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"
+                y="6"
               />
             </svg>
              
@@ -920,7 +919,7 @@ exports[`C4 JDCard > renders live mode 1`] = `
           class="flex items-start gap-2 text-sm text-neutral-300"
         >
           <svg
-            class="lucide lucide-check-circle2 w-3.5 h-3.5 text-emerald-500 mt-0.5 flex-shrink-0"
+            class="lucide lucide-circle-check w-3.5 h-3.5 text-emerald-500 mt-0.5 flex-shrink-0"
             fill="none"
             height="24"
             stroke="currentColor"
@@ -1075,19 +1074,19 @@ exports[`C5 JobProfileCard > renders live mode 1`] = `
           xmlns="http://www.w3.org/2000/svg"
         >
           <path
-            d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"
+            d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"
           />
           <path
-            d="M5 3v4"
+            d="M20 3v4"
           />
           <path
-            d="M19 17v4"
+            d="M22 5h-4"
           />
           <path
-            d="M3 5h4"
+            d="M4 17v2"
           />
           <path
-            d="M17 19h4"
+            d="M5 18H3"
           />
         </svg>
         <h3
@@ -1260,7 +1259,7 @@ exports[`C6 MarketAnalysisCard > renders live mode 1`] = `
         class="flex items-center gap-2 mb-1"
       >
         <svg
-          class="lucide lucide-bar-chart3 w-4 h-4 text-blue-400"
+          class="lucide lucide-chart-column w-4 h-4 text-blue-400"
           fill="none"
           height="24"
           stroke="currentColor"
@@ -1272,7 +1271,7 @@ exports[`C6 MarketAnalysisCard > renders live mode 1`] = `
           xmlns="http://www.w3.org/2000/svg"
         >
           <path
-            d="M3 3v18h18"
+            d="M3 3v16a2 2 0 0 0 2 2h16"
           />
           <path
             d="M18 17V9"
@@ -1473,7 +1472,7 @@ exports[`C7 PipelineReportCard > renders live mode 1`] = `
         class="flex items-center gap-2 mb-1"
       >
         <svg
-          class="lucide lucide-bar-chart3 w-4 h-4 text-violet-400"
+          class="lucide lucide-chart-column w-4 h-4 text-violet-400"
           fill="none"
           height="24"
           stroke="currentColor"
@@ -1485,7 +1484,7 @@ exports[`C7 PipelineReportCard > renders live mode 1`] = `
           xmlns="http://www.w3.org/2000/svg"
         >
           <path
-            d="M3 3v18h18"
+            d="M3 3v16a2 2 0 0 0 2 2h16"
           />
           <path
             d="M18 17V9"
@@ -2023,19 +2022,19 @@ exports[`C9 MemoryRecallCard > renders live mode 1`] = `
           xmlns="http://www.w3.org/2000/svg"
         >
           <path
-            d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"
+            d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"
           />
           <path
-            d="M5 3v4"
+            d="M20 3v4"
           />
           <path
-            d="M19 17v4"
+            d="M22 5h-4"
           />
           <path
-            d="M3 5h4"
+            d="M4 17v2"
           />
           <path
-            d="M17 19h4"
+            d="M5 18H3"
           />
         </svg>
         <span
@@ -2180,7 +2179,7 @@ exports[`C10 ClarificationCard > renders live mode 1`] = `
         class="flex items-center gap-2 mb-2"
       >
         <svg
-          class="lucide lucide-help-circle w-4 h-4 text-amber-400"
+          class="lucide lucide-circle-help w-4 h-4 text-amber-400"
           fill="none"
           height="24"
           stroke="currentColor"

@@ -1,4 +1,5 @@
 import { describe, it, expect } from 'vitest';
+import { createElement } from 'react';
 import { render } from '@testing-library/react';
 import { C1_CandidateList } from '@/components/cards/C1_CandidateList';
 import { C2_ProfileCard } from '@/components/cards/C2_ProfileCard';
@@ -10,6 +11,7 @@ import { C7_PipelineReportCard } from '@/components/cards/C7_PipelineReportCard'
 import { C8_InterviewKitCard } from '@/components/cards/C8_InterviewKitCard';
 import { C9_MemoryRecallCard } from '@/components/cards/C9_MemoryRecallCard';
 import { C10_ClarificationCard } from '@/components/cards/C10_ClarificationCard';
+import { CardRenderer } from '@/components/cards/CardRenderer';
 
 const base = {
   timestamp: Date.now(),
@@ -17,6 +19,40 @@ const base = {
   error_hint: '服务暂不可用，请稍后重试',
   actions: [] as const,
 };
+
+describe('CardRenderer', () => {
+  it('normalizes incomplete C1-C10 cards before rendering', () => {
+    const cardTypes = [
+      'candidate_list',
+      'candidate_profile',
+      'comparison',
+      'job_detail',
+      'job_profile',
+      'market_analysis',
+      'pipeline_report',
+      'interview_kit',
+      'memory_recall',
+      'clarification',
+    ];
+
+    for (const card_type of cardTypes) {
+      const incompleteCard = { card_type, title: '不完整卡片' } as any;
+      expect(() => render(createElement(CardRenderer, { card: incompleteCard }))).not.toThrow();
+    }
+  });
+
+  it('normalizes legacy data-wrapped cards before rendering', () => {
+    const legacyCard = {
+      card_type: 'pipeline_report',
+      title: '招聘报告',
+      data: { metrics: { open_positions: 2 } },
+    } as any;
+
+    expect(() => render(
+      createElement(CardRenderer, { card: legacyCard }),
+    )).not.toThrow();
+  });
+});
 
 describe('C1 CandidateList', () => {
   it('renders live mode with candidates', () => {
