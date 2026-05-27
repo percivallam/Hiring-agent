@@ -28,6 +28,8 @@ import { NetworkGraphCard } from '@/components/cards/NetworkGraphCard';
 import { MessageTemplateCard } from '@/components/cards/MessageTemplateCard';
 import { CardRenderer } from '@/components/cards/CardRenderer';
 
+import { CardErrorBoundary } from '@/components/shared/CardErrorBoundary';
+
 interface MessageListProps {
   messages: Message[];
   thinkingSteps: string[];
@@ -371,12 +373,13 @@ export function MessageList({
       <div className="max-w-3xl mx-auto px-4 py-6 space-y-5">
         <AnimatePresence mode="popLayout">
           {messages.map((message) => (
-            <MessageItem
-              key={message.id}
-              message={message}
-              onQuickAction={onQuickAction}
-              onCardClick={onCardClick}
-            />
+            <CardErrorBoundary key={message.id}>
+              <MessageItem
+                message={message}
+                onQuickAction={onQuickAction}
+                onCardClick={onCardClick}
+              />
+            </CardErrorBoundary>
           ))}
         </AnimatePresence>
 

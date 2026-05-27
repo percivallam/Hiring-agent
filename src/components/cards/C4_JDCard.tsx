@@ -60,7 +60,7 @@ export function C4_JDCard(props: C4Props) {
           </div>
           <div className="flex items-center gap-3 text-xs text-neutral-500">
             <span className="flex items-center gap-1"><Clock className="w-3 h-3" />{data.open_days}天</span>
-            <span className="flex items-center gap-1"><Users className="w-3 h-3" />{data.pipeline.reduce((s, p) => s + p.count, 0)}人</span>
+            <span className="flex items-center gap-1"><Users className="w-3 h-3" />{(data.pipeline ?? []).reduce((s, p) => s + p.count, 0)}人</span>
           </div>
         </div>
         {data.salary_range && (

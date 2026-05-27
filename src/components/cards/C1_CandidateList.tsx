@@ -83,7 +83,7 @@ export function C1_CandidateList(props: C1Props) {
             )}
           >
             <div className="flex-shrink-0 w-8 h-8 rounded-full bg-neutral-700 flex items-center justify-center text-xs font-medium text-neutral-300">
-              {c.name[0]}
+              {c.name?.[0] ?? '?'}
             </div>
             <div className="flex-1 min-w-0">
               <div className="flex items-center gap-2">

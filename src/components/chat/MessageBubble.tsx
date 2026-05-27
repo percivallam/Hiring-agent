@@ -13,7 +13,7 @@ interface MessageBubbleProps {
 export function MessageBubble({ message, className }: MessageBubbleProps) {
   const isUser = message.role === 'user';
   // 历史消息（超过 3 秒的）直接显示全文，不重放打字机
-  const isFresh = Date.now() - message.timestamp < 3000;
+  const isFresh = message.timestamp ? Date.now() - message.timestamp < 3000 : false;
   const [displayContent, setDisplayContent] = useState(
     isUser || !isFresh ? message.content : '',
   );

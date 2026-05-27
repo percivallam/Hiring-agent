@@ -44,7 +44,7 @@ export function ProfileCard({ data, actions = [], onActionClick, className }: Pr
           <Wrench className="w-4 h-4 text-neutral-500" />
           <span className="text-sm font-medium text-neutral-300">技能</span>
         </div>
-        <TagGroup tags={data.skills} size="sm" />
+        <TagGroup tags={data.skills ?? []} size="sm" />
       </div>
 
       {/* Career History */}
@@ -59,7 +59,7 @@ export function ProfileCard({ data, actions = [], onActionClick, className }: Pr
                   <span className="text-xs text-neutral-500">{job.period}</span>
                 </div>
                 <p className="text-neutral-400">{job.title}</p>
-                {job.highlights.length > 0 && (
+                {(job.highlights ?? []).length > 0 && (
                   <ul className="mt-1 space-y-0.5">
                     {job.highlights.map((h, hIdx) => (
                       <li key={hIdx} className="text-xs text-neutral-500">· {h}</li>

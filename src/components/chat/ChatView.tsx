@@ -116,7 +116,7 @@ export function ChatView() {
       a.download = `hireagent-${new Date().toISOString().slice(0, 10)}.json`;
       a.click();
       URL.revokeObjectURL(url);
-      return `已导出 ${JSON.parse(json).sessionCount} 个会话`;
+      try { return `已导出 ${JSON.parse(json).sessionCount} 个会话`; } catch { return '已导出'; }
     };
   }, []);
 

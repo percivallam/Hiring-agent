@@ -45,7 +45,7 @@ export function C6_MarketAnalysisCard(props: C6Props) {
     );
   }
 
-  const maxVal = Math.max(...values.map(v => v.value), 1);
+  const maxVal = Math.max(...(values ?? []).map(v => v.value), 1);
 
   return (
     <div className="relative bg-neutral-900 rounded-xl border border-neutral-800 hover:border-neutral-700 transition-colors overflow-hidden">

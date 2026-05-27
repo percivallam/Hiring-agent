@@ -21,6 +21,7 @@ export default defineConfig({
       'test/self_improve.test.ts',
       'test/tools.test.ts',
       'test/tools/integration.test.ts',
+      'test/dsp3-memory.test.ts',
       'node_modules/**',
     ],
   },

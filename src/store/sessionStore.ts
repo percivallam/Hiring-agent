@@ -17,12 +17,14 @@ function saveSessions(sessions: Session[]) {
 }
 
 function loadCurrentId(): string | null {
-  return localStorage.getItem(CURRENT_KEY) || null;
+  try { return localStorage.getItem(CURRENT_KEY) || null; } catch { return null; }
 }
 
 function saveCurrentId(id: string | null) {
-  if (id) localStorage.setItem(CURRENT_KEY, id);
-  else localStorage.removeItem(CURRENT_KEY);
+  try {
+    if (id) localStorage.setItem(CURRENT_KEY, id);
+    else localStorage.removeItem(CURRENT_KEY);
+  } catch { /* quota or private mode */ }
 }
 
 interface SessionState {

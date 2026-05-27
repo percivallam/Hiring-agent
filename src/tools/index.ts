@@ -90,7 +90,9 @@ export const TOOL_DEFINITIONS: ToolDefinition[] = [
 ];
 
 export function executeToolCall(call: ToolCall): ToolResult {
-  const args = JSON.parse(call.function.arguments); let r: unknown;
+  let args: Record<string, any>;
+  try { args = JSON.parse(call.function.arguments || '{}'); } catch { args = {}; }
+  let r: unknown;
   switch (call.function.name) {
     case 'search_candidates': { const c = searchResumes(args.query, { minExperience: args.min_experience, skills: args.skills, company: args.company }); r = { total: c.length, candidates: c.map(x => ({ id: x.id, name: x.name, currentCompany: x.currentCompany, currentTitle: x.currentTitle, experience: x.experience, education: x.education, matchScore: x.matchScore, matchHighlights: x.matchHighlights, gapPoints: x.gapPoints, tags: x.tags, salary: x.salary, status: x.status })) }; break; }
     case 'get_candidate_profile': r = getResumeById(args.candidate_id) || { error: 'Not found' }; break;

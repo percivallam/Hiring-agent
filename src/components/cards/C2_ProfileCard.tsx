@@ -49,7 +49,7 @@ export function C2_ProfileCard(props: C2Props) {
     );
   }
 
-  const data = showDemo && !name ? DEMO_PROFILE : { name, current_company, current_title, experience_years, education, location, skills, career, projects, match_score, tags, active_status, expected_salary, interview_history };
+  const data = showDemo && !name ? DEMO_PROFILE : { name, current_company, current_title, experience_years, education, location, skills: skills ?? [], career: career ?? [], projects: projects ?? [], match_score: match_score ?? 0, tags: tags ?? [], active_status: active_status ?? 'active', expected_salary, interview_history: interview_history ?? [] };
 
   return (
     <div className="relative bg-neutral-900 rounded-xl border border-neutral-800 hover:border-neutral-700 transition-colors overflow-hidden">
@@ -116,9 +116,9 @@ export function C2_ProfileCard(props: C2Props) {
                 <div className="min-w-0">
                   <p className="text-sm text-neutral-300">{c.title} <span className="text-neutral-500">@ {c.company}</span></p>
                   <p className="text-xs text-neutral-600">{c.period}</p>
-                  {c.highlights.length > 0 && (
+                  {(c.highlights ?? []).length > 0 && (
                     <ul className="mt-1 space-y-0.5">
-                      {c.highlights.map((h, j) => (
+                      {(c.highlights ?? []).map((h, j) => (
                         <li key={j} className="text-xs text-neutral-500 pl-2 border-l border-neutral-800">{h}</li>
                       ))}
                     </ul>
@@ -139,9 +139,9 @@ export function C2_ProfileCard(props: C2Props) {
               <div key={i} className="p-2.5 rounded-lg bg-neutral-800/50">
                 <p className="text-sm font-medium text-neutral-300">{p.name}</p>
                 <p className="text-xs text-neutral-500 mt-0.5">{p.description}</p>
-                {p.tech_stack.length > 0 && (
+                {(p.tech_stack ?? []).length > 0 && (
                   <div className="flex flex-wrap gap-1 mt-1.5">
-                    {p.tech_stack.map((t, j) => (
+                    {(p.tech_stack ?? []).map((t, j) => (
                       <span key={j} className="px-1.5 py-0.5 text-[10px] rounded bg-neutral-700 text-neutral-400">{t}</span>
                     ))}
                   </div>

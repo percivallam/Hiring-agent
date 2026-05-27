@@ -48,12 +48,14 @@ function load(sid: string): Message[] {
   try { const r = localStorage.getItem(MSG_PREFIX + sid); return r ? JSON.parse(r) : []; } catch { return []; }
 }
 function storedIds(): string[] {
-  const ids: string[] = [];
-  for (let i = 0; i < localStorage.length; i++) {
-    const k = localStorage.key(i);
-    if (k?.startsWith(MSG_PREFIX)) ids.push(k.slice(MSG_PREFIX.length));
-  }
-  return ids;
+  try {
+    const ids: string[] = [];
+    for (let i = 0; i < localStorage.length; i++) {
+      const k = localStorage.key(i);
+      if (k?.startsWith(MSG_PREFIX)) ids.push(k.slice(MSG_PREFIX.length));
+    }
+    return ids;
+  } catch { return []; }
 }
 
 interface ChatState {

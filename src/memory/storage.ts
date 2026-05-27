@@ -45,16 +45,18 @@ export class BrowserStorage implements IStorage {
   }
 
   remove(key: string): void {
-    localStorage.removeItem(key);
+    try { localStorage.removeItem(key); } catch { /* private mode */ }
   }
 
   keys(): string[] {
-    const out: string[] = [];
-    for (let i = 0; i < localStorage.length; i++) {
-      const k = localStorage.key(i);
-      if (k) out.push(k);
-    }
-    return out;
+    try {
+      const out: string[] = [];
+      for (let i = 0; i < localStorage.length; i++) {
+        const k = localStorage.key(i);
+        if (k) out.push(k);
+      }
+      return out;
+    } catch { return []; }
   }
 }
 
