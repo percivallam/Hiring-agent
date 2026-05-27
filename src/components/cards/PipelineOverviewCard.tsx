@@ -36,8 +36,8 @@ export function PipelineOverviewCard({
       </div>
 
       <div className="divide-y divide-neutral-800">
-        {jobs.map((job, idx) => {
-          const config = statusConfig[job.status];
+        {(jobs ?? []).map((job, idx) => {
+          const config = statusConfig[job.status] ?? statusConfig.healthy;
           const Icon = config.icon;
           return (
             <motion.div
@@ -60,7 +60,7 @@ export function PipelineOverviewCard({
 
               {/* Pipeline mini visualization */}
               <div className="flex items-center gap-1">
-                {job.pipeline.map((stage, sIdx) => (
+                {(job.pipeline ?? []).map((stage, sIdx) => (
                   <div key={sIdx} className="flex-1">
                     <div className="flex items-center justify-between mb-1">
                       <span className="text-[10px] text-neutral-500">{stage.stage}</span>

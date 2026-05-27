@@ -15,12 +15,13 @@ interface SalaryBenchmarkCardProps {
 export function SalaryBenchmarkCard({
   title,
   position,
-  benchmarks,
+  benchmarks: rawBenchmarks,
   marketMedian,
   recommendation,
   className
 }: SalaryBenchmarkCardProps) {
-  const maxSalary = Math.max(...benchmarks.map(b => b.median));
+  const benchmarks = rawBenchmarks ?? [];
+  const maxSalary = benchmarks.length > 0 ? Math.max(...benchmarks.map(b => b.median)) : 1;
 
   return (
     <motion.div

@@ -46,7 +46,7 @@ export function TeamDiagnosisCard({
           <span className="text-sm font-medium text-neutral-300">团队成员</span>
         </div>
         <div className="flex flex-wrap gap-2">
-          {members.map((m, idx) => (
+          {(members ?? []).map((m, idx) => (
             <div key={idx} className="px-3 py-1.5 rounded-lg bg-neutral-800 border border-neutral-700">
               <span className="text-xs font-medium text-neutral-200">{m.name}</span>
               <span className="text-xs text-neutral-500 ml-1">{m.role} · {m.level}</span>
@@ -62,7 +62,7 @@ export function TeamDiagnosisCard({
           <span className="text-sm font-medium text-neutral-300">能力缺口</span>
         </div>
         <div className="space-y-3">
-          {gaps.map((gap, idx) => (
+          {(gaps ?? []).map((gap, idx) => (
             <motion.div
               key={idx}
               initial={{ opacity: 0, x: -10 }}
@@ -71,7 +71,7 @@ export function TeamDiagnosisCard({
               className="bg-neutral-800/50 rounded-lg p-3 border border-neutral-800"
             >
               <div className="flex items-center gap-2 mb-1">
-                <span className={cn('px-2 py-0.5 rounded text-xs font-medium border', urgencyConfig[gap.urgency])}>
+                <span className={cn('px-2 py-0.5 rounded text-xs font-medium border', urgencyConfig[gap.urgency] ?? urgencyConfig.medium)}>
                   {gap.urgency === 'high' ? '紧急' : gap.urgency === 'medium' ? '重要' : '一般'}
                 </span>
                 <span className="text-sm font-medium text-neutral-300">{gap.skill}</span>
@@ -93,7 +93,7 @@ export function TeamDiagnosisCard({
             <div>
               <p className="text-xs text-emerald-400 mb-1">✅ 补强能力</p>
               <div className="flex flex-wrap gap-1">
-                {afterHireSimulation.improvedSkills.map((s, i) => (
+                {(afterHireSimulation.improvedSkills ?? []).map((s, i) => (
                   <span key={i} className="text-xs text-neutral-400 bg-neutral-800 px-2 py-0.5 rounded">{s}</span>
                 ))}
               </div>
@@ -101,7 +101,7 @@ export function TeamDiagnosisCard({
             <div>
               <p className="text-xs text-amber-400 mb-1">⚠️ 剩余缺口</p>
               <div className="flex flex-wrap gap-1">
-                {afterHireSimulation.newGaps.map((s, i) => (
+                {(afterHireSimulation.newGaps ?? []).map((s, i) => (
                   <span key={i} className="text-xs text-neutral-400 bg-neutral-800 px-2 py-0.5 rounded">{s}</span>
                 ))}
               </div>
@@ -114,7 +114,7 @@ export function TeamDiagnosisCard({
       <div className="p-4 bg-neutral-800/30">
         <h4 className="text-sm font-medium text-neutral-300 mb-2">招聘建议</h4>
         <ul className="space-y-1.5">
-          {recommendations.map((rec, idx) => (
+          {(recommendations ?? []).map((rec, idx) => (
             <li key={idx} className="text-xs text-neutral-400">· {rec}</li>
           ))}
         </ul>
