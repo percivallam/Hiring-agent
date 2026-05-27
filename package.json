@@ -3,9 +3,10 @@
   "private": true,
   "version": "2.0.0",
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "start": "vite preview",
     "lint": "tsc --noEmit"
   },
   "dependencies": {
