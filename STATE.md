@@ -61,6 +61,7 @@
 
 | 日期 | 提交 | 说明 |
 |------|------|------|
+| 2026-05-27 | [engine][hotfix] 修复 profile_card crash + 历史消息打字机重放 | buildCards WR 兜底扩展 + MessageBubble isFresh 判定 |
 | 2026-05-25 | [spec][S0] contracts 层全部落地 | tools/cards/memory/events 契约定义完成 |
 
 ---
