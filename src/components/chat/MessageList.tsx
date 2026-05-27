@@ -49,6 +49,17 @@ function MessageItem({
   onQuickAction?: (message: string) => void;
   onCardClick?: (cardId: string, payload: CardActionPayload) => void;
 }) {
+  if ((message as any).card_type) {
+    return (
+      <div className="ml-9">
+        <CardRenderer
+          card={message as any}
+          onActionClick={(msg) => onQuickAction?.(msg)}
+        />
+      </div>
+    );
+  }
+
   switch (message.type) {
     case 'text':
       return <MessageBubble message={message} />;
@@ -241,6 +252,16 @@ function MessageItem({
       );
 
     case 'pipeline_overview':
+      if ((message as any).card_type === 'pipeline_report') {
+        return (
+          <div className="ml-9">
+            <CardRenderer
+              card={message as any}
+              onActionClick={(msg) => onQuickAction?.(msg)}
+            />
+          </div>
+        );
+      }
       return (
         <div className="ml-9">
           <PipelineOverviewCard

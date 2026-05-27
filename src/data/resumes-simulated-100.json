@@ -1,8 +1,8 @@
 {
   "_meta": {
-    "version": "default-simulation-2026-05-28",
+    "version": "simulation-2026-05-28",
     "generated_at": "2026-05-28",
-    "purpose": "默认人才库：接近线上真实分布的 100 份仿真人才简历，用于招聘 Agent 演示与检索匹配",
+    "purpose": "接近线上真实分布的人才库仿真数据集，可作为后续导入 resumes.json 的候选池",
     "source_style_reference": "/Users/bytedance/Downloads/简历-黄锦瑞.pdf",
     "schema_reference": "src/data/resumes.json",
     "total_count": 100,
@@ -19,14 +19,10 @@
       "运营": 20
     },
     "notes": [
-      "当前 resumes.json 已切换为 100 份仿真人才库",
-      "旧版 60 条 DSP 黄金人才库已备份到 src/data/resumes-golden-60.json",
-      "字段保持与原 resumes.json 同构，src/data/index.ts 可直接读取",
-      "分布为研发 30、产品 20、运营 20、销售 30",
+      "ID 使用 sim_res_001 到 sim_res_100，避免与现有 res_001 到 res_060 冲突",
+      "字段保持与现有 resumes.json 同构，未修改线上演示用黄金数据",
       "研发样本覆盖后端、前端、数据、算法、SRE、客户端、测试、云原生、安全、嵌入式、数据库、音视频等技术栈"
-    ],
-    "migrated_from": "src/data/resumes-simulated-100.json",
-    "previous_golden_backup": "src/data/resumes-golden-60.json"
+    ]
   },
   "data": [
     {

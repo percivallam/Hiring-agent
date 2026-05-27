@@ -1,0 +1,105 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;450;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 4%;
+    --surface: 0 0% 98%;
+    --surface-2: 0 0% 94%;
+    --surface-3: 0 0% 90%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 4%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 4%;
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 32%;
+    --border: 0 0% 90%;
+    --input: 0 0% 90%;
+    --ring: 165 100% 43%;
+    --primary: 165 100% 43%;
+    --primary-foreground: 0 0% 4%;
+    --accent: 165 100% 43%;
+    --accent-foreground: 0 0% 4%;
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 98%;
+    --radius-sm: 4px;
+    --radius-md: 5px;
+    --radius-lg: 6px;
+    --shadow-drawer: -18px 0 44px rgba(0, 0, 0, 0.14);
+    --shadow-overlay: 0 24px 80px rgba(0, 0, 0, 0.18);
+  }
+
+  .dark {
+    --background: 0 0% 4%;
+    --foreground: 0 0% 93%;
+    --surface: 0 0% 7%;
+    --surface-2: 0 0% 10%;
+    --surface-3: 0 0% 14%;
+    --card: 0 0% 7%;
+    --card-foreground: 0 0% 93%;
+    --popover: 0 0% 7%;
+    --popover-foreground: 0 0% 93%;
+    --muted: 0 0% 10%;
+    --muted-foreground: 0 0% 63%;
+    --border: 0 0% 15%;
+    --input: 0 0% 15%;
+    --ring: 165 100% 43%;
+    --primary: 165 100% 43%;
+    --primary-foreground: 0 0% 4%;
+    --accent: 165 100% 43%;
+    --accent-foreground: 0 0% 4%;
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 98%;
+    --shadow-drawer: -18px 0 44px rgba(0, 0, 0, 0.45);
+    --shadow-overlay: 0 24px 80px rgba(0, 0, 0, 0.45);
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-size: 13px;
+    line-height: 1.5;
+    letter-spacing: 0;
+  }
+
+  button,
+  input,
+  textarea {
+    font: inherit;
+  }
+
+  ::selection {
+    background: rgba(0, 217, 163, 0.22);
+  }
+}
+
+@layer components {
+  .mono {
+    @apply font-mono tabular-nums;
+  }
+
+  .hairline {
+    @apply border border-border;
+  }
+
+  .focus-ring {
+    @apply outline-none ring-1 ring-accent;
+  }
+
+  .cli-caret::before {
+    content: "▍";
+    color: #00d9a3;
+    margin-right: 6px;
+  }
+}

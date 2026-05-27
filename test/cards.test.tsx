@@ -233,11 +233,12 @@ describe('C8 InterviewKitCard', () => {
 
 describe('C9 MemoryRecallCard', () => {
   it('renders live mode', () => {
+    const stableTime = new Date('2026-05-27T00:00:00+08:00').getTime();
     const { container } = render(
       <C9_MemoryRecallCard
         card_type="memory_recall" mode="live" title="记忆唤醒"
         recall_context="这是您第二次提及张三"
-        items={[{ id: 'm1', layer: 'candidate', summary: '二面后暂停', created_at: Date.now(), updated_at: Date.now() }]}
+        items={[{ id: 'm1', layer: 'candidate', summary: '二面后暂停', created_at: stableTime, updated_at: stableTime }]}
         {...base}
       />,
     );

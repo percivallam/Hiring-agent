@@ -25,6 +25,21 @@ import { memory_write } from './memory_write';
 import { interview_kit_prepare } from './interview_kit_prepare';
 import { generate_report } from './generate_report';
 
+export {
+  list_jobs,
+  get_job_detail,
+  search_candidates,
+  get_candidate_profile,
+  compare_candidates,
+  market_analysis,
+  salary_benchmark,
+  analyze_pipeline,
+  memory_recall,
+  memory_write,
+  interview_kit_prepare,
+  generate_report,
+};
+
 type ToolHandler = (params: Record<string, unknown>) => Promise<ContractToolResult<unknown>>;
 
 export const TOOL_REGISTRY: Record<string, ToolHandler> = {

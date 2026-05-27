@@ -5,6 +5,7 @@ import { useChatStore, exportAllData } from '@/store/chatStore';
 import { useSessionStore } from '@/store/sessionStore';
 import { useUserStore } from '@/store/userStore';
 import { AIEngine } from '@/engine/AIEngine';
+import { BrowserStorage, MemoryManager } from '@/memory';
 
 export function ChatView() {
   const {
@@ -26,6 +27,7 @@ export function ChatView() {
   const { currentSessionId, createSession } = useSessionStore();
 
   const engineRef = useRef<AIEngine | null>(null);
+  const memoryRef = useRef<MemoryManager | null>(null);
   const prevSessionRef = useRef<string | null>(null);
 
   // ── 会话：无当前会话时自动创建，有则加载消息 ──
@@ -43,7 +45,13 @@ export function ChatView() {
     const baseUrl = '/api/deepseek';
     const model = import.meta.env.VITE_DEEPSEEK_MODEL;
 
+    if (!memoryRef.current) {
+      memoryRef.current = new MemoryManager(new BrowserStorage());
+      seedDemoMemory(memoryRef.current);
+    }
+
     engineRef.current = new AIEngine(role, apiKey, baseUrl, model);
+    engineRef.current.setMemoryAdapter(memoryRef.current);
     setEngine(engineRef.current as any);
   }, [role]);
 
@@ -125,16 +133,18 @@ export function ChatView() {
     addUserMessage(input);
     autoNameSession(input);
 
+    const pendingSteps = getPendingThinkingSteps(input);
+    const stepTimers = pendingSteps.slice(1).map((_, index) =>
+      window.setTimeout(() => {
+        updateThinkingStep(Math.min(index + 1, pendingSteps.length - 1));
+      }, [700, 1800, 3600, 6500][index] ?? 6500)
+    );
+
+    startThinking(pendingSteps);
+
     try {
       const result = await engineRef.current.processInput(input);
-
-      // 展示思考步骤
-      if (result.thinkingSteps && result.thinkingSteps.length > 0) {
-        startThinking(result.thinkingSteps);
-        await new Promise(resolve => setTimeout(resolve, 1500));
-        updateThinkingStep(1);
-        stopThinking();
-      }
+      stopThinking();
 
       // 渲染卡片
       if (result.responses && result.responses.length > 0) {
@@ -146,11 +156,14 @@ export function ChatView() {
       }
     } catch (error) {
       console.error('[ChatView] 处理消息失败:', error);
+      stopThinking();
       addMessage({
         type: 'text',
         role: 'agent',
-        content: `❌ 请求失败：${error instanceof Error ? error.message : '未知错误'}\n\n请检查 API Key 和网络连接。`,
+        content: '这轮响应暂时没跑顺。我先稳住：你可以直接换个候选人、岗位或范围继续问，我会基于已有数据继续给判断。',
       } as any);
+    } finally {
+      stepTimers.forEach(window.clearTimeout);
     }
   }, [addUserMessage, addMessage, startThinking, updateThinkingStep, stopThinking]);
 
@@ -198,4 +211,52 @@ export function ChatView() {
       </div>
     </div>
   );
+}
+
+function getPendingThinkingSteps(input: string): string[] {
+  const text = input.toLowerCase();
+  if (/薪酬|salary|offer|package|预算|年包|对标/.test(input)) {
+    return ['理解薪酬诉求', '读取候选人与市场数据', '对齐预算和风险', '整理谈判建议'];
+  }
+  if (/pipeline|周报|月报|进度|漏斗|卡住|招聘数据/.test(text + input)) {
+    return ['理解报告范围', '汇总招聘进度', '定位卡点和风险', '生成行动建议'];
+  }
+  if (/面试|题|interview|模拟|评分/.test(text + input)) {
+    return ['理解面试目标', '读取候选人和岗位信息', '组织面试问题', '整理评分关注点'];
+  }
+  if (/对比|比较|compare|谁更|哪个更/.test(text + input)) {
+    return ['识别对比对象', '读取候选人档案', '比较关键维度', '形成推进建议'];
+  }
+  if (/岗位|jd|hc|职位|团队|在招/.test(text + input)) {
+    return ['理解岗位需求', '读取岗位和团队数据', '匹配候选人线索', '整理下一步动作'];
+  }
+  return ['理解你的需求', '检索候选人与招聘数据', '整理卡片和建议', '收束成可执行结论'];
+}
+
+function seedDemoMemory(memory: MemoryManager) {
+  const key = 'hireagent-memory-seeded-s8';
+  try {
+    if (localStorage.getItem(key)) return;
+    localStorage.setItem(key, '1');
+  } catch {
+    // localStorage unavailable: still try to seed the in-memory adapter path.
+  }
+
+  const notes = [
+    '二面后流程暂停（2025-11-20），当时薪资期望 130 万超出预算。',
+    '已知正在比较 OPPO 推荐架构组的 offer（OPPO 给到 140 万+期权）。',
+    '技术面评分很高（4.5/5），工程落地能力突出。薪资是唯一卡点。',
+    '内推人周经理反馈：如果能争取到更好 package，张三可以再谈。',
+  ];
+
+  for (const content of notes) {
+    memory.write({
+      layer: 'candidate',
+      entity_id: 'res_007',
+      content,
+      source: 'system',
+    }).catch(() => {
+      // Demo seed failure must not block the chat surface.
+    });
+  }
 }

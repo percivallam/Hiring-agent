@@ -1,0 +1,3138 @@
+{
+  "_meta": {
+    "version": "v1.0",
+    "dsp_hooks": {
+      "DSP-2": "稳健型(res_001 张明远) vs 潜力型(res_012 林佳怡) vs 风险型(res_021 钱一鸣) + 新增对比对象(res_031 郭子豪 小米背景)",
+      "DSP-3": "张三(res_007)回访候选人，lastActive=2025-11-20，notes预埋薪资敏感+OPPO offer",
+      "DSP-4": "张三(res_007)面试钩子: 电商转短视频、多目标融合事故、A/B平台"
+    },
+    "generated_at": "2026-05-26",
+    "total_count": 60
+  },
+  "data": [
+    {
+      "id": "res_001",
+      "name": "张明远",
+      "avatar": null,
+      "currentCompany": "阿里巴巴",
+      "currentTitle": "高级算法专家",
+      "experience": 8,
+      "education": "浙江大学 计算机科学 硕士",
+      "location": "杭州",
+      "email": "zhangmy@example.com",
+      "phone": "138****5678",
+      "skills": [
+        "推荐系统",
+        "深度学习",
+        "PyTorch",
+        "TensorFlow",
+        "Spark",
+        "大规模机器学习",
+        "A/B测试"
+      ],
+      "tags": [
+        "推荐算法",
+        "大厂背景",
+        "技术管理"
+      ],
+      "salary": "100-150万",
+      "status": "active",
+      "lastActive": "2026-05-20",
+      "careerHistory": [
+        {
+          "company": "阿里巴巴",
+          "title": "高级算法专家",
+          "period": "2021.06 - 至今",
+          "highlights": [
+            "主导淘宝首页个性化推荐算法迭代，CTR 提升 12%",
+            "带领 8 人团队负责猜你喜欢核心链路",
+            "搭建实时特征平台，特征更新延迟从小时级降至分钟级"
+          ]
+        },
+        {
+          "company": "美团",
+          "title": "算法工程师 → 高级算法工程师",
+          "period": "2018.03 - 2021.05",
+          "highlights": [
+            "负责外卖推荐排序模型，GMV 提升 8%",
+            "设计多目标优化框架，平衡 CTR/CVR/用户体验",
+            "从 0 搭建了外卖场景的实时召回系统"
+          ]
+        }
+      ],
+      "projects": [
+        {
+          "name": "多场景迁移学习推荐系统",
+          "description": "基于迁移学习解决新品冷启动问题，将已有品类的用户偏好迁移到新品类，冷启动物料点击率提升 35%",
+          "techStack": [
+            "PyTorch",
+            "Spark",
+            "Flink"
+          ]
+        },
+        {
+          "name": "全域用户画像平台",
+          "description": "统一淘宝、天猫、闲鱼等多端用户画像，支撑跨端推荐、广告投放等业务场景",
+          "techStack": [
+            "Spark",
+            "Hive",
+            "HBase",
+            "Java"
+          ]
+        }
+      ],
+      "onlinePresence": {
+        "github": "github.com/zhangmy",
+        "linkedin": "linkedin.com/in/zhangmy"
+      },
+      "notes": [
+        "前同事内推，技术能力突出，管理经验偏弱但潜力大",
+        "内推来源：CTO办公室张总推荐",
+        "在阿里已满5年，跳槽窗口期",
+        "希望从纯算法转向带团队的技术管理"
+      ],
+      "interviewHistory": [
+        {
+          "date": "2026-05-05",
+          "feedback": "技术面表现优秀，CTR提升12%属业界top水平。管理8人团队经验加分。建议二面考察跨部门协作和架构视野。",
+          "rating": 5
+        }
+      ]
+    },
+    {
+      "id": "res_002",
+      "name": "李雨桐",
+      "avatar": null,
+      "currentCompany": "字节跳动",
+      "currentTitle": "推荐算法工程师",
+      "experience": 5,
+      "education": "北京大学 智能科学与技术 硕士",
+      "location": "北京",
+      "email": "liyt@example.com",
+      "phone": "139****1234",
+      "skills": [
+        "推荐系统",
+        "CTR预估",
+        "深度学习",
+        "PyTorch",
+        "大规模数据处理",
+        "模型压缩"
+      ],
+      "tags": [
+        "推荐算法",
+        "字节背景",
+        "年轻高潜"
+      ],
+      "salary": "70-100万",
+      "status": "active",
+      "lastActive": "2026-05-18",
+      "careerHistory": [
+        {
+          "company": "字节跳动",
+          "title": "推荐算法工程师",
+          "period": "2023.03 - 至今",
+          "highlights": [
+            "负责抖音电商推荐精排模型，GMV 提升 6%",
+            "上线多场景自适应模型，解决不同品类样本不均衡问题",
+            "将模型推理延迟从 30ms 优化至 10ms"
+          ]
+        },
+        {
+          "company": "快手",
+          "title": "算法实习生 → 算法工程师",
+          "period": "2021.07 - 2023.02",
+          "highlights": [
+            "参与快手主 feed 推荐召回优化",
+            "实现基于图神经网络的召回模型，召回覆盖率提升 20%"
+          ]
+        }
+      ],
+      "projects": [
+        {
+          "name": "多场景自适应推荐模型",
+          "description": "通过动态路由机制，让单一模型适配服饰、美妆、3C 等不同场景的推荐需求",
+          "techStack": [
+            "PyTorch",
+            "TensorFlow",
+            "CUDA"
+          ]
+        }
+      ],
+      "onlinePresence": {
+        "github": "github.com/liyutong"
+      },
+      "notes": [],
+      "interviewHistory": [
+        {
+          "date": "2026-05-08",
+          "feedback": "精排模型经验扎实，模型推理优化有亮点。但经验年限偏短，独立负责大型项目能力需考察。",
+          "rating": 3
+        }
+      ]
+    },
+    {
+      "id": "res_003",
+      "name": "王浩然",
+      "avatar": null,
+      "currentCompany": "腾讯",
+      "currentTitle": "高级研究员",
+      "experience": 7,
+      "education": "清华大学 计算机科学与技术 博士",
+      "location": "深圳",
+      "email": "wanghr@example.com",
+      "phone": "136****7890",
+      "skills": [
+        "NLP",
+        "大语言模型",
+        "预训练",
+        "Transformer",
+        "PyTorch",
+        "强化学习",
+        "知识图谱"
+      ],
+      "tags": [
+        "NLP/大模型",
+        "博士",
+        "学术背景强"
+      ],
+      "salary": "120-180万",
+      "status": "passive",
+      "lastActive": "2026-04-15",
+      "careerHistory": [
+        {
+          "company": "腾讯 AI Lab",
+          "title": "高级研究员",
+          "period": "2023.01 - 至今",
+          "highlights": [
+            "主导混元大模型的对齐训练（RLHF），安全性和有用性指标提升 30%",
+            "发表 NeurIPS/ICML 论文 2 篇",
+            "负责大模型评估体系建设"
+          ]
+        },
+        {
+          "company": "微软亚洲研究院",
+          "title": "副研究员",
+          "period": "2019.07 - 2022.12",
+          "highlights": [
+            "研究对话系统与知识增强预训练",
+            "在 ACL/EMNLP 发表论文 5 篇",
+            "参与 Turing-NLG 项目"
+          ]
+        }
+      ],
+      "projects": [
+        {
+          "name": "大模型安全性对齐框架",
+          "description": "设计多维度奖励模型 + PPO 训练框架，解决大模型幻觉和有害输出问题",
+          "techStack": [
+            "PyTorch",
+            "DeepSpeed",
+            "Ray"
+          ]
+        }
+      ],
+      "onlinePresence": {
+        "github": "github.com/wanghaoran",
+        "linkedin": "linkedin.com/in/wanghaoran"
+      },
+      "notes": [
+        "被动看机会，需要强力 Sell。研究方向偏学术，工程落地能力需评估"
+      ]
+    },
+    {
+      "id": "res_004",
+      "name": "陈思远",
+      "avatar": null,
+      "currentCompany": "百度",
+      "currentTitle": "资深算法工程师",
+      "experience": 6,
+      "education": "上海交通大学 计算机科学 硕士",
+      "location": "北京",
+      "email": "chensy@example.com",
+      "phone": "137****4567",
+      "skills": [
+        "搜索算法",
+        "排序模型",
+        "NLP",
+        "BERT",
+        "PyTorch",
+        "C++",
+        "信息检索"
+      ],
+      "tags": [
+        "搜索/排序",
+        "工程能力强",
+        "ACM金牌"
+      ],
+      "salary": "80-120万",
+      "status": "active",
+      "lastActive": "2026-05-19",
+      "careerHistory": [
+        {
+          "company": "百度",
+          "title": "资深算法工程师",
+          "period": "2022.05 - 至今",
+          "highlights": [
+            "负责百度搜索排序核心模型，搜索结果满意度提升 5%",
+            "上线多模态搜索排序模型，图文混合场景效果显著",
+            "设计 Query 意图理解模型，长尾 Query 准确率提升 10%"
+          ]
+        },
+        {
+          "company": "搜狗",
+          "title": "算法工程师",
+          "period": "2020.07 - 2022.04",
+          "highlights": [
+            "负责微信搜索排序算法",
+            "优化搜索相关性模型"
+          ]
+        }
+      ],
+      "projects": [
+        {
+          "name": "多模态搜索排序系统",
+          "description": "融合文本、图片、视频多模态信号，统一排序框架，覆盖百度图片/视频搜索场景",
+          "techStack": [
+            "PyTorch",
+            "C++",
+            "BRPC"
+          ]
+        }
+      ],
+      "onlinePresence": {
+        "github": "github.com/siyuan"
+      },
+      "notes": [
+        "ACM-ICPC 金牌选手，编码能力极强。搜索方向经验丰富"
+      ]
+    },
+    {
+      "id": "res_005",
+      "name": "刘静怡",
+      "avatar": null,
+      "currentCompany": "小红书",
+      "currentTitle": "算法工程师",
+      "experience": 4,
+      "education": "复旦大学 计算机科学 硕士",
+      "location": "上海",
+      "email": "liujy@example.com",
+      "phone": "135****8901",
+      "skills": [
+        "推荐算法",
+        "多模态学习",
+        "图神经网络",
+        "PyTorch",
+        "数据挖掘"
+      ],
+      "tags": [
+        "推荐+多模态",
+        "小红书",
+        "女性技术人才"
+      ],
+      "salary": "50-80万",
+      "status": "active",
+      "lastActive": "2026-05-21",
+      "careerHistory": [
+        {
+          "company": "小红书",
+          "title": "算法工程师",
+          "period": "2022.08 - 至今",
+          "highlights": [
+            "负责笔记推荐的多模态理解，图文匹配度提升 15%",
+            "优化冷启动策略，新人笔记曝光量提升 40%"
+          ]
+        }
+      ],
+      "projects": [
+        {
+          "name": "多模态内容理解与推荐",
+          "description": "结合图像、文本、标签等多模态信息，对 UGC 内容做精细化理解和推荐分发",
+          "techStack": [
+            "PyTorch",
+            "OpenCV",
+            "BERT"
+          ]
+        }
+      ],
+      "onlinePresence": {},
+      "notes": [
+        "年轻但成长快，推荐+多模态交叉方向稀缺"
+      ]
+    },
+    {
+      "id": "res_006",
+      "name": "赵一鸣",
+      "avatar": null,
+      "currentCompany": "快手",
+      "currentTitle": "高级算法工程师",
+      "experience": 6,
+      "education": "哈尔滨工业大学 计算机科学 硕士",
+      "location": "北京",
+      "email": "zhaoym@example.com",
+      "phone": "138****2345",
+      "skills": [
+        "广告算法",
+        "CTR预估",
+        "出价优化",
+        "深度学习",
+        "PyTorch",
+        "大规模稀疏模型"
+      ],
+      "tags": [
+        "广告算法",
+        "快手",
+        "商业化"
+      ],
+      "salary": "90-130万",
+      "status": "active",
+      "lastActive": "2026-05-17",
+      "careerHistory": [
+        {
+          "company": "快手",
+          "title": "广告算法工程师 → 高级算法工程师",
+          "period": "2021.03 - 至今",
+          "highlights": [
+            "负责信息流广告 CTR/CVR 预估模型，广告收入提升 15%",
+            "设计 oCPX 智能出价策略，广告主 ROI 提升 20%",
+            "从 0 搭建广告主画像系统"
+          ]
+        },
+        {
+          "company": "360",
+          "title": "算法工程师",
+          "period": "2019.07 - 2021.02",
+          "highlights": [
+            "负责搜索广告排序算法"
+          ]
+        }
+      ],
+      "projects": [
+        {
+          "name": "oCPX 智能出价系统",
+          "description": "基于强化学习的智能出价，自动优化广告投放成本与转化量平衡",
+          "techStack": [
+            "PyTorch",
+            "Flink",
+            "Redis"
+          ]
+        }
+      ],
+      "onlinePresence": {},
+      "notes": [
+        "纯商业化方向，适合广告/增长团队"
+      ]
+    },
+    {
+      "id": "res_007",
+      "name": "张三",
+      "avatar": null,
+      "currentCompany": "腾讯",
+      "currentTitle": "高级算法工程师",
+      "experience": 7,
+      "education": "华中科技大学 计算机科学 硕士",
+      "location": "深圳",
+      "email": "zhangsan@example.com",
+      "phone": "185****3201",
+      "skills": [
+        "推荐系统",
+        "强化学习",
+        "PyTorch",
+        "TensorFlow",
+        "Spark",
+        "A/B测试",
+        "模型部署"
+      ],
+      "tags": [
+        "推荐算法",
+        "全栈工程能力",
+        "薪资敏感"
+      ],
+      "salary": "120-150万",
+      "status": "passive",
+      "lastActive": "2025-11-20",
+      "careerHistory": [
+        {
+          "company": "腾讯",
+          "title": "高级算法工程师",
+          "period": "2023.04 - 至今",
+          "highlights": [
+            "负责腾讯视频推荐精排模型，用户观看时长提升 11%",
+            "独立搭建在线 A/B 实验平台，支持多目标融合权重实时调优",
+            "在一次线上事故中 15 分钟定位到多目标权重配置错误，事后推动上线自动化校验流水线"
+          ]
+        },
+        {
+          "company": "苏宁",
+          "title": "算法工程师",
+          "period": "2019.07 - 2023.03",
+          "highlights": [
+            "负责苏宁易购首页推荐召回与排序，GMV 提升 7%",
+            "从 0 搭建了电商推荐 A/B 实验框架",
+            "主导推荐场景从电商到内容化的转型（短视频商品推荐）"
+          ]
+        }
+      ],
+      "projects": [
+        {
+          "name": "多目标融合推荐精排模型",
+          "description": "设计基于 Pareto 优化的多目标融合框架，平衡 CTR / CVR / 时长三个目标。在权重调优过程中曾因配置错误导致线上指标波动，事后推动建设自动化校验机制。",
+          "techStack": [
+            "PyTorch",
+            "Spark",
+            "Flink",
+            "Redis"
+          ]
+        },
+        {
+          "name": "在线 A/B 实验平台",
+          "description": "从 0 到 1 搭建推荐算法 A/B 实验系统，支持分流、指标计算、显著性检验。被多个业务线复用。",
+          "techStack": [
+            "Go",
+            "Python",
+            "Flink",
+            "ClickHouse"
+          ]
+        }
+      ],
+      "onlinePresence": {
+        "github": "github.com/zhangsan-rec",
+        "linkedin": "linkedin.com/in/zhangsan"
+      },
+      "notes": [
+        "二面后流程暂停（2025-11-20），当时薪资期望 130 万超出预算。",
+        "已知正在比较 OPPO 推荐架构组的 offer（OPPO 给到 140 万+期权）。",
+        "技术面评分很高（4.5/5），工程落地能力突出。薪资是唯一卡点。",
+        "DSP-3 锚点：二次会话时 Memory 唤醒薪资谈判窗口。"
+      ],
+      "interviewHistory": [
+        {
+          "date": "2025-11-15",
+          "feedback": "技术面评分4.5/5。推荐系统全链路经验扎实。A/B实验平台从0搭建非常加分。",
+          "rating": 5
+        },
+        {
+          "date": "2025-11-18",
+          "feedback": "二面依然出色。多目标融合的故事讲得很清楚。唯一风险：薪资预期130万超预算。",
+          "rating": 4
+        }
+      ]
+    },
+    {
+      "id": "res_008",
+      "name": "吴晓峰",
+      "avatar": null,
+      "currentCompany": "美团",
+      "currentTitle": "高级架构师",
+      "experience": 9,
+      "education": "南京大学 计算机科学 硕士",
+      "location": "北京",
+      "email": "wuxf@example.com",
+      "phone": "139****4567",
+      "skills": [
+        "Go",
+        "Java",
+        "微服务",
+        "Kubernetes",
+        "云原生",
+        "Service Mesh",
+        "系统架构"
+      ],
+      "tags": [
+        "架构师",
+        "云原生",
+        "技术管理"
+      ],
+      "salary": "110-160万",
+      "status": "active",
+      "lastActive": "2026-05-15",
+      "careerHistory": [
+        {
+          "company": "美团",
+          "title": "高级架构师",
+          "period": "2022.04 - 至今",
+          "highlights": [
+            "主导美团基础架构全面云原生化，容器化覆盖率达 80%",
+            "设计统一微服务治理平台，服务数量 5000+",
+            "带领 15 人平台工程团队"
+          ]
+        },
+        {
+          "company": "字节跳动",
+          "title": "资深工程师",
+          "period": "2019.01 - 2022.03",
+          "highlights": [
+            "负责字节跳动服务框架（Kitex）核心模块开发",
+            "设计 RPC 协议和负载均衡策略"
+          ]
+        },
+        {
+          "company": "百度",
+          "title": "研发工程师",
+          "period": "2017.07 - 2018.12",
+          "highlights": [
+            "负责百度云基础服务开发"
+          ]
+        }
+      ],
+      "projects": [
+        {
+          "name": "统一微服务治理平台",
+          "description": "一站式微服务治理平台，包含服务注册发现、流量管理、可观测性、混沌工程等功能",
+          "techStack": [
+            "Go",
+            "Kubernetes",
+            "Istio",
+            "Prometheus",
+            "Grafana"
+          ]
+        }
+      ],
+      "onlinePresence": {
+        "github": "github.com/wuxf",
+        "linkedin": "linkedin.com/in/wuxiaofeng"
+      },
+      "notes": [
+        "字节跳动背景+美团架构师，技术视野广"
+      ]
+    },
+    {
+      "id": "res_009",
+      "name": "郑宇航",
+      "avatar": null,
+      "currentCompany": "拼多多",
+      "currentTitle": "后端开发专家",
+      "experience": 7,
+      "education": "西安电子科技大学 计算机科学 本科",
+      "location": "上海",
+      "email": "zhengyh@example.com",
+      "phone": "135****5678",
+      "skills": [
+        "Java",
+        "高并发",
+        "MySQL",
+        "Redis",
+        "消息队列",
+        "分布式事务",
+        "系统优化"
+      ],
+      "tags": [
+        "高并发",
+        "电商",
+        "拼多多"
+      ],
+      "salary": "80-120万",
+      "status": "active",
+      "lastActive": "2026-05-22",
+      "careerHistory": [
+        {
+          "company": "拼多多",
+          "title": "后端开发工程师 → 后端开发专家",
+          "period": "2021.06 - 至今",
+          "highlights": [
+            "负责拼多多商品域核心服务，支撑日均百亿级调用",
+            "优化商品详情页性能，P99 延迟降低 50%",
+            "设计秒杀系统，支撑百万级并发"
+          ]
+        },
+        {
+          "company": "京东",
+          "title": "Java 开发工程师",
+          "period": "2019.07 - 2021.05",
+          "highlights": [
+            "负责京东商品详情页后端服务",
+            "参与 618/双11 大促保障"
+          ]
+        }
+      ],
+      "projects": [
+        {
+          "name": "超高并发秒杀系统",
+          "description": "基于分层架构和异步化设计，支撑拼多多百亿补贴秒杀场景的百万级并发",
+          "techStack": [
+            "Java",
+            "Redis",
+            "Kafka",
+            "MySQL"
+          ]
+        }
+      ],
+      "onlinePresence": {},
+      "notes": [
+        "高并发实战经验丰富，适合电商/交易类团队"
+      ]
+    },
+    {
+      "id": "res_010",
+      "name": "黄思琪",
+      "avatar": null,
+      "currentCompany": "滴滴",
+      "currentTitle": "高级前端工程师",
+      "experience": 6,
+      "education": "中山大学 软件工程 本科",
+      "location": "北京",
+      "email": "huangsq@example.com",
+      "phone": "137****6789",
+      "skills": [
+        "React",
+        "TypeScript",
+        "Node.js",
+        "可视化",
+        "WebGL",
+        "性能优化",
+        "前端架构"
+      ],
+      "tags": [
+        "前端",
+        "可视化",
+        "全栈倾向"
+      ],
+      "salary": "60-90万",
+      "status": "active",
+      "lastActive": "2026-05-16",
+      "careerHistory": [
+        {
+          "company": "滴滴",
+          "title": "前端工程师 → 高级前端工程师",
+          "period": "2021.08 - 至今",
+          "highlights": [
+            "负责滴滴出行地图可视化平台，支撑运营分析",
+            "搭建前端监控体系，错误发现率提升 50%",
+            "主导组件库建设，覆盖 30+ 业务线"
+          ]
+        },
+        {
+          "company": "阿里本地生活",
+          "title": "前端开发工程师",
+          "period": "2020.03 - 2021.07",
+          "highlights": [
+            "负责饿了么商家端前端开发"
+          ]
+        }
+      ],
+      "projects": [
+        {
+          "name": "大规模地理数据可视化平台",
+          "description": "基于 WebGL + Deck.gl 实现百万级轨迹点的实时渲染和交互分析",
+          "techStack": [
+            "React",
+            "TypeScript",
+            "Deck.gl",
+            "WebGL",
+            "Node.js"
+          ]
+        }
+      ],
+      "onlinePresence": {
+        "github": "github.com/siqihuang"
+      },
+      "notes": [
+        "可视化方向稀缺，技术和产品感觉都好"
+      ]
+    },
+    {
+      "id": "res_011",
+      "name": "许子豪",
+      "avatar": null,
+      "currentCompany": "哔哩哔哩",
+      "currentTitle": "全栈工程师",
+      "experience": 5,
+      "education": "电子科技大学 计算机科学 本科",
+      "location": "上海",
+      "email": "xuzh@example.com",
+      "phone": "138****7890",
+      "skills": [
+        "React",
+        "Vue",
+        "Go",
+        "Node.js",
+        "WebRTC",
+        "直播技术",
+        "Python"
+      ],
+      "tags": [
+        "全栈",
+        "视频/直播",
+        "B站"
+      ],
+      "salary": "50-80万",
+      "status": "active",
+      "lastActive": "2026-05-20",
+      "careerHistory": [
+        {
+          "company": "哔哩哔哩",
+          "title": "前端工程师 → 全栈工程师",
+          "period": "2022.06 - 至今",
+          "highlights": [
+            "负责直播互动前端架构，支撑百万级同时在线",
+            "开发弹幕引擎，单房间支持 10万+ 弹幕/分钟",
+            "用 Go 开发直播服务端网关"
+          ]
+        },
+        {
+          "company": "斗鱼",
+          "title": "前端开发工程师",
+          "period": "2021.03 - 2022.05",
+          "highlights": [
+            "负责斗鱼 Web 端播放器开发"
+          ]
+        }
+      ],
+      "projects": [
+        {
+          "name": "高性能直播互动引擎",
+          "description": "自研 Web 端直播互动框架，基于 WebSocket + SharedWorker 实现低延迟高并发弹幕和礼物系统",
+          "techStack": [
+            "React",
+            "TypeScript",
+            "Go",
+            "WebSocket"
+          ]
+        }
+      ],
+      "onlinePresence": {
+        "github": "github.com/xuzihao"
+      },
+      "notes": [
+        "前后端都能做，年轻的直播领域专家"
+      ]
+    },
+    {
+      "id": "res_012",
+      "name": "林佳怡",
+      "avatar": null,
+      "currentCompany": "Shopee",
+      "currentTitle": "数据工程经理",
+      "experience": 8,
+      "education": "新加坡国立大学 数据科学 硕士",
+      "location": "深圳",
+      "email": "linjy@example.com",
+      "phone": "136****8901",
+      "skills": [
+        "数据仓库",
+        "Spark",
+        "Flink",
+        "Hive",
+        "Airflow",
+        "数据治理",
+        "团队管理",
+        "Python"
+      ],
+      "tags": [
+        "数据工程",
+        "管理经验",
+        "国际化"
+      ],
+      "salary": "80-120万",
+      "status": "active",
+      "lastActive": "2026-05-19",
+      "careerHistory": [
+        {
+          "company": "Shopee",
+          "title": "数据工程经理",
+          "period": "2023.02 - 至今",
+          "highlights": [
+            "带领 10 人数据工程团队，负责东南亚电商数据平台",
+            "搭建实时数仓，数据延迟从 T+1 降至分钟级",
+            "推动数据治理体系，数据质量达标率从 70% 提升至 95%"
+          ]
+        },
+        {
+          "company": "字节跳动",
+          "title": "数据工程师",
+          "period": "2020.03 - 2023.01",
+          "highlights": [
+            "负责抖音电商数据仓库建设",
+            "设计用户行为数据模型，支撑业务分析"
+          ]
+        },
+        {
+          "company": "华为",
+          "title": "大数据开发工程师",
+          "period": "2018.07 - 2020.02",
+          "highlights": [
+            "参与华为云数据中台建设"
+          ]
+        }
+      ],
+      "projects": [
+        {
+          "name": "跨境电商实时数仓",
+          "description": "基于 Flink + Kafka 构建多国家多时区的实时数据仓库，支撑运营决策和算法模型",
+          "techStack": [
+            "Flink",
+            "Kafka",
+            "Hive",
+            "Spark",
+            "Airflow"
+          ]
+        }
+      ],
+      "onlinePresence": {
+        "linkedin": "linkedin.com/in/linjiayi"
+      },
+      "notes": [
+        "字节+国际化背景，管理+技术双修",
+        "内推来源：字节前同事推荐",
+        "薪酬预期合理($80-110万)",
+        "管理经验不足2年是主要风险"
+      ],
+      "interviewHistory": [
+        {
+          "date": "2026-05-06",
+          "feedback": "字节+快手双背景加分。对推荐全链路有理解，但管理经验不足。建议考察leadership潜力。",
+          "rating": 4
+        }
+      ]
+    },
+    {
+      "id": "res_013",
+      "name": "孙一博",
+      "avatar": null,
+      "currentCompany": "字节跳动",
+      "currentTitle": "数据科学家",
+      "experience": 5,
+      "education": "中国人民大学 统计学 硕士",
+      "location": "北京",
+      "email": "sunyb@example.com",
+      "phone": "139****0123",
+      "skills": [
+        "数据分析",
+        "A/B测试",
+        "因果推断",
+        "Python",
+        "SQL",
+        "机器学习",
+        "增长策略"
+      ],
+      "tags": [
+        "数据科学",
+        "增长",
+        "字节"
+      ],
+      "salary": "60-90万",
+      "status": "active",
+      "lastActive": "2026-05-21",
+      "careerHistory": [
+        {
+          "company": "字节跳动",
+          "title": "数据科学家",
+          "period": "2022.04 - 至今",
+          "highlights": [
+            "负责抖音增长团队数据科学工作，推动 DAU 增长实验",
+            "设计因果推断框架评估营销活动 ROI",
+            "搭建用户分层模型，用于精准投放和留存策略"
+          ]
+        },
+        {
+          "company": "滴滴",
+          "title": "数据分析师",
+          "period": "2021.07 - 2022.03",
+          "highlights": [
+            "负责滴滴出行用户增长分析"
+          ]
+        }
+      ],
+      "projects": [
+        {
+          "name": "增长实验平台",
+          "description": "基于因果推断的 A/B 实验分析平台，自动检测实验异质性效果，支持千人千面策略",
+          "techStack": [
+            "Python",
+            "SQL",
+            "Spark"
+          ]
+        }
+      ],
+      "onlinePresence": {},
+      "notes": [
+        "增长+数据科学复合背景，对业务指标敏感度高"
+      ]
+    },
+    {
+      "id": "res_014",
+      "name": "马晓晨",
+      "avatar": null,
+      "currentCompany": "网易",
+      "currentTitle": "高级产品经理",
+      "experience": 7,
+      "education": "武汉大学 信息管理 本科",
+      "location": "杭州",
+      "email": "maxc@example.com",
+      "phone": "135****1234",
+      "skills": [
+        "AI产品设计",
+        "策略产品",
+        "用户增长",
+        "数据分析",
+        "SQL",
+        "A/B测试",
+        "项目管理"
+      ],
+      "tags": [
+        "AI产品",
+        "策略",
+        "增长"
+      ],
+      "salary": "60-90万",
+      "status": "active",
+      "lastActive": "2026-05-18",
+      "careerHistory": [
+        {
+          "company": "网易",
+          "title": "高级产品经理",
+          "period": "2023.06 - 至今",
+          "highlights": [
+            "负责网易云音乐 AI 推荐产品，DAU 增长 20%",
+            "设计 AI DJ 个性化推荐功能，用户使用时长提升 30%",
+            "主导音乐社区改版，UGC 内容量翻倍"
+          ]
+        },
+        {
+          "company": "腾讯",
+          "title": "产品经理",
+          "period": "2020.02 - 2023.05",
+          "highlights": [
+            "负责 QQ 音乐推荐策略产品",
+            "优化歌单推荐算法产品策略"
+          ]
+        },
+        {
+          "company": "字节跳动",
+          "title": "产品运营",
+          "period": "2019.07 - 2020.01",
+          "highlights": [
+            "负责抖音电商运营"
+          ]
+        }
+      ],
+      "projects": [
+        {
+          "name": "AI DJ 个性化音乐推荐",
+          "description": "基于大语言模型的音乐推荐产品，用户可以通过自然语言表达音乐偏好，获得个性化推荐和音乐解读",
+          "techStack": [
+            "LLM",
+            "推荐系统",
+            "数据分析"
+          ]
+        }
+      ],
+      "onlinePresence": {},
+      "notes": [
+        "AI产品方向，有算法理解力，和工程师协作顺畅"
+      ]
+    },
+    {
+      "id": "res_015",
+      "name": "朱文婷",
+      "avatar": null,
+      "currentCompany": "华为",
+      "currentTitle": "技术总监",
+      "experience": 12,
+      "education": "北京大学 计算机科学 硕士",
+      "location": "深圳",
+      "email": "zhuwt@example.com",
+      "phone": "138****2345",
+      "skills": [
+        "分布式系统",
+        "技术管理",
+        "系统架构",
+        "云计算",
+        "团队建设",
+        "技术战略"
+      ],
+      "tags": [
+        "技术管理",
+        "华为",
+        "资深"
+      ],
+      "salary": "150-250万",
+      "status": "passive",
+      "lastActive": "2026-04-01",
+      "careerHistory": [
+        {
+          "company": "华为",
+          "title": "技术总监",
+          "period": "2020.08 - 至今",
+          "highlights": [
+            "负责华为云分布式数据库团队（50+ 人），产品已服务 500+ 企业客户",
+            "主导数据库从单机到分布式的架构演进",
+            "推动团队从 20 人扩张至 50 人，搭建了完整的人才梯队"
+          ]
+        },
+        {
+          "company": "Oracle",
+          "title": "高级工程师 → 首席工程师",
+          "period": "2014.07 - 2020.07",
+          "highlights": [
+            "参与 Oracle 数据库内核开发",
+            "负责查询优化器模块"
+          ]
+        }
+      ],
+      "projects": [
+        {
+          "name": "华为云 GaussDB 分布式数据库",
+          "description": "从 0 到 1 构建的云原生分布式数据库，支持金融级事务一致性",
+          "techStack": [
+            "C++",
+            "分布式系统",
+            "Raft/Paxos"
+          ]
+        }
+      ],
+      "onlinePresence": {
+        "linkedin": "linkedin.com/in/zhuwenting"
+      },
+      "notes": [
+        "资深技术管理者，适合 VP/技术负责人级别的岗位。被动接触，需要长期跟进"
+      ]
+    },
+    {
+      "id": "res_016",
+      "name": "Deng Sihan",
+      "currentCompany": "Tencent",
+      "currentTitle": "Senior PM",
+      "experience": 6,
+      "education": "Zhejiang Univ",
+      "location": "Shenzhen",
+      "skills": [
+        "PM",
+        "UX",
+        "SQL",
+        "Figma"
+      ],
+      "tags": [
+        "PM"
+      ],
+      "salary": "60-90W",
+      "status": "active",
+      "lastActive": "2026-05-15",
+      "careerHistory": [],
+      "projects": [],
+      "onlinePresence": {},
+      "notes": []
+    },
+    {
+      "id": "res_017",
+      "name": "Tang Yaqi",
+      "currentCompany": "Meituan",
+      "currentTitle": "Ops Manager",
+      "experience": 5,
+      "education": "BUPT",
+      "location": "Beijing",
+      "skills": [
+        "Operations",
+        "SQL"
+      ],
+      "tags": [
+        "Ops"
+      ],
+      "salary": "40-65W",
+      "status": "active",
+      "lastActive": "2026-05-20",
+      "careerHistory": [],
+      "projects": [],
+      "onlinePresence": {},
+      "notes": []
+    },
+    {
+      "id": "res_018",
+      "name": "Gu Xiaoyu",
+      "currentCompany": "Baidu",
+      "currentTitle": "Senior UX",
+      "experience": 7,
+      "education": "CAFA",
+      "location": "Beijing",
+      "skills": [
+        "UI",
+        "UX",
+        "Figma",
+        "Sketch"
+      ],
+      "tags": [
+        "Design"
+      ],
+      "salary": "50-80W",
+      "status": "active",
+      "lastActive": "2026-05-18",
+      "careerHistory": [],
+      "projects": [],
+      "onlinePresence": {},
+      "notes": []
+    },
+    {
+      "id": "res_019",
+      "name": "He Jiawen",
+      "currentCompany": "ByteDance",
+      "currentTitle": "TPM",
+      "experience": 6,
+      "education": "SJTU",
+      "location": "Shanghai",
+      "skills": [
+        "PM",
+        "Agile",
+        "Jira"
+      ],
+      "tags": [
+        "TPM"
+      ],
+      "salary": "60-90W",
+      "status": "active",
+      "lastActive": "2026-05-19",
+      "careerHistory": [],
+      "projects": [],
+      "onlinePresence": {},
+      "notes": []
+    },
+    {
+      "id": "res_020",
+      "name": "Shen Yinuo",
+      "currentCompany": "Alibaba Cloud",
+      "currentTitle": "SRE",
+      "experience": 5,
+      "education": "HUST",
+      "location": "Hangzhou",
+      "skills": [
+        "K8s",
+        "Docker",
+        "Terraform",
+        "Python",
+        "Go"
+      ],
+      "tags": [
+        "SRE"
+      ],
+      "salary": "55-85W",
+      "status": "active",
+      "lastActive": "2026-05-21",
+      "careerHistory": [],
+      "projects": [],
+      "onlinePresence": {
+        "github": "gh/shenyn"
+      },
+      "notes": []
+    },
+    {
+      "id": "res_021",
+      "name": "钱一鸣",
+      "avatar": null,
+      "currentCompany": "雾角科技",
+      "currentTitle": "算法负责人",
+      "experience": 6,
+      "education": "南京大学 软件工程 硕士",
+      "location": "杭州",
+      "email": "qianym@example.com",
+      "phone": "186****4521",
+      "skills": [
+        "推荐系统",
+        "C++",
+        "深度学习",
+        "PyTorch",
+        "Go",
+        "分布式系统",
+        "模型压缩"
+      ],
+      "tags": [
+        "全栈工程",
+        "初创经验",
+        "跳槽频繁"
+      ],
+      "salary": "90-130万",
+      "status": "active",
+      "lastActive": "2026-05-20",
+      "careerHistory": [
+        {
+          "company": "雾角科技（初创）",
+          "title": "算法负责人",
+          "period": "2025.01 - 至今",
+          "highlights": [
+            "作为第 3 号员工加入，从 0 搭建推荐系统",
+            "带领 3 人团队，覆盖召回→排序→重排全链路",
+            "引擎冷启动阶段仅用 2 个月使 DAU 增长 5 倍"
+          ]
+        },
+        {
+          "company": "快手",
+          "title": "算法工程师",
+          "period": "2024.03 - 2024.12",
+          "highlights": [
+            "负责快手极速版推荐召回优化",
+            "因团队调整和个人发展原因 9 个月后离职"
+          ]
+        },
+        {
+          "company": "百度",
+          "title": "算法工程师",
+          "period": "2020.07 - 2024.02",
+          "highlights": [
+            "负责百度 feed 流推荐排序模型迭代",
+            "将多目标融合框架从规则切换为模型驱动，CTR 提升 4%"
+          ]
+        }
+      ],
+      "projects": [
+        {
+          "name": "冷启动推荐引擎",
+          "description": "为初创公司从 0 搭建推荐引擎，用协同过滤+内容特征的混合方案解决冷启动问题，2 个月实现 DAU 5 倍增长",
+          "techStack": [
+            "PyTorch",
+            "Go",
+            "Redis",
+            "PostgreSQL"
+          ]
+        }
+      ],
+      "onlinePresence": {
+        "github": "github.com/qianym"
+      },
+      "notes": [
+        "近 2 年换了 3 家公司（百度→快手→初创），稳定性是最大风险。",
+        "技术能力全面但每段工作停留时间短，需要面试中深挖离职原因。",
+        "DSP-2 对比卡中作为「风险型」候选人与稳健型/潜力型对比。",
+        "内推来源：猎头渠道",
+        "跳槽原因需确认：快手9个月是团队调整还是个人原因？"
+      ],
+      "interviewHistory": [
+        {
+          "date": "2026-05-09",
+          "feedback": "技术能力全面，0-1经验突出。但近2年3家公司引发稳定性担忧。建议二面深挖离职原因。",
+          "rating": 3
+        }
+      ]
+    },
+    {
+      "id": "res_022",
+      "name": "冯晓宇",
+      "avatar": null,
+      "currentCompany": "美团",
+      "currentTitle": "数据开发专家",
+      "experience": 4,
+      "education": "北京邮电大学 通信工程 硕士",
+      "location": "北京",
+      "email": "fengxy@example.com",
+      "phone": "139****6742",
+      "skills": [
+        "Spark",
+        "Flink",
+        "Hive",
+        "数据仓库",
+        "ETL",
+        "Java",
+        "Scala",
+        "Kafka"
+      ],
+      "tags": [
+        "数据平台",
+        "实时计算",
+        "大厂背景"
+      ],
+      "salary": "60-85万",
+      "status": "active",
+      "lastActive": "2026-05-21",
+      "careerHistory": [
+        {
+          "company": "美团",
+          "title": "数据开发工程师 → 数据开发专家",
+          "period": "2022.06 - 至今",
+          "highlights": [
+            "负责外卖实时数据仓库建设，数据延迟从小时级降至分钟级",
+            "主导 Spark → Flink 迁移项目，节省计算资源 30%",
+            "搭建数据质量监控平台，覆盖 200+ 核心指标"
+          ]
+        }
+      ],
+      "projects": [
+        {
+          "name": "实时数据仓库升级",
+          "description": "将外卖核心数据链路从离线 Spark 迁移到 Flink 实时流处理，支撑运营实时看板和算法特征更新",
+          "techStack": [
+            "Flink",
+            "Kafka",
+            "HBase",
+            "Hive"
+          ]
+        }
+      ],
+      "onlinePresence": {
+        "github": "github.com/fengxiaoyu"
+      },
+      "notes": []
+    },
+    {
+      "id": "res_023",
+      "name": "陆天宇",
+      "avatar": null,
+      "currentCompany": "百度",
+      "currentTitle": "大模型应用工程师",
+      "experience": 3,
+      "education": "浙江大学 人工智能 硕士",
+      "location": "北京",
+      "email": "luty@example.com",
+      "phone": "187****9012",
+      "skills": [
+        "大语言模型",
+        "Prompt工程",
+        "RAG",
+        "LangChain",
+        "Python",
+        "向量数据库",
+        "FastAPI"
+      ],
+      "tags": [
+        "LLM应用",
+        "年轻高潜",
+        "全栈"
+      ],
+      "salary": "50-80万",
+      "status": "active",
+      "lastActive": "2026-05-22",
+      "careerHistory": [
+        {
+          "company": "百度",
+          "title": "大模型应用工程师",
+          "period": "2023.07 - 至今",
+          "highlights": [
+            "负责文心一言企业级 RAG 系统，回答准确率从 72% 提升至 89%",
+            "设计多轮对话 Agent 框架，支持工具调用和记忆管理",
+            "将推理延迟从 8s 优化至 2s（通过缓存+量化）"
+          ]
+        }
+      ],
+      "projects": [
+        {
+          "name": "企业知识库 RAG 系统",
+          "description": "基于 LangChain+Milvus 搭建企业内部知识库问答系统，支持 10 万+ 文档的语义检索和生成",
+          "techStack": [
+            "LangChain",
+            "Milvus",
+            "FastAPI",
+            "OpenAI API"
+          ]
+        }
+      ],
+      "onlinePresence": {
+        "github": "github.com/lutianyu"
+      },
+      "notes": [
+        "应届毕业不到 3 年，但项目产出超出预期。成长速度快。"
+      ]
+    },
+    {
+      "id": "res_024",
+      "name": "韩雨薇",
+      "avatar": null,
+      "currentCompany": "腾讯",
+      "currentTitle": "高级前端工程师",
+      "experience": 5,
+      "education": "武汉大学 计算机科学 本科",
+      "location": "深圳",
+      "email": "hanyw@example.com",
+      "phone": "158****3421",
+      "skills": [
+        "React",
+        "TypeScript",
+        "Next.js",
+        "数据可视化",
+        "WebGL",
+        "Node.js",
+        "微前端"
+      ],
+      "tags": [
+        "前端架构",
+        "可视化",
+        "性能优化"
+      ],
+      "salary": "55-80万",
+      "status": "active",
+      "lastActive": "2026-05-18",
+      "careerHistory": [
+        {
+          "company": "腾讯",
+          "title": "前端工程师 → 高级前端工程师",
+          "period": "2021.03 - 至今",
+          "highlights": [
+            "负责腾讯云控制台前端架构，支撑 300+ 服务的前端微应用",
+            "自研微前端框架，子应用加载时间从 3s 降至 0.5s",
+            "主导前端监控体系建设，JS 错误发现率提升 60%"
+          ]
+        }
+      ],
+      "projects": [
+        {
+          "name": "微前端框架",
+          "description": "为腾讯云控制台设计的微前端解决方案，支持独立开发/部署/灰度",
+          "techStack": [
+            "React",
+            "TypeScript",
+            "qiankun",
+            "Webpack"
+          ]
+        }
+      ],
+      "onlinePresence": {
+        "github": "github.com/hanyuwei"
+      },
+      "notes": []
+    },
+    {
+      "id": "res_025",
+      "name": "石磊",
+      "avatar": null,
+      "currentCompany": "阿里巴巴",
+      "currentTitle": "技术专家",
+      "experience": 9,
+      "education": "北京大学 计算机科学 硕士",
+      "location": "杭州",
+      "email": "shilei@example.com",
+      "phone": "131****7856",
+      "skills": [
+        "Java",
+        "Go",
+        "分布式系统",
+        "微服务",
+        "Kubernetes",
+        "Service Mesh",
+        "MySQL",
+        "高并发"
+      ],
+      "tags": [
+        "架构师",
+        "大厂P8",
+        "技术管理"
+      ],
+      "salary": "150-200万",
+      "status": "passive",
+      "lastActive": "2026-04-28",
+      "careerHistory": [
+        {
+          "company": "阿里巴巴",
+          "title": "高级开发工程师 → 技术专家",
+          "period": "2019.03 - 至今",
+          "highlights": [
+            "主导淘宝交易核心链路架构升级，支撑双 11 峰值 QPS 50万+",
+            "推动 50+ 微服务从 Dubbo 迁移到云原生 Service Mesh",
+            "带领 12 人架构小组，制定全部门技术规范"
+          ]
+        },
+        {
+          "company": "华为",
+          "title": "软件开发工程师 → 高级开发工程师",
+          "period": "2017.07 - 2019.02",
+          "highlights": [
+            "负责华为云分布式数据库中间件开发",
+            "参与 GaussDB 存储引擎优化"
+          ]
+        }
+      ],
+      "projects": [
+        {
+          "name": "交易链路云原生改造",
+          "description": "将淘宝交易核心链路从 Dubbo 迁移到 Istio Service Mesh，实现流量灰度、故障隔离和可观测性全面提升",
+          "techStack": [
+            "Go",
+            "Istio",
+            "Kubernetes",
+            "Envoy",
+            "Prometheus"
+          ]
+        }
+      ],
+      "onlinePresence": {
+        "github": "github.com/shilei"
+      },
+      "notes": [
+        "P8 级，被动看机会。薪酬预期高，需要强力方案。管理半径 12 人。"
+      ]
+    },
+    {
+      "id": "res_026",
+      "name": "潘越",
+      "avatar": null,
+      "currentCompany": "大疆",
+      "currentTitle": "嵌入式系统工程师",
+      "experience": 5,
+      "education": "电子科技大学 电子信息工程 硕士",
+      "location": "深圳",
+      "email": "panyue@example.com",
+      "phone": "177****5623",
+      "skills": [
+        "嵌入式Linux",
+        "BSP",
+        "驱动开发",
+        "ARM",
+        "C",
+        "RTOS",
+        "硬件调试",
+        "I2C/SPI/UART"
+      ],
+      "tags": [
+        "BSP/底层",
+        "硬件厂背景",
+        "驱动开发"
+      ],
+      "salary": "50-75万",
+      "status": "active",
+      "lastActive": "2026-05-15",
+      "careerHistory": [
+        {
+          "company": "大疆",
+          "title": "嵌入式系统工程师",
+          "period": "2021.06 - 至今",
+          "highlights": [
+            "负责无人机飞控系统 BSP 层开发，包括 Sensor 驱动、电源管理",
+            "优化 RTOS 实时调度，任务切换延迟从 50us 降至 15us",
+            "主导芯片平台迁移（STM32 → NXP i.MX），无 Bug 上线"
+          ]
+        },
+        {
+          "company": "海康威视",
+          "title": "嵌入式软件工程师",
+          "period": "2018.07 - 2021.05",
+          "highlights": [
+            "负责安防摄像头 Linux BSP 适配与驱动开发",
+            "实现 H.265 硬件编解码驱动优化"
+          ]
+        }
+      ],
+      "projects": [
+        {
+          "name": "多平台 BSP 统一抽象层",
+          "description": "设计跨芯片平台的 BSP HAL 层，支持 STM32/NXP/TI 三家芯片的快速适配",
+          "techStack": [
+            "C",
+            "ARM汇编",
+            "Makefile",
+            "JTAG"
+          ]
+        }
+      ],
+      "onlinePresence": {},
+      "notes": [
+        "纯硬件/BSP 方向，互联网公司无直接对口岗位。DSP-1 演示中可能被「嵌入式底层」等关键词命中。"
+      ]
+    },
+    {
+      "id": "res_027",
+      "name": "钟志强",
+      "avatar": null,
+      "currentCompany": "华为",
+      "currentTitle": "嵌入式软件专家",
+      "experience": 7,
+      "education": "华中科技大学 电子与通信工程 硕士",
+      "location": "深圳",
+      "email": "zhongzq@example.com",
+      "phone": "133****1098",
+      "skills": [
+        "嵌入式Linux",
+        "BSP",
+        "Yocto",
+        "C/C++",
+        "驱动开发",
+        "FPGA",
+        "PCIe",
+        "U-Boot"
+      ],
+      "tags": [
+        "BSP/底层",
+        "华为背景",
+        "芯片验证"
+      ],
+      "salary": "65-90万",
+      "status": "passive",
+      "lastActive": "2026-03-10",
+      "careerHistory": [
+        {
+          "company": "华为",
+          "title": "嵌入式软件工程师 → 嵌入式软件专家",
+          "period": "2019.04 - 至今",
+          "highlights": [
+            "负责昇腾 AI 芯片 BSP 层开发，包括 PCIe 驱动、DDR 初始化",
+            "主导芯片回片后 BSP bring-up，提前 3 周完成",
+            "编写 U-Boot/Linux Kernel 驱动 20+ 个模块"
+          ]
+        }
+      ],
+      "projects": [
+        {
+          "name": "昇腾芯片 BSP Bring-up",
+          "description": "从芯片回片到 Linux 系统完整启动，负责所有底层驱动适配与验证",
+          "techStack": [
+            "C",
+            "U-Boot",
+            "Linux Kernel",
+            "PCIe",
+            "DDR PHY"
+          ]
+        }
+      ],
+      "onlinePresence": {},
+      "notes": [
+        "华为昇腾团队，芯片级底层能力突出。被动观望，可能对互联网公司不感兴趣。"
+      ]
+    },
+    {
+      "id": "res_028",
+      "name": "苏婉清",
+      "avatar": null,
+      "currentCompany": "字节跳动",
+      "currentTitle": "产品经理",
+      "experience": 4,
+      "education": "复旦大学 心理学 硕士",
+      "location": "上海",
+      "email": "suwq@example.com",
+      "phone": "150****8762",
+      "skills": [
+        "产品设计",
+        "数据驱动",
+        "用户研究",
+        "A/B测试",
+        "SQL",
+        "推荐策略",
+        "用户增长"
+      ],
+      "tags": [
+        "策略产品",
+        "数据驱动",
+        "增长方向"
+      ],
+      "salary": "45-70万",
+      "status": "active",
+      "lastActive": "2026-05-19",
+      "careerHistory": [
+        {
+          "company": "字节跳动",
+          "title": "产品经理",
+          "period": "2022.08 - 至今",
+          "highlights": [
+            "负责抖音电商推荐策略产品，通过策略优化使 GMV 提升 8%",
+            "设计用户冷启动推荐策略，新用户次日留存提升 12%",
+            "推动推荐策略的 A/B 实验标准化，实验决策周期缩短 40%"
+          ]
+        },
+        {
+          "company": "小红书",
+          "title": "产品运营",
+          "period": "2019.07 - 2022.06",
+          "highlights": [
+            "负责社区内容推荐策略运营，内容消费时长提升 15%"
+          ]
+        }
+      ],
+      "projects": [
+        {
+          "name": "新用户冷启动推荐策略",
+          "description": "设计基于用户行为序列的冷启动策略，结合运营干预和模型预测，显著提升新用户留存",
+          "techStack": [
+            "SQL",
+            "Python",
+            "A/B测试平台"
+          ]
+        }
+      ],
+      "onlinePresence": {},
+      "notes": []
+    },
+    {
+      "id": "res_029",
+      "name": "戴思源",
+      "avatar": null,
+      "currentCompany": "小红书",
+      "currentTitle": "搜索算法工程师",
+      "experience": 3,
+      "education": "哈尔滨工业大学 计算机科学 硕士",
+      "location": "上海",
+      "email": "daisy@example.com",
+      "phone": "182****6743",
+      "skills": [
+        "搜索算法",
+        "Query理解",
+        "排序模型",
+        "NLP",
+        "BERT",
+        "PyTorch",
+        "ES"
+      ],
+      "tags": [
+        "搜索/排序",
+        "年轻高潜",
+        "学术转化"
+      ],
+      "salary": "55-80万",
+      "status": "active",
+      "lastActive": "2026-05-23",
+      "careerHistory": [
+        {
+          "company": "小红书",
+          "title": "搜索算法工程师",
+          "period": "2023.07 - 至今",
+          "highlights": [
+            "负责小红书搜索排序模型迭代，长尾 Query 满意度提升 8%",
+            "引入多模态搜索排序（图文+视频），混合场景 NDCG 提升 5%",
+            "在 SIGIR 2025 发表搜索方向论文 1 篇"
+          ]
+        }
+      ],
+      "projects": [
+        {
+          "name": "多模态搜索排序",
+          "description": "将文本+图像+视频多模态特征融入搜索排序，解决小红书图文混合场景的排序难题",
+          "techStack": [
+            "PyTorch",
+            "CLIP",
+            "BERT",
+            "Elasticsearch"
+          ]
+        }
+      ],
+      "onlinePresence": {
+        "github": "github.com/daisiyuan"
+      },
+      "notes": []
+    },
+    {
+      "id": "res_030",
+      "name": "孟浩然",
+      "avatar": null,
+      "currentCompany": "快手",
+      "currentTitle": "广告算法工程师",
+      "experience": 6,
+      "education": "中国科学技术大学 计算机科学 硕士",
+      "location": "北京",
+      "email": "menghr@example.com",
+      "phone": "138****4512",
+      "skills": [
+        "广告算法",
+        "CTR预估",
+        "CVR预估",
+        "出价策略",
+        "OCPX",
+        "PyTorch",
+        "Spark"
+      ],
+      "tags": [
+        "广告/商业化",
+        "策略优化",
+        "ROI导向"
+      ],
+      "salary": "90-130万",
+      "status": "active",
+      "lastActive": "2026-05-20",
+      "careerHistory": [
+        {
+          "company": "快手",
+          "title": "广告算法工程师",
+          "period": "2022.03 - 至今",
+          "highlights": [
+            "负责快手广告精排 CTR/CVR 模型，广告收入提升 9%",
+            "设计 OCPX 自动出价策略，广告主 ROI 提升 15%",
+            "上线广告冷启动策略，新广告主起量时间缩短 60%"
+          ]
+        },
+        {
+          "company": "字节跳动",
+          "title": "广告算法工程师",
+          "period": "2018.07 - 2022.02",
+          "highlights": [
+            "参与穿山甲广告平台算法迭代，填充率提升 7%",
+            "实现多广告位联合竞价模型"
+          ]
+        }
+      ],
+      "projects": [
+        {
+          "name": "OCPX 自动出价系统",
+          "description": "设计基于强化学习的动态出价策略，在保证广告主 ROI 目标的前提下最大化平台收入",
+          "techStack": [
+            "PyTorch",
+            "Spark",
+            "Flink",
+            "Java"
+          ]
+        }
+      ],
+      "onlinePresence": {},
+      "notes": []
+    },
+    {
+      "id": "res_031",
+      "name": "郭子豪",
+      "avatar": null,
+      "currentCompany": "小米",
+      "currentTitle": "资深算法工程师",
+      "experience": 7,
+      "education": "西安电子科技大学 计算机科学 硕士",
+      "location": "北京",
+      "email": "guozihao@example.com",
+      "phone": "144****1409",
+      "skills": [
+        "推荐系统",
+        "NLP",
+        "PyTorch",
+        "Spark",
+        "大规模数据处理",
+        "模型优化"
+      ],
+      "tags": [
+        "推荐算法",
+        "小米背景",
+        "工程能力"
+      ],
+      "salary": "90-140万",
+      "status": "active",
+      "lastActive": "2026-05-22",
+      "careerHistory": [
+        {
+          "company": "小米",
+          "title": "资深算法工程师",
+          "period": "2021.02-至今",
+          "highlights": [
+            "负责小米商城推荐系统，GMV提升10%",
+            "主导多模态推荐模型上线",
+            "带领5人推荐算法团队"
+          ]
+        },
+        {
+          "company": "京东",
+          "title": "算法工程师",
+          "period": "2017.07-2021.01",
+          "highlights": [
+            "参与京东首页推荐排序迭代",
+            "实现实时特征平台"
+          ]
+        }
+      ],
+      "projects": [
+        {
+          "name": "多模态推荐系统",
+          "description": "融合文本、图像特征的推荐模型",
+          "techStack": [
+            "PyTorch",
+            "Spark",
+            "Flink"
+          ]
+        }
+      ],
+      "onlinePresence": {
+        "github": "github.com/guozihao",
+        "blog": "guozihao.tech"
+      },
+      "notes": [
+        "内推来源：小米前同事推荐",
+        "DSP-2潜在对比对象：经验与张明远(res_001)接近但方向偏电商"
+      ],
+      "interviewHistory": [
+        {
+          "date": "2026-05-12",
+          "feedback": "技术面整体表现扎实，推荐系统全链路经验。对多模态方向理解可以。建议二面考察架构设计能力。",
+          "rating": 4
+        }
+      ]
+    },
+    {
+      "id": "res_032",
+      "name": "蔡佳琪",
+      "avatar": null,
+      "currentCompany": "商汤科技",
+      "currentTitle": "计算机视觉研究员",
+      "experience": 4,
+      "education": "上海交通大学 计算机视觉 博士",
+      "location": "上海",
+      "email": "caijiaqi@example.com",
+      "phone": "165****5012",
+      "skills": [
+        "计算机视觉",
+        "目标检测",
+        "PyTorch",
+        "CUDA",
+        "模型量化",
+        "TensorRT"
+      ],
+      "tags": [
+        "CV方向",
+        "博士",
+        "商汤背景"
+      ],
+      "salary": "70-110万",
+      "status": "active",
+      "lastActive": "2026-05-20",
+      "careerHistory": [
+        {
+          "company": "商汤科技",
+          "title": "计算机视觉研究员",
+          "period": "2022.07-至今",
+          "highlights": [
+            "负责自动驾驶感知模型，mAP提升8%",
+            "将模型推理延迟优化至15ms以下",
+            "在CVPR/ICCV发表论文3篇"
+          ]
+        }
+      ],
+      "projects": [
+        {
+          "name": "实时目标检测模型",
+          "description": "面向车规级的轻量检测模型",
+          "techStack": [
+            "PyTorch",
+            "CUDA",
+            "TensorRT",
+            "ONNX"
+          ]
+        }
+      ],
+      "onlinePresence": {},
+      "notes": [
+        "内推来源：学术界导师推荐",
+        "学术背景强但工程落地经验偏弱",
+        "对纯互联网公司兴趣一般"
+      ],
+      "interviewHistory": [
+        {
+          "date": "2026-05-10",
+          "feedback": "算法基础扎实，论文产出好。但对推荐系统业务理解不够深入，建议加面业务场景题。",
+          "rating": 4
+        }
+      ]
+    },
+    {
+      "id": "res_033",
+      "name": "邓思涵",
+      "avatar": null,
+      "currentCompany": "字节跳动",
+      "currentTitle": "高级前端工程师",
+      "experience": 5,
+      "education": "中山大学 软件工程 本科",
+      "location": "广州",
+      "email": "dengsihan@example.com",
+      "phone": "158****3286",
+      "skills": [
+        "React",
+        "TypeScript",
+        "Vue",
+        "Node.js",
+        "Webpack",
+        "微前端",
+        "性能优化"
+      ],
+      "tags": [
+        "前端架构",
+        "字节背景",
+        "华南"
+      ],
+      "salary": "60-90万",
+      "status": "passive",
+      "lastActive": "2026-04-28",
+      "careerHistory": [
+        {
+          "company": "字节跳动",
+          "title": "高级前端工程师",
+          "period": "2023.01-至今",
+          "highlights": [
+            "负责飞书文档前端架构",
+            "主导协同编辑性能优化，延迟降低40%",
+            "推动微前端架构落地"
+          ]
+        },
+        {
+          "company": "网易",
+          "title": "前端开发",
+          "period": "2019.07-2022.12",
+          "highlights": [
+            "负责网易云音乐Web端迭代"
+          ]
+        }
+      ],
+      "projects": [
+        {
+          "name": "协同编辑引擎",
+          "description": "基于CRDT的实时协同编辑系统",
+          "techStack": [
+            "TypeScript",
+            "CRDT",
+            "WebSocket"
+          ]
+        }
+      ],
+      "onlinePresence": {},
+      "notes": [
+        "家庭原因希望回广州",
+        "被动看机会但对广州岗位有偏好",
+        "字节2.5年经验，级别待确认"
+      ]
+    },
+    {
+      "id": "res_034",
+      "name": "唐雅琪",
+      "avatar": null,
+      "currentCompany": "小红书",
+      "currentTitle": "用户增长产品经理",
+      "experience": 4,
+      "education": "浙江大学 工商管理 硕士",
+      "location": "上海",
+      "email": "tangyaqi@example.com",
+      "phone": "143****9935",
+      "skills": [
+        "产品设计",
+        "用户增长",
+        "数据分析",
+        "SQL",
+        "A/B测试",
+        "用户研究"
+      ],
+      "tags": [
+        "增长方向",
+        "数据驱动",
+        "小红书背景"
+      ],
+      "salary": "50-80万",
+      "status": "active",
+      "lastActive": "2026-05-23",
+      "careerHistory": [
+        {
+          "company": "小红书",
+          "title": "用户增长产品经理",
+          "period": "2023.04-至今",
+          "highlights": [
+            "负责小红书新用户冷启动策略，次日留存提升15%",
+            "设计社交裂变增长模型",
+            "推动增长实验平台建设"
+          ]
+        },
+        {
+          "company": "腾讯",
+          "title": "产品运营",
+          "period": "2020.07-2023.03",
+          "highlights": [
+            "负责QQ看点增长运营"
+          ]
+        }
+      ],
+      "projects": [
+        {
+          "name": "社交裂变增长模型",
+          "description": "基于社交关系链的增长模型",
+          "techStack": [
+            "SQL",
+            "Python"
+          ]
+        }
+      ],
+      "onlinePresence": {},
+      "notes": [
+        "数据驱动型PM，增长方法论成熟",
+        "对AIGC方向有强烈兴趣"
+      ]
+    },
+    {
+      "id": "res_035",
+      "name": "顾晓宇",
+      "avatar": null,
+      "currentCompany": "华为",
+      "currentTitle": "云计算架构师",
+      "experience": 10,
+      "education": "北京航空航天大学 计算机科学 硕士",
+      "location": "杭州",
+      "email": "guxiaoyu@example.com",
+      "phone": "141****7912",
+      "skills": [
+        "云计算",
+        "分布式系统",
+        "Kubernetes",
+        "Go",
+        "Service Mesh",
+        "微服务",
+        "高并发"
+      ],
+      "tags": [
+        "架构师",
+        "华为背景",
+        "十年经验"
+      ],
+      "salary": "180-250万",
+      "status": "passive",
+      "lastActive": "2026-03-15",
+      "careerHistory": [
+        {
+          "company": "华为",
+          "title": "云计算架构师",
+          "period": "2017.05-至今",
+          "highlights": [
+            "主导华为云核心计算服务架构设计",
+            "支撑百万级并发实例调度",
+            "带领15人架构组"
+          ]
+        },
+        {
+          "company": "阿里巴巴",
+          "title": "高级开发工程师",
+          "period": "2014.07-2017.04",
+          "highlights": [
+            "参与阿里云飞天系统开发"
+          ]
+        }
+      ],
+      "projects": [
+        {
+          "name": "弹性计算调度系统",
+          "description": "百万级实例的智能调度架构",
+          "techStack": [
+            "Go",
+            "Kubernetes",
+            "etcd",
+            "gRPC"
+          ]
+        }
+      ],
+      "onlinePresence": {},
+      "notes": [
+        "华为18级，薪酬天花板高",
+        "被动看机会，需要强力Sell方案",
+        "管理半径15人"
+      ]
+    },
+    {
+      "id": "res_036",
+      "name": "何嘉文",
+      "avatar": null,
+      "currentCompany": "蚂蚁集团",
+      "currentTitle": "安全工程师",
+      "experience": 7,
+      "education": "电子科技大学 信息安全 硕士",
+      "location": "成都",
+      "email": "hejiawen@example.com",
+      "phone": "134****1488",
+      "skills": [
+        "安全架构",
+        "渗透测试",
+        "SDL",
+        "数据安全",
+        "威胁建模",
+        "Go",
+        "Python"
+      ],
+      "tags": [
+        "安全方向",
+        "蚂蚁背景",
+        "成都"
+      ],
+      "salary": "80-120万",
+      "status": "active",
+      "lastActive": "2026-05-18",
+      "careerHistory": [
+        {
+          "company": "蚂蚁集团",
+          "title": "安全工程师",
+          "period": "2020.03-至今",
+          "highlights": [
+            "负责支付宝数据安全体系建设",
+            "主导零信任架构落地",
+            "发现并修复高危漏洞12个"
+          ]
+        },
+        {
+          "company": "奇安信",
+          "title": "安全研究员",
+          "period": "2017.07-2020.02",
+          "highlights": [
+            "负责APT威胁检测研究",
+            "发表安全顶会论文2篇"
+          ]
+        }
+      ],
+      "projects": [
+        {
+          "name": "零信任安全架构",
+          "description": "基于零信任模型的企业安全架构",
+          "techStack": [
+            "Go",
+            "Envoy",
+            "SPIFFE"
+          ]
+        }
+      ],
+      "onlinePresence": {},
+      "notes": [
+        "安全领域深耕，技术突出",
+        "希望留在成都",
+        "奇安信→蚂蚁，职业路径清晰"
+      ]
+    },
+    {
+      "id": "res_037",
+      "name": "沈一诺",
+      "avatar": null,
+      "currentCompany": "腾讯",
+      "currentTitle": "iOS开发工程师",
+      "experience": 4,
+      "education": "华中科技大学 计算机科学 本科",
+      "location": "深圳",
+      "email": "shenyinuo@example.com",
+      "phone": "141****4582",
+      "skills": [
+        "iOS",
+        "Swift",
+        "Objective-C",
+        "SwiftUI",
+        "性能优化",
+        "跨平台"
+      ],
+      "tags": [
+        "iOS方向",
+        "腾讯背景",
+        "年轻"
+      ],
+      "salary": "50-75万",
+      "status": "active",
+      "lastActive": "2026-05-21",
+      "careerHistory": [
+        {
+          "company": "腾讯",
+          "title": "iOS开发工程师",
+          "period": "2022.06-至今",
+          "highlights": [
+            "负责微信iOS端性能优化，启动速度提升30%",
+            "主导SwiftUI迁移项目"
+          ]
+        }
+      ],
+      "projects": [
+        {
+          "name": "微信性能优化",
+          "description": "iOS端启动优化与内存治理",
+          "techStack": [
+            "Swift",
+            "Objective-C",
+            "LLVM"
+          ]
+        }
+      ],
+      "onlinePresence": {},
+      "notes": [
+        "年轻有潜力",
+        "SwiftUI方向稀缺"
+      ]
+    },
+    {
+      "id": "res_038",
+      "name": "杨明哲",
+      "avatar": null,
+      "currentCompany": "蔚来",
+      "currentTitle": "自动驾驶感知工程师",
+      "experience": 5,
+      "education": "上海交通大学 机器人学 硕士",
+      "location": "上海",
+      "email": "yangmingzhe@example.com",
+      "phone": "159****9279",
+      "skills": [
+        "自动驾驶",
+        "感知算法",
+        "点云处理",
+        "PyTorch",
+        "C++",
+        "ROS",
+        "SLAM"
+      ],
+      "tags": [
+        "自动驾驶",
+        "蔚来背景",
+        "感知方向"
+      ],
+      "salary": "80-130万",
+      "status": "active",
+      "lastActive": "2026-05-19",
+      "careerHistory": [
+        {
+          "company": "蔚来",
+          "title": "自动驾驶感知工程师",
+          "period": "2022.01-至今",
+          "highlights": [
+            "负责激光雷达感知算法，检测距离提升至250m",
+            "实现多传感器融合感知框架"
+          ]
+        },
+        {
+          "company": "百度Apollo",
+          "title": "感知算法工程师",
+          "period": "2019.07-2021.12",
+          "highlights": [
+            "参与Apollo自动驾驶感知模块开发"
+          ]
+        }
+      ],
+      "projects": [
+        {
+          "name": "多传感器融合感知",
+          "description": "LiDAR+视觉+毫米波雷达融合",
+          "techStack": [
+            "PyTorch",
+            "C++",
+            "ROS2",
+            "TensorRT"
+          ]
+        }
+      ],
+      "onlinePresence": {},
+      "notes": [
+        "自动驾驶方向，互联网公司无对口岗位",
+        "DSP-1可演示：跨行业人才搜索"
+      ]
+    },
+    {
+      "id": "res_039",
+      "name": "曹雨萱",
+      "avatar": null,
+      "currentCompany": "美团",
+      "currentTitle": "测试开发工程师",
+      "experience": 4,
+      "education": "南京大学 软件工程 硕士",
+      "location": "北京",
+      "email": "caoyuxuan@example.com",
+      "phone": "133****4257",
+      "skills": [
+        "测试开发",
+        "自动化测试",
+        "Python",
+        "Selenium",
+        "CI/CD",
+        "性能测试",
+        "Java"
+      ],
+      "tags": [
+        "测试开发",
+        "美团背景",
+        "工程化"
+      ],
+      "salary": "45-70万",
+      "status": "active",
+      "lastActive": "2026-05-17",
+      "careerHistory": [
+        {
+          "company": "美团",
+          "title": "测试开发工程师",
+          "period": "2022.09-至今",
+          "highlights": [
+            "搭建外卖业务自动化测试框架，覆盖率从45%提升至85%",
+            "主导性能测试平台建设"
+          ]
+        }
+      ],
+      "projects": [
+        {
+          "name": "自动化测试框架",
+          "description": "基于Selenium+Appium的跨端自动化测试平台",
+          "techStack": [
+            "Python",
+            "Selenium",
+            "Appium",
+            "Jenkins"
+          ]
+        }
+      ],
+      "onlinePresence": {},
+      "notes": [
+        "测试开发方向",
+        "适合做质量体系建设"
+      ]
+    },
+    {
+      "id": "res_040",
+      "name": "梁浩然",
+      "avatar": null,
+      "currentCompany": "滴滴",
+      "currentTitle": "数据仓库工程师",
+      "experience": 5,
+      "education": "北京理工大学 计算机科学 本科",
+      "location": "北京",
+      "email": "lianghaoran@example.com",
+      "phone": "199****7873",
+      "skills": [
+        "数据仓库",
+        "Hive",
+        "Spark",
+        "Flink",
+        "SQL",
+        "数据建模",
+        "ETL"
+      ],
+      "tags": [
+        "数据仓库",
+        "滴滴背景",
+        "建模方向"
+      ],
+      "salary": "60-90万",
+      "status": "active",
+      "lastActive": "2026-05-20",
+      "careerHistory": [
+        {
+          "company": "滴滴",
+          "title": "数据仓库工程师",
+          "period": "2021.05-至今",
+          "highlights": [
+            "负责出行数据仓库建���，数据延迟从T+1降至小时级",
+            "设计星型数据模型覆盖核心业务"
+          ]
+        },
+        {
+          "company": "京东",
+          "title": "数据开发",
+          "period": "2019.07-2021.04",
+          "highlights": [
+            "参与电商数据仓库建设"
+          ]
+        }
+      ],
+      "projects": [
+        {
+          "name": "实时数据仓库",
+          "description": "基于Flink的实时数仓架构",
+          "techStack": [
+            "Flink",
+            "Kafka",
+            "Hive",
+            "HBase"
+          ]
+        }
+      ],
+      "onlinePresence": {},
+      "notes": [
+        "数据建模经验丰富",
+        "Flink实时方向强"
+      ]
+    },
+    {
+      "id": "res_041",
+      "name": "方悦然",
+      "avatar": null,
+      "currentCompany": "快手",
+      "currentTitle": "NLP算法工程师",
+      "experience": 3,
+      "education": "北京大学 计算机科学 硕士",
+      "location": "北京",
+      "email": "fangyueran@example.com",
+      "phone": "158****8359",
+      "skills": [
+        "NLP",
+        "大语言模型",
+        "BERT",
+        "PyTorch",
+        "Prompt工程",
+        "RAG"
+      ],
+      "tags": [
+        "NLP方向",
+        "快手背景"
+      ],
+      "salary": "60-90万",
+      "status": "active",
+      "lastActive": "2026-05-22",
+      "careerHistory": [],
+      "projects": [],
+      "onlinePresence": {},
+      "notes": [
+        "应届2年，成长快",
+        "对大模型应用方向兴趣浓厚"
+      ]
+    },
+    {
+      "id": "res_042",
+      "name": "万鹏飞",
+      "avatar": null,
+      "currentCompany": "字节跳动",
+      "currentTitle": "技术项目经理",
+      "experience": 6,
+      "education": "清华大学 管理科学与工程 硕士",
+      "location": "北京",
+      "email": "wanpengfei@example.com",
+      "phone": "165****1106",
+      "skills": [
+        "项目管理",
+        "敏捷",
+        "Scrum",
+        "技术背景",
+        "跨团队协作"
+      ],
+      "tags": [
+        "TPM",
+        "字节背景"
+      ],
+      "salary": "80-120万",
+      "status": "passive",
+      "lastActive": "2026-04-20",
+      "careerHistory": [],
+      "projects": [],
+      "onlinePresence": {},
+      "notes": [
+        "技术理解力+项目管理双强",
+        "前高级工程师转TPM，沟通能力强"
+      ]
+    },
+    {
+      "id": "res_043",
+      "name": "许天宇",
+      "avatar": null,
+      "currentCompany": "哔哩哔哩",
+      "currentTitle": "Android开发工程师",
+      "experience": 5,
+      "education": "上海大学 计算机科学 本科",
+      "location": "上海",
+      "email": "xutianyu@example.com",
+      "phone": "150****7924",
+      "skills": [
+        "Android",
+        "Kotlin",
+        "Java",
+        "Flutter",
+        "性能优化"
+      ],
+      "tags": [
+        "Android",
+        "B站背景"
+      ],
+      "salary": "50-75万",
+      "status": "active",
+      "lastActive": "2026-05-16",
+      "careerHistory": [],
+      "projects": [],
+      "onlinePresence": {},
+      "notes": []
+    },
+    {
+      "id": "res_044",
+      "name": "袁思琪",
+      "avatar": null,
+      "currentCompany": "特斯拉",
+      "currentTitle": "嵌入式软件工程师",
+      "experience": 6,
+      "education": "同济大学 车辆工程 硕士",
+      "location": "上海",
+      "email": "yuansiqi@example.com",
+      "phone": "173****5552",
+      "skills": [
+        "嵌入式C",
+        "AUTOSAR",
+        "CAN总线",
+        "FreeRTOS",
+        "汽车电子"
+      ],
+      "tags": [
+        "汽车电子",
+        "特斯拉背景"
+      ],
+      "salary": "55-85万",
+      "status": "passive",
+      "lastActive": "2026-03-20",
+      "careerHistory": [],
+      "projects": [],
+      "onlinePresence": {},
+      "notes": [
+        "汽车行业嵌入式人才",
+        "互联网公司招聘难度大",
+        "DSP-1补充"
+      ]
+    },
+    {
+      "id": "res_045",
+      "name": "叶明达",
+      "avatar": null,
+      "currentCompany": "拼多多",
+      "currentTitle": "后端开发工程师",
+      "experience": 4,
+      "education": "东南大学 计算机科学 硕士",
+      "location": "上海",
+      "email": "yemingda@example.com",
+      "phone": "149****4527",
+      "skills": [
+        "Java",
+        "Spring Boot",
+        "MySQL",
+        "Redis",
+        "微服务",
+        "高并发"
+      ],
+      "tags": [
+        "后端开发",
+        "拼多多背景"
+      ],
+      "salary": "55-80万",
+      "status": "active",
+      "lastActive": "2026-05-21",
+      "careerHistory": [],
+      "projects": [],
+      "onlinePresence": {},
+      "notes": []
+    },
+    {
+      "id": "res_046",
+      "name": "廖雨欣",
+      "avatar": null,
+      "currentCompany": "虾皮",
+      "currentTitle": "数据分析师",
+      "experience": 3,
+      "education": "厦门大学 统计学 硕士",
+      "location": "深圳",
+      "email": "liaoyuxin@example.com",
+      "phone": "173****2674",
+      "skills": [
+        "SQL",
+        "Python",
+        "Tableau",
+        "AB测试",
+        "数据分析"
+      ],
+      "tags": [
+        "数据分析",
+        "Shopee背景"
+      ],
+      "salary": "40-65万",
+      "status": "active",
+      "lastActive": "2026-05-22",
+      "careerHistory": [],
+      "projects": [],
+      "onlinePresence": {},
+      "notes": [
+        "统计学硕士，分析基础扎实"
+      ]
+    },
+    {
+      "id": "res_047",
+      "name": "任志远",
+      "avatar": null,
+      "currentCompany": "荣耀",
+      "currentTitle": "通信协议工程师",
+      "experience": 8,
+      "education": "西安电子科技大学 通信工程 硕士",
+      "location": "深圳",
+      "email": "renzhiyuan@example.com",
+      "phone": "141****7224",
+      "skills": [
+        "5G",
+        "通信协议",
+        "C/C++",
+        "3GPP",
+        "嵌入式"
+      ],
+      "tags": [
+        "通信协议",
+        "荣耀背景"
+      ],
+      "salary": "70-100万",
+      "status": "passive",
+      "lastActive": "2026-02-28",
+      "careerHistory": [],
+      "projects": [],
+      "onlinePresence": {},
+      "notes": [
+        "DSP-1补充：底层通信人才"
+      ]
+    },
+    {
+      "id": "res_048",
+      "name": "侯雪莹",
+      "avatar": null,
+      "currentCompany": "阿里云",
+      "currentTitle": "技术文档工程师",
+      "experience": 5,
+      "education": "复旦大学 英语 硕士",
+      "location": "杭州",
+      "email": "houxueying@example.com",
+      "phone": "142****6881",
+      "skills": [
+        "技术写作",
+        "API文档",
+        "Markdown",
+        "DITA",
+        "翻译"
+      ],
+      "tags": [
+        "技术文档",
+        "阿里云背景"
+      ],
+      "salary": "40-60万",
+      "status": "active",
+      "lastActive": "2026-05-18",
+      "careerHistory": [],
+      "projects": [],
+      "onlinePresence": {},
+      "notes": []
+    },
+    {
+      "id": "res_049",
+      "name": "龙天翊",
+      "avatar": null,
+      "currentCompany": "寒武纪",
+      "currentTitle": "AI芯片架构师",
+      "experience": 9,
+      "education": "清华大学 微电子学 博士",
+      "location": "上海",
+      "email": "longtianyi@example.com",
+      "phone": "174****5333",
+      "skills": [
+        "AI芯片",
+        "架构设计",
+        "Verilog",
+        "SoC",
+        "深度学习"
+      ],
+      "tags": [
+        "AI芯片",
+        "博士",
+        "寒武纪背景"
+      ],
+      "salary": "150-250万",
+      "status": "passive",
+      "lastActive": "2026-03-01",
+      "careerHistory": [],
+      "projects": [],
+      "onlinePresence": {},
+      "notes": [
+        "AI芯片方向极度稀缺"
+      ]
+    },
+    {
+      "id": "res_050",
+      "name": "孔祥瑞",
+      "avatar": null,
+      "currentCompany": "IBM",
+      "currentTitle": "数据库内核工程师",
+      "experience": 10,
+      "education": "北京大学 计算机科学 硕士",
+      "location": "北京",
+      "email": "kongxiangrui@example.com",
+      "phone": "135****8527",
+      "skills": [
+        "数据库",
+        "C/C++",
+        "存储引擎",
+        "分布式",
+        "PostgreSQL"
+      ],
+      "tags": [
+        "数据库内核",
+        "IBM背景"
+      ],
+      "salary": "100-150万",
+      "status": "active",
+      "lastActive": "2026-05-15",
+      "careerHistory": [],
+      "projects": [],
+      "onlinePresence": {},
+      "notes": [
+        "外资背景，适应互联网节奏需评估"
+      ]
+    },
+    {
+      "id": "res_051",
+      "name": "覃思源",
+      "avatar": null,
+      "currentCompany": "keep",
+      "currentTitle": "iOS开发工程师",
+      "experience": 3,
+      "education": "华南理工大学 软件工程 本科",
+      "location": "北京",
+      "email": "qinsiyuan@example.com",
+      "phone": "198****3045",
+      "skills": [
+        "iOS",
+        "Swift",
+        "SwiftUI",
+        "Flutter"
+      ],
+      "tags": [
+        "iOS",
+        "keep背景"
+      ],
+      "salary": "40-60万",
+      "status": "active",
+      "lastActive": "2026-05-20",
+      "careerHistory": [],
+      "projects": [],
+      "onlinePresence": {},
+      "notes": []
+    },
+    {
+      "id": "res_052",
+      "name": "武思远",
+      "avatar": null,
+      "currentCompany": "NIO",
+      "currentTitle": "底盘控制工程师",
+      "experience": 5,
+      "education": "吉林大学 车辆工程 硕士",
+      "location": "上海",
+      "email": "wusiyuan@example.com",
+      "phone": "178****2291",
+      "skills": [
+        "底盘控制",
+        "MATLAB",
+        "Simulink",
+        "C",
+        "控制算法"
+      ],
+      "tags": [
+        "底盘控制",
+        "蔚来背景"
+      ],
+      "salary": "50-80万",
+      "status": "active",
+      "lastActive": "2026-05-14",
+      "careerHistory": [],
+      "projects": [],
+      "onlinePresence": {},
+      "notes": [
+        "DSP-1补充：车辆工程跨界演示"
+      ]
+    },
+    {
+      "id": "res_053",
+      "name": "龚雨晴",
+      "avatar": null,
+      "currentCompany": "得物",
+      "currentTitle": "增长产品经理",
+      "experience": 4,
+      "education": "武汉大学 市场营销 本科",
+      "location": "上海",
+      "email": "gongyuqing@example.com",
+      "phone": "167****6925",
+      "skills": [
+        "用户增长",
+        "数据分析",
+        "AB测试",
+        "裂变增长",
+        "SQL"
+      ],
+      "tags": [
+        "增长方向",
+        "得物背景"
+      ],
+      "salary": "45-70万",
+      "status": "active",
+      "lastActive": "2026-05-23",
+      "careerHistory": [],
+      "projects": [],
+      "onlinePresence": {},
+      "notes": []
+    },
+    {
+      "id": "res_054",
+      "name": "田博文",
+      "avatar": null,
+      "currentCompany": "寒武纪",
+      "currentTitle": "编译器工程师",
+      "experience": 6,
+      "education": "中国科学技术大学 计算机科学 硕士",
+      "location": "上海",
+      "email": "tianbowen@example.com",
+      "phone": "154****2139",
+      "skills": [
+        "编译器",
+        "LLVM",
+        "TVM",
+        "C++",
+        "CUDA",
+        "深度学习"
+      ],
+      "tags": [
+        "编译器",
+        "寒武纪背景"
+      ],
+      "salary": "80-130万",
+      "status": "active",
+      "lastActive": "2026-05-17",
+      "careerHistory": [],
+      "projects": [],
+      "onlinePresence": {},
+      "notes": [
+        "编译器+AI交叉方向稀缺"
+      ]
+    },
+    {
+      "id": "res_055",
+      "name": "陶雅文",
+      "avatar": null,
+      "currentCompany": "360",
+      "currentTitle": "安全研究员",
+      "experience": 5,
+      "education": "电子科技大学 信息安全 本科",
+      "location": "北京",
+      "email": "taoyawen@example.com",
+      "phone": "135****4733",
+      "skills": [
+        "漏洞挖掘",
+        "逆向工程",
+        "Fuzzing",
+        "C",
+        "Python",
+        "汇编"
+      ],
+      "tags": [
+        "安全研究",
+        "360背景"
+      ],
+      "salary": "60-90万",
+      "status": "active",
+      "lastActive": "2026-05-19",
+      "careerHistory": [],
+      "projects": [],
+      "onlinePresence": {},
+      "notes": []
+    },
+    {
+      "id": "res_056",
+      "name": "熊昊天",
+      "avatar": null,
+      "currentCompany": "理想汽车",
+      "currentTitle": "BMS软件工程师",
+      "experience": 4,
+      "education": "重庆大学 电气工程 硕士",
+      "location": "北京",
+      "email": "xionghaotian@example.com",
+      "phone": "167****2307",
+      "skills": [
+        "BMS",
+        "嵌入式C",
+        "CAN",
+        "电池管理",
+        "Simulink"
+      ],
+      "tags": [
+        "BMS",
+        "理想背景",
+        "新能源"
+      ],
+      "salary": "45-70万",
+      "status": "active",
+      "lastActive": "2026-05-16",
+      "careerHistory": [],
+      "projects": [],
+      "onlinePresence": {},
+      "notes": [
+        "新能源BMS方向",
+        "DSP-1补充"
+      ]
+    },
+    {
+      "id": "res_057",
+      "name": "白咏恩",
+      "avatar": null,
+      "currentCompany": "Zoom",
+      "currentTitle": "音视频开发工程师",
+      "experience": 7,
+      "education": "浙江大学 通信工程 硕士",
+      "location": "杭州",
+      "email": "baiyongen@example.com",
+      "phone": "159****2654",
+      "skills": [
+        "音视频",
+        "WebRTC",
+        "C++",
+        "FFmpeg",
+        "编解码",
+        "SIP"
+      ],
+      "tags": [
+        "音视频",
+        "Zoom背景"
+      ],
+      "salary": "70-110万",
+      "status": "passive",
+      "lastActive": "2026-04-10",
+      "careerHistory": [],
+      "projects": [],
+      "onlinePresence": {},
+      "notes": []
+    },
+    {
+      "id": "res_058",
+      "name": "池明轩",
+      "avatar": null,
+      "currentCompany": "大华",
+      "currentTitle": "FPGA工程师",
+      "experience": 5,
+      "education": "杭州电子科技大学 电子信息 硕士",
+      "location": "杭州",
+      "email": "chimingxuan@example.com",
+      "phone": "178****5554",
+      "skills": [
+        "FPGA",
+        "Verilog",
+        "VHDL",
+        "硬件加速",
+        "视频处理"
+      ],
+      "tags": [
+        "FPGA",
+        "大华背景"
+      ],
+      "salary": "45-70万",
+      "status": "active",
+      "lastActive": "2026-05-15",
+      "careerHistory": [],
+      "projects": [],
+      "onlinePresence": {},
+      "notes": [
+        "DSP-1补充：FPGA硬件方向"
+      ]
+    },
+    {
+      "id": "res_059",
+      "name": "冷天晟",
+      "avatar": null,
+      "currentCompany": "科大讯飞",
+      "currentTitle": "语音算法工程师",
+      "experience": 6,
+      "education": "中国科学技术大学 语音处理 硕士",
+      "location": "合肥",
+      "email": "lengtiansheng@example.com",
+      "phone": "188****6977",
+      "skills": [
+        "语音识别",
+        "TTS",
+        "Kaldi",
+        "PyTorch",
+        "声学模型"
+      ],
+      "tags": [
+        "语音方向",
+        "讯飞背景"
+      ],
+      "salary": "60-90万",
+      "status": "active",
+      "lastActive": "2026-05-18",
+      "careerHistory": [],
+      "projects": [],
+      "onlinePresence": {},
+      "notes": [
+        "语音方向特殊，愿意relocate"
+      ]
+    },
+    {
+      "id": "res_060",
+      "name": "苗诗涵",
+      "avatar": null,
+      "currentCompany": "米哈游",
+      "currentTitle": "游戏引擎开发",
+      "experience": 5,
+      "education": "上海交通大学 计算机科学 硕士",
+      "location": "上海",
+      "email": "miaoshihan@example.com",
+      "phone": "150****7065",
+      "skills": [
+        "游戏引擎",
+        "C++",
+        "图形学",
+        "OpenGL",
+        "Vulkan",
+        "Unity"
+      ],
+      "tags": [
+        "游戏引擎",
+        "米哈游背景"
+      ],
+      "salary": "70-110万",
+      "status": "active",
+      "lastActive": "2026-05-22",
+      "careerHistory": [],
+      "projects": [],
+      "onlinePresence": {},
+      "notes": []
+    }
+  ]
+}

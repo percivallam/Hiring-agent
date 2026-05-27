@@ -8,7 +8,8 @@
  *   npx tsx eval/suite/runner.ts --dim stability    # 只跑动作稳定性
  *   npx tsx eval/suite/runner.ts --dim multi_turn   # 只跑多轮
  *   npx tsx eval/suite/runner.ts --dim card_render  # 只跑卡片渲染
- *   npx tsx eval/suite/runner.ts --n 1             # 每条只跑1次(默认1)
+ *   npx tsx eval/suite/runner.ts --validate-cases  # 只检查用例集覆盖和schema，不调用API
+ *   npx tsx eval/suite/runner.ts --gate            # 指标不达阈值时以非0退出
  */
 
 import * as fs from 'fs';
@@ -36,7 +37,51 @@ const API_KEY = process.env.DEEPSEEK_API_KEY || '';
 const API_BASE = 'https://api.deepseek.com';
 const MODEL = 'deepseek-chat';
 
-if (!API_KEY) { console.error('❌ DEEPSEEK_API_KEY not found in .env'); process.exit(1); }
+const THRESHOLDS = {
+  total_pass_rate: 0.9,
+  intent_recall: 0.9,
+  param_accuracy: 0.85,
+  card_render: 0.95,
+  action_stability: 0.85,
+  crash_free: 0.99,
+  latency_p95_ms: 15_000,
+};
+
+const TOOL_REQUIRED_PARAMS: Record<string, string[]> = {
+  search_candidates: ['query'],
+  get_candidate_profile: ['candidate_id'],
+  compare_candidates: ['candidate_id_1', 'candidate_id_2'],
+  analyze_pipeline: [],
+  market_analysis: ['role'],
+  salary_benchmark: ['role'],
+  list_jobs: [],
+  get_job_detail: ['job_id'],
+  generate_message_template: ['candidate_id', 'template_type'],
+  generate_interview_questions: [],
+  analyze_candidate_risk: ['candidate_id'],
+  analyze_team: [],
+  memory_recall: [],
+  memory_write: [],
+};
+
+const KNOWN_CARDS = new Set([
+  'candidate_list',
+  'profile_card',
+  'candidate_profile',
+  'comparison',
+  'pipeline_overview',
+  'pipeline_report',
+  'market_analysis',
+  'salary_benchmark',
+  'team_diagnosis',
+  'risk_analysis',
+  'interview_questions',
+  'interview_kit',
+  'message_template',
+  'jd_card',
+  'job_detail',
+  'quick_actions',
+]);
 
 // ─── 数据加载 ───
 
@@ -157,6 +202,7 @@ const SYSTEM_PROMPT = `你是 HireAgent，一位拥有 10 年经验的 AI 招聘
 interface Msg { role: string; content: string | null; tool_calls?: any[]; tool_call_id?: string; }
 
 async function callLLM(messages: Msg[]): Promise<any> {
+  if (!API_KEY) throw new Error('DEEPSEEK_API_KEY not found in .env');
   const res = await fetch(`${API_BASE}/v1/chat/completions`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${API_KEY}` },
@@ -219,6 +265,7 @@ async function runConversation(inputs: string[]): Promise<TurnResult[]> {
     } catch { parsed = { text: finalContent }; }
 
     const cards: string[] = (parsed.cards || []).map((c: any) => c.type).filter(Boolean);
+    if (Array.isArray(parsed.quickActions) && parsed.quickActions.length > 0) cards.push('quick_actions');
 
     results.push({
       input,
@@ -267,8 +314,11 @@ interface CaseResult {
   intent: string;
   slice_tags: string[];
   adversarial: boolean;
+  expected_tools: string[];
+  expected_cards: string[];
   passed: boolean;
   tool_match: boolean;
+  param_match: boolean;
   card_match: boolean;
   has_text: boolean;
   no_crash: boolean;
@@ -279,20 +329,44 @@ interface CaseResult {
 
 // ─── 评判逻辑 ───
 
+function includesAll(actual: string[], expected: string[]): boolean {
+  return expected.every(item => actual.includes(item));
+}
+
+function hasValue(value: unknown): boolean {
+  if (value === undefined || value === null) return false;
+  if (typeof value === 'string') return value.trim().length > 0;
+  if (Array.isArray(value)) return value.length > 0;
+  return true;
+}
+
+function validateExpectedToolParams(c: EvalCase, turns: TurnResult[]): boolean {
+  return c.expected_tools.every(tool => {
+    const required = TOOL_REQUIRED_PARAMS[tool] || [];
+    const calls = turns.flatMap(t => t.toolArgs).filter(call => call.tool === tool);
+    if (calls.length === 0) return false;
+    return calls.some(call => required.every(param => hasValue(call.args?.[param])));
+  });
+}
+
 function judgeCase(c: EvalCase, turns: TurnResult[]): CaseResult {
   const allTools = turns.flatMap(t => t.toolCalls);
   const allCards = turns.flatMap(t => t.cards);
   const totalDuration = turns.reduce((s, t) => s + t.duration, 0);
 
-  // Tool match: 期望的工具至少出现一个
+  // Tool match: must include every expected tool. Empty expected_tools means no tool should be called.
   const tool_match = c.expected_tools.length === 0
-    ? allTools.length === 0 || true  // 无期望工具时，不调用或调用都可以
-    : c.expected_tools.some(et => allTools.includes(et));
+    ? allTools.length === 0
+    : includesAll(allTools, c.expected_tools);
 
-  // Card match: 期望的卡片类型出现（空期望 = 不要求卡片）
+  const param_match = c.expected_tools.length === 0
+    ? true
+    : validateExpectedToolParams(c, turns);
+
+  // Card match: must include every expected card. Empty expected_cards means no card requirement.
   const card_match = c.expected_cards.length === 0
     ? true
-    : c.expected_cards.some(ec => allCards.includes(ec));
+    : includesAll(allCards, c.expected_cards);
 
   // Has text: 最后一轮有文字回复
   const has_text = turns.length > 0 && turns[turns.length - 1].hasText;
@@ -301,52 +375,95 @@ function judgeCase(c: EvalCase, turns: TurnResult[]): CaseResult {
   const no_crash = turns.length > 0 && turns.every(t => t.raw.length > 0);
 
   // 综合判定
-  const passed = tool_match && card_match && has_text && no_crash;
+  const passed = tool_match && param_match && card_match && has_text && no_crash;
 
   const details = [
     !tool_match ? `TOOL_MISS: expected [${c.expected_tools}] got [${allTools}]` : '',
+    !param_match ? `PARAM_MISS: expected required params for [${c.expected_tools}] got ${JSON.stringify(turns.flatMap(t => t.toolArgs))}` : '',
     !card_match ? `CARD_MISS: expected [${c.expected_cards}] got [${allCards}]` : '',
     !has_text ? 'NO_TEXT' : '',
     !no_crash ? 'CRASH' : '',
   ].filter(Boolean).join('; ') || 'OK';
 
-  return { id: c.id, dimension: c.dimension, intent: c.intent, slice_tags: c.slice_tags, adversarial: c.adversarial, passed, tool_match, card_match, has_text, no_crash, details, duration: totalDuration, turns };
+  return {
+    id: c.id,
+    dimension: c.dimension,
+    intent: c.intent,
+    slice_tags: c.slice_tags,
+    adversarial: c.adversarial,
+    expected_tools: c.expected_tools,
+    expected_cards: c.expected_cards,
+    passed,
+    tool_match,
+    param_match,
+    card_match,
+    has_text,
+    no_crash,
+    details,
+    duration: totalDuration,
+    turns,
+  };
 }
 
 // ─── 报告生成 ───
 
+function wilsonInterval(successes: number, total: number): string {
+  if (total === 0) return 'N/A';
+  const z = 1.96;
+  const p = successes / total;
+  const denom = 1 + z ** 2 / total;
+  const center = (p + z ** 2 / (2 * total)) / denom;
+  const margin = z * Math.sqrt((p * (1 - p) + z ** 2 / (4 * total)) / total) / denom;
+  return `${((center - margin) * 100).toFixed(1)}-${((center + margin) * 100).toFixed(1)}%`;
+}
+
+function pct(successes: number, total: number): string {
+  return total ? `${((successes / total) * 100).toFixed(1)}%` : 'N/A';
+}
+
+function statusByRate(successes: number, total: number, threshold: number): string {
+  return total && successes / total >= threshold ? '✅' : '❌';
+}
+
+function groupBy<T>(items: T[], keyFn: (item: T) => string): Record<string, T[]> {
+  const grouped: Record<string, T[]> = {};
+  for (const item of items) (grouped[keyFn(item)] ??= []).push(item);
+  return grouped;
+}
+
 function generateReport(results: CaseResult[]): string {
   const total = results.length;
   const passed = results.filter(r => r.passed).length;
-  const rate = ((passed / total) * 100).toFixed(1);
 
-  // 按维度分组
-  const byDim: Record<string, CaseResult[]> = {};
-  for (const r of results) { (byDim[r.dimension] ??= []).push(r); }
-
-  // 按 intent 分组
-  const byIntent: Record<string, CaseResult[]> = {};
-  for (const r of results) { (byIntent[r.intent] ??= []).push(r); }
+  const byDim = groupBy(results, r => r.dimension);
+  const byIntent = groupBy(results, r => r.intent);
 
   let report = `# HireAgent 评测报告\n\n`;
   report += `> 时间: ${new Date().toISOString()}\n`;
   report += `> 模型: ${MODEL}\n`;
   report += `> 用例总数: ${total}\n\n`;
+  report += `## 结论\n\n`;
+  report += `总通过率 ${pct(passed, total)} (${passed}/${total}, 95% CI ${wilsonInterval(passed, total)})，门槛 ${THRESHOLDS.total_pass_rate * 100}%。`;
+  report += passed / Math.max(total, 1) >= THRESHOLDS.total_pass_rate ? `当前可进入 demo 回归复核。\n\n` : `当前不建议作为真实可用 demo 放行。\n\n`;
+
   report += `## 总体结果\n\n`;
-  report += `| 指标 | 值 | 阈值 | 状态 |\n|------|-----|------|------|\n`;
-  report += `| 总通过率 | ${rate}% (${passed}/${total}) | 90% | ${Number(rate) >= 90 ? '✅' : '❌'} |\n`;
+  report += `| 指标 | 值 | 95% CI | 阈值 | 状态 |\n|------|-----|--------|------|------|\n`;
+  report += `| 总通过率 | ${pct(passed, total)} (${passed}/${total}) | ${wilsonInterval(passed, total)} | ${THRESHOLDS.total_pass_rate * 100}% | ${statusByRate(passed, total, THRESHOLDS.total_pass_rate)} |\n`;
 
   // 意图召回率
   const intentCases = results.filter(r => r.dimension === 'intent_recall');
   const intentPass = intentCases.filter(r => r.tool_match).length;
-  const intentRate = intentCases.length ? ((intentPass / intentCases.length) * 100).toFixed(1) : 'N/A';
-  report += `| 意图召回率 | ${intentRate}% (${intentPass}/${intentCases.length}) | 90% | ${Number(intentRate) >= 90 ? '✅' : '❌'} |\n`;
+  report += `| 意图召回率 | ${pct(intentPass, intentCases.length)} (${intentPass}/${intentCases.length}) | ${wilsonInterval(intentPass, intentCases.length)} | ${THRESHOLDS.intent_recall * 100}% | ${statusByRate(intentPass, intentCases.length, THRESHOLDS.intent_recall)} |\n`;
+
+  // 参数准确率
+  const paramCases = results.filter(r => r.expected_tools.length > 0);
+  const paramPass = paramCases.filter(r => r.param_match).length;
+  report += `| 参数准确率 | ${pct(paramPass, paramCases.length)} (${paramPass}/${paramCases.length}) | ${wilsonInterval(paramPass, paramCases.length)} | ${THRESHOLDS.param_accuracy * 100}% | ${statusByRate(paramPass, paramCases.length, THRESHOLDS.param_accuracy)} |\n`;
 
   // 卡片渲染率
   const cardCases = results.filter(r => r.expected_cards?.length > 0);
   const cardPass = cardCases.filter(r => r.card_match).length;
-  const cardRate = cardCases.length ? ((cardPass / cardCases.length) * 100).toFixed(1) : 'N/A';
-  report += `| 卡片渲染稳定性 | ${cardRate}% (${cardPass}/${cardCases.length}) | 95% | ${Number(cardRate) >= 95 ? '✅' : '❌'} |\n`;
+  report += `| 卡片渲染稳定性 | ${pct(cardPass, cardCases.length)} (${cardPass}/${cardCases.length}) | ${wilsonInterval(cardPass, cardCases.length)} | ${THRESHOLDS.card_render * 100}% | ${statusByRate(cardPass, cardCases.length, THRESHOLDS.card_render)} |\n`;
 
   // 动作稳定性
   const stabCases = results.filter(r => r.dimension === 'action_stability');
@@ -356,20 +473,25 @@ function generateReport(results: CaseResult[]): string {
   for (const [, group] of Object.entries(stabGroups)) {
     stabTotal++;
     const tools = group.map(r => r.turns.flatMap(t => t.toolCalls).join(','));
-    if (new Set(tools).size <= 1) stabConsistent++;
+    if (group.every(r => r.tool_match && r.param_match) && new Set(tools).size <= 1) stabConsistent++;
   }
-  const stabRate = stabTotal ? ((stabConsistent / stabTotal) * 100).toFixed(1) : 'N/A';
-  report += `| 动作稳定性 | ${stabRate}% (${stabConsistent}/${stabTotal} groups) | 85% | ${Number(stabRate) >= 85 ? '✅' : '❌'} |\n`;
+  report += `| 动作稳定性 | ${pct(stabConsistent, stabTotal)} (${stabConsistent}/${stabTotal} groups) | ${wilsonInterval(stabConsistent, stabTotal)} | ${THRESHOLDS.action_stability * 100}% | ${statusByRate(stabConsistent, stabTotal, THRESHOLDS.action_stability)} |\n`;
 
   // 无crash率
   const crashFree = results.filter(r => r.no_crash).length;
-  const crashRate = ((crashFree / total) * 100).toFixed(1);
-  report += `| 无crash率 | ${crashRate}% | 99% | ${Number(crashRate) >= 99 ? '✅' : '❌'} |\n`;
+  report += `| 无crash率 | ${pct(crashFree, total)} (${crashFree}/${total}) | ${wilsonInterval(crashFree, total)} | ${THRESHOLDS.crash_free * 100}% | ${statusByRate(crashFree, total, THRESHOLDS.crash_free)} |\n`;
 
-  report += `\n## 维度分解\n\n| 维度 | 通过 | 总数 | 通过率 |\n|------|------|------|--------|\n`;
+  report += `\n## 维度分解\n\n| 维度 | 通过 | 总数 | 通过率 | 95% CI |\n|------|------|------|--------|--------|\n`;
   for (const [dim, cases] of Object.entries(byDim)) {
     const p = cases.filter(r => r.passed).length;
-    report += `| ${dim} | ${p} | ${cases.length} | ${((p / cases.length) * 100).toFixed(1)}% |\n`;
+    report += `| ${dim} | ${p} | ${cases.length} | ${pct(p, cases.length)} | ${wilsonInterval(p, cases.length)} |\n`;
+  }
+
+  report += `\n## 意图分解\n\n| 意图 | 通过 | 总数 | 通过率 | 标记 |\n|------|------|------|--------|------|\n`;
+  for (const [intent, cases] of Object.entries(byIntent).sort((a, b) => a[0].localeCompare(b[0]))) {
+    const p = cases.filter(r => r.passed).length;
+    const rate = cases.length ? p / cases.length : 0;
+    report += `| ${intent} | ${p} | ${cases.length} | ${pct(p, cases.length)} | ${rate < 0.85 ? 'weak_slice' : ''} |\n`;
   }
 
   // 失败用例
@@ -391,17 +513,12 @@ function generateReport(results: CaseResult[]): string {
   report += `| p50 | ${(p50 / 1000).toFixed(1)}s |\n`;
   report += `| p95 | ${(p95 / 1000).toFixed(1)}s |\n`;
   report += `| max | ${(Math.max(...durations) / 1000).toFixed(1)}s |\n`;
+  report += `| p95门槛 | ${(THRESHOLDS.latency_p95_ms / 1000).toFixed(1)}s |\n`;
 
   return report;
 }
 
-// ─── 主流程 ───
-
-async function main() {
-  const args = process.argv.slice(2);
-  const dimFilter = args.includes('--dim') ? args[args.indexOf('--dim') + 1] : null;
-
-  // 加载用例
+function loadCases(dimFilter: string | null): EvalCase[] {
   const casesDir = path.resolve(__dirname, 'cases');
   const files: Record<string, string> = {
     intent_recall: 'intent_recall.jsonl',
@@ -410,15 +527,94 @@ async function main() {
     card_render: 'card_render.jsonl',
   };
 
-  let allCases: EvalCase[] = [];
+  const allCases: EvalCase[] = [];
   for (const [dim, file] of Object.entries(files)) {
     if (dimFilter && !dim.startsWith(dimFilter)) continue;
     const fp = path.resolve(casesDir, file);
     if (!fs.existsSync(fp)) continue;
     const lines = fs.readFileSync(fp, 'utf-8').split('\n').filter(Boolean);
-    for (const line of lines) {
-      try { allCases.push(JSON.parse(line)); } catch {}
+    for (const [lineNo, line] of lines.entries()) {
+      try { allCases.push(JSON.parse(line)); }
+      catch (err: any) { throw new Error(`${file}:${lineNo + 1} invalid JSON: ${err.message}`); }
     }
+  }
+  return allCases;
+}
+
+function validateCases(cases: EvalCase[]): string {
+  const errors: string[] = [];
+  const byDim = groupBy(cases, c => c.dimension);
+  const byIntent = groupBy(cases, c => c.intent);
+  const adversarial = cases.filter(c => c.adversarial).length;
+
+  for (const c of cases) {
+    if (!c.id || !('input' in c) || !c.dimension || !c.intent) errors.push(`${c.id || 'UNKNOWN'} missing required fields`);
+    if (!Array.isArray(c.slice_tags) || c.slice_tags.length === 0) errors.push(`${c.id} missing slice_tags`);
+    if (!Array.isArray(c.expected_tools)) errors.push(`${c.id} expected_tools must be array`);
+    if (!Array.isArray(c.expected_cards)) errors.push(`${c.id} expected_cards must be array`);
+    for (const tool of c.expected_tools || []) {
+      if (!(tool in TOOL_REQUIRED_PARAMS)) errors.push(`${c.id} unknown tool ${tool}`);
+    }
+    for (const card of c.expected_cards || []) {
+      if (!KNOWN_CARDS.has(card)) errors.push(`${c.id} unknown card ${card}`);
+    }
+  }
+
+  const lines = [
+    '# HireAgent Eval Set Profile',
+    '',
+    `cases=${cases.length}`,
+    `adversarial=${adversarial} (${pct(adversarial, cases.length)})`,
+    '',
+    '## By Dimension',
+    ...Object.entries(byDim).map(([dim, items]) => `- ${dim}: ${items.length}`),
+    '',
+    '## By Intent',
+    ...Object.entries(byIntent).sort((a, b) => a[0].localeCompare(b[0])).map(([intent, items]) => `- ${intent}: ${items.length}`),
+    '',
+    '## Validation',
+    errors.length ? errors.map(e => `- ERROR: ${e}`).join('\n') : '- OK',
+  ];
+
+  return lines.join('\n');
+}
+
+function passesGate(results: CaseResult[]): boolean {
+  const total = results.length;
+  const passed = results.filter(r => r.passed).length;
+  const intentCases = results.filter(r => r.dimension === 'intent_recall');
+  const intentPass = intentCases.filter(r => r.tool_match).length;
+  const paramCases = results.filter(r => r.expected_tools.length > 0);
+  const paramPass = paramCases.filter(r => r.param_match).length;
+  const cardCases = results.filter(r => r.expected_cards.length > 0);
+  const cardPass = cardCases.filter(r => r.card_match).length;
+  const crashFree = results.filter(r => r.no_crash).length;
+  const durations = results.map(r => r.duration).sort((a, b) => a - b);
+  const p95 = durations[Math.floor(durations.length * 0.95)] || 0;
+
+  return passed / Math.max(total, 1) >= THRESHOLDS.total_pass_rate
+    && intentPass / Math.max(intentCases.length, 1) >= THRESHOLDS.intent_recall
+    && paramPass / Math.max(paramCases.length, 1) >= THRESHOLDS.param_accuracy
+    && cardPass / Math.max(cardCases.length, 1) >= THRESHOLDS.card_render
+    && crashFree / Math.max(total, 1) >= THRESHOLDS.crash_free
+    && p95 <= THRESHOLDS.latency_p95_ms;
+}
+
+// ─── 主流程 ───
+
+async function main() {
+  const args = process.argv.slice(2);
+  const dimFilter = args.includes('--dim') ? args[args.indexOf('--dim') + 1] : null;
+  const validateOnly = args.includes('--validate-cases');
+  const gate = args.includes('--gate');
+
+  const allCases = loadCases(dimFilter);
+
+  if (validateOnly) {
+    const profile = validateCases(allCases);
+    console.log(profile);
+    if (profile.includes('ERROR:')) process.exit(1);
+    return;
   }
 
   console.log(`\n🧪 HireAgent 综合评测 v2`);
@@ -442,7 +638,8 @@ async function main() {
       console.log(` 💥 ${err.message?.slice(0, 60)}`);
       results.push({
         id: c.id, dimension: c.dimension, intent: c.intent, slice_tags: c.slice_tags,
-        adversarial: c.adversarial, passed: false, tool_match: false, card_match: false,
+        adversarial: c.adversarial, expected_tools: c.expected_tools, expected_cards: c.expected_cards,
+        passed: false, tool_match: false, param_match: false, card_match: false,
         has_text: false, no_crash: false, details: `ERROR: ${err.message?.slice(0, 100)}`,
         duration: 0, turns: [],
       });
@@ -464,6 +661,8 @@ async function main() {
   console.log(`\n${report}`);
   console.log(`\n📄 报告已保存: ${reportPath}`);
   console.log(`📊 原始数据: ${rawPath}`);
+
+  if (gate && !passesGate(results)) process.exit(1);
 }
 
 main().catch(err => { console.error('Fatal:', err); process.exit(1); });

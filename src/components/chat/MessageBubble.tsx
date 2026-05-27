@@ -14,31 +14,38 @@ export function MessageBubble({ message, className }: MessageBubbleProps) {
   const isUser = message.role === 'user';
   // 历史消息（超过 3 秒的）直接显示全文，不重放打字机
   const isFresh = message.timestamp ? Date.now() - message.timestamp < 3000 : false;
+  const shouldType = !isUser && isFresh && shouldUseTypewriter(message.content);
   const [displayContent, setDisplayContent] = useState(
-    isUser || !isFresh ? message.content : '',
+    shouldType ? '' : message.content,
   );
-  const [isTyping, setIsTyping] = useState(!isUser && isFresh);
+  const [isTyping, setIsTyping] = useState(shouldType);
 
   // Typewriter effect for agent messages — 仅对新消息生效
   useEffect(() => {
-    if (isUser || !isFresh) return;
+    if (!shouldType) {
+      setDisplayContent(message.content);
+      setIsTyping(false);
+      return;
+    }
 
     let index = 0;
     const content = message.content;
+    const step = getTypewriterStep(content);
+    setDisplayContent('');
     setIsTyping(true);
 
     const timer = setInterval(() => {
       if (index < content.length) {
-        setDisplayContent(content.slice(0, index + 1));
-        index++;
+        index = Math.min(index + step, content.length);
+        setDisplayContent(content.slice(0, index));
       } else {
         setIsTyping(false);
         clearInterval(timer);
       }
-    }, 18);
+    }, 12);
 
     return () => clearInterval(timer);
-  }, [message.content, isUser, isFresh]);
+  }, [message.content, shouldType]);
 
   if (isUser) {
     return (
@@ -84,4 +91,17 @@ export function MessageBubble({ message, className }: MessageBubbleProps) {
       </div>
     </motion.div>
   );
+}
+
+function shouldUseTypewriter(content: string): boolean {
+  if (content.length > 900) return false;
+  if (/\n\s*\|.+\|\s*\n\s*\|[-:\s|]+\|/.test(content)) return false;
+  if (/```|<table|<\/table>/i.test(content)) return false;
+  return true;
+}
+
+function getTypewriterStep(content: string): number {
+  if (content.length > 600) return 12;
+  if (content.length > 240) return 8;
+  return 4;
 }
