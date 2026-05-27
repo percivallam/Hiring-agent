@@ -402,6 +402,11 @@ export class AIEngine {
               c.data[key] = def;
             }
           }
+        } else {
+          // 非 WR 卡片：兜底数组字段，防止 undefined.map() crash
+          for (const key of ARR_KEYS) {
+            if ((c as any)[key] === undefined || (c as any)[key] === null) (c as any)[key] = [];
+          }
         }
         cards.push(c);
       }

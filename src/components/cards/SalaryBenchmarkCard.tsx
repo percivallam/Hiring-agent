@@ -38,7 +38,9 @@ export function SalaryBenchmarkCard({
       </div>
 
       <div className="p-4 space-y-4">
-        {benchmarks.map((b, idx) => (
+        {benchmarks.length === 0 ? (
+          <p className="text-sm text-neutral-500 py-4 text-center">暂无该岗位的薪酬对标数据，可尝试指定具体岗位名称。</p>
+        ) : benchmarks.map((b, idx) => (
           <motion.div
             key={idx}
             initial={{ opacity: 0, x: -10 }}
@@ -66,10 +68,12 @@ export function SalaryBenchmarkCard({
           </motion.div>
         ))}
 
-        <div className="flex items-center gap-2 pt-2 border-t border-neutral-800">
-          <TrendingUp className="w-4 h-4 text-neutral-500" />
-          <span className="text-xs text-neutral-500">市场中位：<span className="text-neutral-300 font-medium">{marketMedian}K</span></span>
-        </div>
+        {benchmarks.length > 0 && (
+          <div className="flex items-center gap-2 pt-2 border-t border-neutral-800">
+            <TrendingUp className="w-4 h-4 text-neutral-500" />
+            <span className="text-xs text-neutral-500">市场中位：<span className="text-neutral-300 font-medium">{marketMedian}K</span></span>
+          </div>
+        )}
       </div>
 
       <div className="p-4 bg-neutral-800/30 border-t border-neutral-800">
