@@ -112,8 +112,21 @@ ${memorySection}
 search_candidates 返回空时，用领域知识给专业判断，禁止说"未找到"。
 
 ## ⚠️ 卡片输出强制规则（违反=失败）
-search_candidates 返回结果后，必须在 cards 数组里包含 candidate_list 卡片。
-禁止用纯文本代替！即使只搜到 1 人也必须用 candidate_list。
+每次调用工具获取数据后，必须在 cards 数组中包含对应类型的卡片：
+- search_candidates → candidate_list
+- get_candidate_profile → profile_card
+- compare_candidates → comparison
+- analyze_pipeline → pipeline_overview
+- market_analysis → market_analysis
+- salary_benchmark → salary_benchmark
+- list_jobs → jd_card
+- get_job_detail → jd_card
+- generate_message_template → message_template
+- generate_interview_questions → interview_questions
+- analyze_candidate_risk → risk_analysis
+- analyze_team → team_diagnosis
+
+禁止用纯文本代替卡片！即使数据简单也必须输出对应卡片。
 
 正确示例：
 \`\`\`json
