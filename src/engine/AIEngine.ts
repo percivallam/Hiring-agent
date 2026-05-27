@@ -78,6 +78,24 @@ const ALL_TOOL_DEFS = [...TOOL_DEFINITIONS, ...MEMORY_TOOL_DEFS].filter(t => {
 // ══════════════════════════════════════════
 
 interface EngineCard { type: string; title?: string; content?: string; data?: any; [key: string]: any; }
+
+// 工具→卡片映射：当 LLM 省略卡片时，Engine 自动注入
+const TOOL_CARD_MAP: Record<string, string> = {
+  search_candidates: 'candidate_list',
+  get_candidate_profile: 'profile_card',
+  compare_candidates: 'comparison',
+  analyze_pipeline: 'pipeline_overview',
+  market_analysis: 'market_analysis',
+  salary_benchmark: 'salary_benchmark',
+  list_jobs: 'jd_card',
+  get_job_detail: 'jd_card',
+  generate_message_template: 'message_template',
+  generate_interview_questions: 'interview_questions',
+  analyze_candidate_risk: 'risk_analysis',
+  analyze_team: 'team_diagnosis',
+};
+
+interface ToolCallRecord { name: string; result: any; }
 interface ParsedResponse { thinking?: string; text?: string; cards?: EngineCard[]; quickActions?: { label: string; message: string }[]; }
 
 // ══════════════════════════════════════════
@@ -267,7 +285,7 @@ export class AIEngine {
     this.history.push({ role: 'user', content: userInput });
 
     try {
-      const resp = await this.toolCallLoop([sm, ...this.history]);
+      const { response: resp, toolRecords } = await this.toolCallLoop([sm, ...this.history]);
       const parsed = this.parseResponse(resp.content || '');
       this.history.push({ role: 'assistant', content: resp.content || '' });
 
@@ -285,17 +303,22 @@ export class AIEngine {
         }
       }
 
-      return { responses: this.buildCards(parsed), thinkingSteps: parsed.thinking ? [parsed.thinking] : undefined };
+      const cards = this.buildCards(parsed);
+      // ── 确定性卡片兜底：LLM 省略卡片时自动注入 ──
+      this.injectMissingCards(cards, toolRecords);
+
+      return { responses: cards, thinkingSteps: parsed.thinking ? [parsed.thinking] : undefined };
     } catch (err) {
       return { responses: [{ type: 'text', role: 'agent', content: 'Error: ' + (err instanceof Error ? err.message : '') }] };
     }
   }
 
-  private async toolCallLoop(msgs: ChatMessage[]): Promise<ToolChatResponse> {
+  private async toolCallLoop(msgs: ChatMessage[]): Promise<{ response: ToolChatResponse; toolRecords: ToolCallRecord[] }> {
     let cur = [...msgs];
+    const toolRecords: ToolCallRecord[] = [];
     for (let i = 0; i < MAX_ITER; i++) {
       const r = await this.client!.chatWithTools(cur, ALL_TOOL_DEFS);
-      if (!r.toolCalls || r.toolCalls.length === 0) return r;
+      if (!r.toolCalls || r.toolCalls.length === 0) return { response: r, toolRecords };
 
       cur.push({ role: 'assistant', content: r.content || '', tool_calls: r.toolCalls });
 
@@ -320,9 +343,17 @@ export class AIEngine {
       for (const tr of results) {
         cur.push({ role: 'tool', content: tr.content, tool_call_id: tr.tool_call_id });
       }
+      // 记录标准工具调用结果（用于卡片兜底）
+      for (let si = 0; si < standardCalls.length; si++) {
+        const name = standardCalls[si].function.name;
+        if (TOOL_CARD_MAP[name]) {
+          try { toolRecords.push({ name, result: JSON.parse(standardResults[si].content) }); } catch {}
+        }
+      }
     }
     cur.push({ role: 'user', content: '请基于工具返回数据给出最终回复。' });
-    return await this.client!.chatWithTools(cur, ALL_TOOL_DEFS);
+    const finalResp = await this.client!.chatWithTools(cur, ALL_TOOL_DEFS);
+    return { response: finalResp, toolRecords };
   }
 
   /** S5: 路由 memory 工具到 MemoryAdapter */
@@ -426,6 +457,55 @@ export class AIEngine {
     }
     if (parsed.quickActions?.length) cards.push({ type: 'quick_actions', title: '快捷操作', actions: parsed.quickActions });
     return cards;
+  }
+
+  /** 确定性卡片兜底：LLM 省略卡片时，从工具结果自动构造 */
+  private injectMissingCards(cards: EngineCard[], toolRecords: ToolCallRecord[]): void {
+    const existingTypes = new Set(cards.map(c => c.type));
+    for (const rec of toolRecords) {
+      const expectedCard = TOOL_CARD_MAP[rec.name];
+      if (!expectedCard || existingTypes.has(expectedCard)) continue;
+      if (rec.result?.error) continue; // 工具返回错误时不注入卡片
+
+      const card = this.buildCardFromToolResult(rec.name, expectedCard, rec.result);
+      if (card) {
+        cards.push(card);
+        existingTypes.add(expectedCard);
+      }
+    }
+  }
+
+  /** 从工具结果构造卡片 */
+  private buildCardFromToolResult(toolName: string, _cardType: string, result: any): EngineCard | null {
+    switch (toolName) {
+      case 'search_candidates':
+        if (!result.candidates?.length) return null;
+        return { type: 'candidate_list', title: `搜索结果 (${result.total}人)`, candidates: result.candidates, total: result.total };
+      case 'analyze_pipeline':
+        return { type: 'pipeline_overview', title: '招聘 Pipeline', jobs: result.jobs || [], summary: result.summary || '' };
+      case 'market_analysis':
+        return { type: 'market_analysis', title: result.position || '市场分析', data: result };
+      case 'salary_benchmark':
+        return { type: 'salary_benchmark', title: result.position || '薪酬对标', position: result.position || '', benchmarks: result.benchmarks || [], marketMedian: result.marketMedian || 0, recommendation: result.recommendation || '' };
+      case 'list_jobs':
+        return { type: 'jd_card', title: '在招岗位', data: Array.isArray(result) ? result : [] };
+      case 'get_job_detail':
+        return { type: 'jd_card', title: result.title || '岗位详情', data: result };
+      case 'get_candidate_profile':
+        return { type: 'profile_card', title: result.name || '候选人档案', data: result };
+      case 'compare_candidates':
+        return { type: 'comparison', title: '候选人对比', data: result };
+      case 'generate_message_template':
+        return { type: 'message_template', title: `${result.template_type || '消息'}模板`, data: result };
+      case 'generate_interview_questions':
+        return { type: 'interview_questions', title: '面试题', data: result };
+      case 'analyze_candidate_risk':
+        return { type: 'risk_analysis', title: `${result.candidateName || '候选人'}风险分析`, data: result };
+      case 'analyze_team':
+        return { type: 'team_diagnosis', title: '团队能力诊断', data: result };
+      default:
+        return null;
+    }
   }
 
   clearHistory(): void { this.history = []; }
