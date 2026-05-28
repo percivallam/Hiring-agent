@@ -2,6 +2,7 @@ import { Component } from 'react';
 import { Sidebar } from '@/components/layout/Sidebar';
 import { ChatView } from '@/components/chat/ChatView';
 import { TopNav } from '@/components/layout/TopNav';
+import { AiNativeShell } from '@/components/ai-shell/AiNativeShell';
 
 class ErrorBoundary extends Component<{ children: React.ReactNode }, { err: Error | null }> {
   constructor(p: any) { super(p); this.state = { err: null }; }
@@ -13,18 +14,26 @@ class ErrorBoundary extends Component<{ children: React.ReactNode }, { err: Erro
 }
 
 function App() {
+  const isClassic = window.location.pathname === '/classic';
+
   return (
     <ErrorBoundary>
-      <div className="flex h-screen bg-neutral-950 text-neutral-100 overflow-hidden">
-        <Sidebar />
-        <div className="flex-1 flex flex-col min-w-0">
-          <TopNav />
-          <main className="flex-1 min-h-0 relative">
-            <ChatView />
-          </main>
-        </div>
-      </div>
+      {isClassic ? <ClassicApp /> : <AiNativeShell />}
     </ErrorBoundary>
+  );
+}
+
+function ClassicApp() {
+  return (
+    <div className="flex h-screen bg-neutral-950 text-neutral-100 overflow-hidden">
+      <Sidebar />
+      <div className="flex-1 flex flex-col min-w-0">
+        <TopNav />
+        <main className="flex-1 min-h-0 relative">
+          <ChatView />
+        </main>
+      </div>
+    </div>
   );
 }
 

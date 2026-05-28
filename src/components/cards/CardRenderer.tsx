@@ -13,6 +13,7 @@ import { C10_ClarificationCard } from './C10_ClarificationCard';
 interface CardRendererProps {
   card: AgentCard | null | undefined;
   onActionClick?: (message: string) => void;
+  onCandidateOpen?: (candidate: any) => void;
 }
 
 const CARD_MAP: Record<string, React.FC<any>> = {
@@ -28,7 +29,7 @@ const CARD_MAP: Record<string, React.FC<any>> = {
   clarification: C10_ClarificationCard,
 };
 
-export function CardRenderer({ card, onActionClick }: CardRendererProps) {
+export function CardRenderer({ card, onActionClick, onCandidateOpen }: CardRendererProps) {
   const safeCard = normalizeCardForRender(card);
   const Component = CARD_MAP[safeCard.card_type];
 
@@ -51,7 +52,7 @@ export function CardRenderer({ card, onActionClick }: CardRendererProps) {
     );
   }
 
-  return <Component {...safeCard} onActionClick={onActionClick} />;
+  return <Component {...safeCard} onActionClick={onActionClick} onCandidateOpen={onCandidateOpen} />;
 }
 
 type CardRecord = Record<string, any>;

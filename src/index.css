@@ -217,3 +217,108 @@
 .animate-accordion-up {
   animation: accordion-up 0.2s ease-out;
 }
+
+/* AI-native shell tokens. Scoped so /classic keeps the old demo visual system. */
+.ai-native-shell {
+  --hai-bg: #0a0a0a;
+  --hai-surface: #111111;
+  --hai-surface-2: #1a1a1a;
+  --hai-text: #ededed;
+  --hai-text-2: #a1a1a1;
+  --hai-text-3: #6b6b6b;
+  --hai-border: #262626;
+  --hai-accent: #00d9a3;
+  --hai-danger: #ff5a5f;
+  --hai-warn: #d8a31a;
+  --hai-radius: 5px;
+  --hai-shadow-drawer: -12px 0 36px rgba(0, 0, 0, 0.24);
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.ai-native-shell.hai-light {
+  --hai-bg: #ffffff;
+  --hai-surface: #fafafa;
+  --hai-surface-2: #f0f0f0;
+  --hai-text: #0a0a0a;
+  --hai-text-2: #525252;
+  --hai-text-3: #a3a3a3;
+  --hai-border: #e5e5e5;
+  --hai-shadow-drawer: -12px 0 30px rgba(0, 0, 0, 0.10);
+}
+
+.ai-native-shell .hai-mono {
+  font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+.ai-native-shell .hai-panel {
+  background: var(--hai-surface);
+  border: 1px solid var(--hai-border);
+  border-radius: var(--hai-radius);
+}
+
+.ai-native-shell .hai-button {
+  min-height: 30px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 0 10px;
+  color: var(--hai-text-2);
+  border: 1px solid var(--hai-border);
+  border-radius: var(--hai-radius);
+  background: transparent;
+  transition: color 150ms ease, border-color 150ms ease, background 150ms ease;
+}
+
+.ai-native-shell .hai-button:hover {
+  color: var(--hai-text);
+  background: var(--hai-surface-2);
+}
+
+.ai-native-shell .hai-button-primary {
+  color: var(--hai-bg);
+  background: var(--hai-accent);
+  border-color: var(--hai-accent);
+}
+
+.ai-native-shell .hai-button-primary:hover {
+  color: var(--hai-bg);
+  background: var(--hai-accent);
+}
+
+.ai-native-shell .hai-card-clickable {
+  cursor: pointer;
+}
+
+.ai-native-shell .hai-card-clickable:hover > * {
+  border-color: var(--hai-accent) !important;
+}
+
+/* Legacy card adapter: keep old demo cards, but make them sit inside the CUI shell. */
+.ai-native-shell .rounded-2xl,
+.ai-native-shell .rounded-xl,
+.ai-native-shell .rounded-lg {
+  border-radius: 6px !important;
+}
+
+.ai-native-shell .bg-amber-600,
+.ai-native-shell .hover\:bg-amber-500:hover {
+  background: var(--hai-accent) !important;
+  color: var(--hai-bg) !important;
+}
+
+.ai-native-shell .text-amber-400,
+.ai-native-shell .text-emerald-400,
+.ai-native-shell .text-violet-400,
+.ai-native-shell .text-blue-400 {
+  color: var(--hai-accent) !important;
+}
+
+.ai-native-shell .border-amber-500\/30,
+.ai-native-shell .border-emerald-500\/30,
+.ai-native-shell .border-emerald-500\/20,
+.ai-native-shell .border-violet-500\/10 {
+  border-color: color-mix(in srgb, var(--hai-accent) 35%, transparent) !important;
+}

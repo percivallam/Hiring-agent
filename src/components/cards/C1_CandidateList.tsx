@@ -8,10 +8,11 @@ import { DemoBadge } from './states/DemoBadge';
 
 interface C1Props extends CandidateListCard {
   onActionClick?: (message: string) => void;
+  onCandidateOpen?: (candidate: CandidateListCard['candidates'][number]) => void;
 }
 
 export function C1_CandidateList(props: C1Props) {
-  const { mode, title, candidates, sortable, filterable, is_demo, empty_hint, error_hint, actions, onActionClick } = props;
+  const { mode, title, candidates, sortable, filterable, is_demo, empty_hint, error_hint, actions, onActionClick, onCandidateOpen } = props;
 
   const showDemo = mode === 'demo' || is_demo;
   const data = showDemo && candidates.length === 0
@@ -77,6 +78,15 @@ export function C1_CandidateList(props: C1Props) {
         {data.map((c) => (
           <div
             key={c.id}
+            role="button"
+            tabIndex={0}
+            onClick={() => onCandidateOpen?.(c)}
+            onKeyDown={(event) => {
+              if (event.key === 'Enter' || event.key === ' ') {
+                event.preventDefault();
+                onCandidateOpen?.(c);
+              }
+            }}
             className={cn(
               'flex items-center gap-3 p-3 rounded-lg bg-neutral-800/50 hover:bg-neutral-800 transition-colors cursor-pointer group',
               c.status === 'rejected' && 'opacity-50',

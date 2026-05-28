@@ -37,24 +37,50 @@ interface MessageListProps {
   isTyping: boolean;
   onQuickAction?: (message: string) => void;
   onCardClick?: (cardId: string, payload: CardActionPayload) => void;
+  onCandidateOpen?: (candidate: any) => void;
+  onDrawerOpen?: (kind: 'candidate' | 'jd' | 'pipeline' | 'diagnosis', payload?: any) => void;
   className?: string;
 }
 
 function MessageItem({
   message,
   onQuickAction,
-  onCardClick
+  onCardClick,
+  onCandidateOpen,
+  onDrawerOpen,
 }: {
   message: Message;
   onQuickAction?: (message: string) => void;
   onCardClick?: (cardId: string, payload: CardActionPayload) => void;
+  onCandidateOpen?: (candidate: any) => void;
+  onDrawerOpen?: (kind: 'candidate' | 'jd' | 'pipeline' | 'diagnosis', payload?: any) => void;
 }) {
+  const shouldIgnoreDrawerClick = (event: React.MouseEvent) => {
+    const target = event.target as HTMLElement | null;
+    return Boolean(target?.closest('button,a,input,textarea,select,[role="button"]'));
+  };
+
   if ((message as any).card_type) {
+    const cardType = (message as any).card_type;
     return (
-      <div className="ml-9">
+      <div
+        className={cn(
+          'ml-9',
+          cardType === 'job_detail' || cardType === 'pipeline_report' || cardType === 'market_analysis'
+            ? 'hai-card-clickable'
+            : ''
+        )}
+        onClick={(event) => {
+          if (shouldIgnoreDrawerClick(event)) return;
+          if (cardType === 'job_detail') onDrawerOpen?.('jd', message);
+          if (cardType === 'pipeline_report') onDrawerOpen?.('pipeline', message);
+          if (cardType === 'market_analysis') onDrawerOpen?.('diagnosis', message);
+        }}
+      >
         <CardRenderer
           card={message as any}
           onActionClick={(msg) => onQuickAction?.(msg)}
+          onCandidateOpen={onCandidateOpen}
         />
       </div>
     );
@@ -90,6 +116,11 @@ function MessageItem({
             candidates={message.candidates}
             sortable={message.sortable}
             onCandidateAction={(candidateId, action) => {
+              const candidate = message.candidates.find((item) => item.id === candidateId);
+              if (action === 'view_resume' && candidate) {
+                onCandidateOpen?.(candidate);
+                return;
+              }
               if (onCardClick) {
                 onCardClick(candidateId, {
                   action,
@@ -115,7 +146,9 @@ function MessageItem({
 
     case 'jd_card':
       return (
-        <div className="ml-9">
+        <div className="ml-9 hai-card-clickable" onClick={(event) => {
+          if (!shouldIgnoreDrawerClick(event)) onDrawerOpen?.('jd', message);
+        }}>
           <JDCard
             title={message.title}
             content={message.content}
@@ -176,7 +209,9 @@ function MessageItem({
 
     case 'profile_card':
       return (
-        <div className="ml-9">
+        <div className="ml-9 hai-card-clickable" onClick={(event) => {
+          if (!shouldIgnoreDrawerClick(event)) onCandidateOpen?.(message.data);
+        }}>
           <ProfileCard
             data={message.data}
             actions={message.actions}
@@ -227,7 +262,9 @@ function MessageItem({
 
     case 'market_analysis':
       return (
-        <div className="ml-9">
+        <div className="ml-9 hai-card-clickable" onClick={(event) => {
+          if (!shouldIgnoreDrawerClick(event)) onDrawerOpen?.('diagnosis', message);
+        }}>
           <MarketAnalysisCard
             title={message.title}
             analysisType={message.analysisType}
@@ -254,16 +291,21 @@ function MessageItem({
     case 'pipeline_overview':
       if ((message as any).card_type === 'pipeline_report') {
         return (
-          <div className="ml-9">
+          <div className="ml-9 hai-card-clickable" onClick={(event) => {
+            if (!shouldIgnoreDrawerClick(event)) onDrawerOpen?.('pipeline', message);
+          }}>
             <CardRenderer
               card={message as any}
               onActionClick={(msg) => onQuickAction?.(msg)}
+              onCandidateOpen={onCandidateOpen}
             />
           </div>
         );
       }
       return (
-        <div className="ml-9">
+        <div className="ml-9 hai-card-clickable" onClick={(event) => {
+          if (!shouldIgnoreDrawerClick(event)) onDrawerOpen?.('pipeline', message);
+        }}>
           <PipelineOverviewCard
             title={message.title}
             jobs={message.jobs}
@@ -358,6 +400,7 @@ function MessageItem({
             <CardRenderer
               card={(message as any).card}
               onActionClick={(msg) => onQuickAction?.(msg)}
+              onCandidateOpen={onCandidateOpen}
             />
           </div>
         );
@@ -373,6 +416,8 @@ export function MessageList({
   isTyping,
   onQuickAction,
   onCardClick,
+  onCandidateOpen,
+  onDrawerOpen,
   className,
 }: MessageListProps) {
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -399,6 +444,8 @@ export function MessageList({
                 message={message}
                 onQuickAction={onQuickAction}
                 onCardClick={onCardClick}
+                onCandidateOpen={onCandidateOpen}
+                onDrawerOpen={onDrawerOpen}
               />
             </CardErrorBoundary>
           ))}
