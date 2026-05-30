@@ -4,6 +4,9 @@
 > Active Slice: 全部完成 ✅
 > Active Branch: main
 
+> Preview Slice: S8 ai-native shell visual fusion ✅
+> Preview Branch: codex/ai-native-recruiting-shell-preview
+
 ---
 
 ## 总体进度
@@ -48,6 +51,13 @@
 ## 当前阻塞
 
 (无)
+
+## Preview 分支状态
+
+- 2026-05-30: UI Agent 在 `codex/ai-native-recruiting-shell-preview` 完成 S8 新壳浅色招聘工作台视觉融合。
+- 默认 `/` 保持 AI-native CUI shell，`/classic` 保留老 Demo 回退入口。
+- 本轮未修改 `src/contracts/*`、`src/engine/*`、`src/tools/*`，未改动历史会话 localStorage key。
+- 本轮未推送、未部署。
 
 ---
 

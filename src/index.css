@@ -220,32 +220,63 @@
 
 /* AI-native shell tokens. Scoped so /classic keeps the old demo visual system. */
 .ai-native-shell {
+  --hai-bg: #f5f6f7;
+  --hai-surface: #ffffff;
+  --hai-surface-2: #f7f8fa;
+  --hai-surface-3: #eff3ff;
+  --hai-text: #1f2329;
+  --hai-text-2: #646a73;
+  --hai-text-3: #8f959e;
+  --hai-border: #dee0e3;
+  --hai-border-strong: #d0d3d6;
+  --hai-accent: #3370ff;
+  --hai-accent-2: #1456f0;
+  --hai-accent-bg: #f5f8ff;
+  --hai-accent-border: rgba(51, 112, 255, 0.30);
+  --hai-focus-shadow: 0 0 0 3px rgba(51, 112, 255, 0.08), 0 10px 24px rgba(31, 35, 41, 0.06), 0 2px 8px rgba(31, 35, 41, 0.03);
+  --hai-success: #0f9f6e;
+  --hai-success-bg: #effaf5;
+  --hai-danger-bg: #fff1f0;
+  --hai-danger: #ff5a5f;
+  --hai-warn: #d8a31a;
+  --hai-warn-bg: #fff8e6;
+  --hai-overlay: rgba(245, 246, 247, 0.92);
+  --hai-rail-bg: #fbfbfc;
+  --hai-header-bg: #f8f9fa;
+  --hai-radius: 8px;
+  --hai-radius-sm: 6px;
+  --hai-radius-lg: 12px;
+  --hai-shadow-soft: 0 10px 24px rgba(31, 35, 41, 0.06), 0 2px 8px rgba(31, 35, 41, 0.03);
+  --hai-shadow-drawer: -10px 0 28px rgba(31, 35, 41, 0.10);
+  font-family: 'PingFang SC', Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.ai-native-shell.hai-dark {
   --hai-bg: #0a0a0a;
   --hai-surface: #111111;
   --hai-surface-2: #1a1a1a;
+  --hai-surface-3: #172033;
   --hai-text: #ededed;
   --hai-text-2: #a1a1a1;
   --hai-text-3: #6b6b6b;
   --hai-border: #262626;
-  --hai-accent: #00d9a3;
-  --hai-danger: #ff5a5f;
-  --hai-warn: #d8a31a;
-  --hai-radius: 5px;
+  --hai-border-strong: #333333;
+  --hai-accent: #3370ff;
+  --hai-accent-2: #5b8cff;
+  --hai-accent-bg: #101b33;
+  --hai-accent-border: rgba(91, 140, 255, 0.34);
+  --hai-focus-shadow: 0 0 0 3px rgba(91, 140, 255, 0.14), 0 10px 24px rgba(0, 0, 0, 0.24);
+  --hai-success: #22c55e;
+  --hai-success-bg: #0d2118;
+  --hai-danger-bg: #2a1113;
+  --hai-warn-bg: #261e0d;
+  --hai-overlay: rgba(10, 10, 10, 0.90);
+  --hai-rail-bg: #111111;
+  --hai-header-bg: #101010;
+  --hai-shadow-soft: 0 10px 24px rgba(0, 0, 0, 0.24);
   --hai-shadow-drawer: -12px 0 36px rgba(0, 0, 0, 0.24);
-  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  font-size: 13px;
-  line-height: 1.5;
-}
-
-.ai-native-shell.hai-light {
-  --hai-bg: #ffffff;
-  --hai-surface: #fafafa;
-  --hai-surface-2: #f0f0f0;
-  --hai-text: #0a0a0a;
-  --hai-text-2: #525252;
-  --hai-text-3: #a3a3a3;
-  --hai-border: #e5e5e5;
-  --hai-shadow-drawer: -12px 0 30px rgba(0, 0, 0, 0.10);
 }
 
 .ai-native-shell .hai-mono {
@@ -255,7 +286,44 @@
 .ai-native-shell .hai-panel {
   background: var(--hai-surface);
   border: 1px solid var(--hai-border);
-  border-radius: var(--hai-radius);
+  border-radius: var(--hai-radius-lg);
+}
+
+.ai-native-shell .hai-rail {
+  background: var(--hai-rail-bg);
+}
+
+.ai-native-shell .hai-rail-brand {
+  background: var(--hai-surface);
+}
+
+.ai-native-shell .hai-session-active::before {
+  content: "";
+  position: absolute;
+  left: -1px;
+  top: 9px;
+  bottom: 9px;
+  width: 2px;
+  border-radius: 99px;
+  background: var(--hai-accent);
+}
+
+.ai-native-shell .hai-shell-header {
+  background: var(--hai-header-bg);
+}
+
+.ai-native-shell .hai-composer {
+  background: var(--hai-surface);
+  border: 1px solid var(--hai-border);
+  border-radius: var(--hai-radius-lg);
+  box-shadow: 0 1px 2px rgba(31, 35, 41, 0.03);
+  transition: border-color 150ms ease, box-shadow 150ms ease, background 150ms ease;
+}
+
+.ai-native-shell .hai-composer:hover,
+.ai-native-shell .hai-composer:focus-within {
+  border-color: var(--hai-accent-border);
+  box-shadow: var(--hai-focus-shadow);
 }
 
 .ai-native-shell .hai-button {
@@ -267,25 +335,35 @@
   padding: 0 10px;
   color: var(--hai-text-2);
   border: 1px solid var(--hai-border);
-  border-radius: var(--hai-radius);
+  border-radius: var(--hai-radius-sm);
   background: transparent;
-  transition: color 150ms ease, border-color 150ms ease, background 150ms ease;
+  transition: color 150ms ease, border-color 150ms ease, background 150ms ease, box-shadow 150ms ease;
 }
 
 .ai-native-shell .hai-button:hover {
   color: var(--hai-text);
   background: var(--hai-surface-2);
+  border-color: var(--hai-border-strong);
+}
+
+.ai-native-shell .hai-button:disabled {
+  cursor: not-allowed;
+  color: var(--hai-text-3);
+  background: var(--hai-surface-2);
+  border-color: var(--hai-border);
+  opacity: 0.68;
 }
 
 .ai-native-shell .hai-button-primary {
-  color: var(--hai-bg);
+  color: #ffffff;
   background: var(--hai-accent);
   border-color: var(--hai-accent);
 }
 
 .ai-native-shell .hai-button-primary:hover {
-  color: var(--hai-bg);
-  background: var(--hai-accent);
+  color: #ffffff;
+  background: var(--hai-accent-2);
+  border-color: var(--hai-accent-2);
 }
 
 .ai-native-shell .hai-card-clickable {
@@ -294,31 +372,173 @@
 
 .ai-native-shell .hai-card-clickable:hover > * {
   border-color: var(--hai-accent) !important;
+  background: var(--hai-accent-bg) !important;
 }
 
 /* Legacy card adapter: keep old demo cards, but make them sit inside the CUI shell. */
 .ai-native-shell .rounded-2xl,
 .ai-native-shell .rounded-xl,
 .ai-native-shell .rounded-lg {
-  border-radius: 6px !important;
+  border-radius: 10px !important;
+}
+
+.ai-native-shell .rounded-full {
+  border-radius: 999px !important;
+}
+
+.ai-native-shell .bg-neutral-950,
+.ai-native-shell .bg-neutral-950\/80,
+.ai-native-shell .bg-neutral-900,
+.ai-native-shell .bg-neutral-900\/80 {
+  background: var(--hai-surface) !important;
+}
+
+.ai-native-shell .bg-neutral-800,
+.ai-native-shell .bg-neutral-800\/50,
+.ai-native-shell .bg-neutral-700,
+.ai-native-shell .bg-neutral-700\/50 {
+  background: var(--hai-surface-2) !important;
+}
+
+.ai-native-shell .bg-neutral-500\/10,
+.ai-native-shell .bg-neutral-600,
+.ai-native-shell .bg-neutral-600\/50 {
+  background: var(--hai-bg) !important;
+}
+
+.ai-native-shell .border-neutral-800,
+.ai-native-shell .border-neutral-800\/60,
+.ai-native-shell .border-neutral-800\/80,
+.ai-native-shell .border-neutral-700,
+.ai-native-shell .border-neutral-500\/20 {
+  border-color: var(--hai-border) !important;
+}
+
+.ai-native-shell .text-neutral-100,
+.ai-native-shell .text-neutral-200,
+.ai-native-shell .text-neutral-300 {
+  color: var(--hai-text) !important;
+}
+
+.ai-native-shell .text-neutral-400,
+.ai-native-shell .text-neutral-500 {
+  color: var(--hai-text-2) !important;
+}
+
+.ai-native-shell .text-neutral-600,
+.ai-native-shell .text-neutral-700,
+.ai-native-shell .text-neutral-800 {
+  color: var(--hai-text-3) !important;
+}
+
+.ai-native-shell .bg-gradient-to-br {
+  background-image: none !important;
+  background-color: var(--hai-accent-bg) !important;
+}
+
+.ai-native-shell .bg-gradient-to-r {
+  background-image: none !important;
+  background-color: var(--hai-accent) !important;
 }
 
 .ai-native-shell .bg-amber-600,
-.ai-native-shell .hover\:bg-amber-500:hover {
+.ai-native-shell .bg-amber-500,
+.ai-native-shell .hover\:bg-amber-500:hover,
+.ai-native-shell .hover\:bg-amber-600:hover {
   background: var(--hai-accent) !important;
-  color: var(--hai-bg) !important;
+  color: #ffffff !important;
+}
+
+.ai-native-shell .bg-amber-500\/5,
+.ai-native-shell .bg-amber-500\/10,
+.ai-native-shell .bg-amber-500\/15,
+.ai-native-shell .bg-amber-600\/20,
+.ai-native-shell .bg-blue-500\/10,
+.ai-native-shell .bg-violet-500\/5,
+.ai-native-shell .bg-violet-500\/10 {
+  background: var(--hai-accent-bg) !important;
+}
+
+.ai-native-shell .bg-emerald-500\/10 {
+  background: var(--hai-success-bg) !important;
+}
+
+.ai-native-shell .bg-emerald-500 {
+  background: var(--hai-success) !important;
+}
+
+.ai-native-shell .bg-red-500\/5,
+.ai-native-shell .bg-red-500\/10 {
+  background: var(--hai-danger-bg) !important;
 }
 
 .ai-native-shell .text-amber-400,
-.ai-native-shell .text-emerald-400,
+.ai-native-shell .text-amber-500,
+.ai-native-shell .text-amber-300,
+.ai-native-shell .text-amber-300\/80,
 .ai-native-shell .text-violet-400,
+.ai-native-shell .text-violet-200\/80,
+.ai-native-shell .text-violet-400,
+.ai-native-shell .text-blue-500,
 .ai-native-shell .text-blue-400 {
   color: var(--hai-accent) !important;
 }
 
+.ai-native-shell .text-emerald-400,
+.ai-native-shell .text-emerald-500 {
+  color: var(--hai-success) !important;
+}
+
+.ai-native-shell .text-red-400 {
+  color: var(--hai-danger) !important;
+}
+
 .ai-native-shell .border-amber-500\/30,
-.ai-native-shell .border-emerald-500\/30,
-.ai-native-shell .border-emerald-500\/20,
+.ai-native-shell .border-amber-500\/20,
+.ai-native-shell .border-amber-500\/10,
+.ai-native-shell .border-blue-500\/20,
+.ai-native-shell .border-violet-500\/20,
 .ai-native-shell .border-violet-500\/10 {
-  border-color: color-mix(in srgb, var(--hai-accent) 35%, transparent) !important;
+  border-color: var(--hai-accent-border) !important;
+}
+
+.ai-native-shell .border-emerald-500\/30,
+.ai-native-shell .border-emerald-500\/20 {
+  border-color: rgba(15, 159, 110, 0.26) !important;
+}
+
+.ai-native-shell .border-red-500\/20,
+.ai-native-shell .border-red-500\/10 {
+  border-color: rgba(255, 90, 95, 0.24) !important;
+}
+
+.ai-native-shell .ring-amber-500\/20,
+.ai-native-shell .focus\:ring-amber-500\/20:focus {
+  --tw-ring-color: rgba(51, 112, 255, 0.20) !important;
+}
+
+.ai-native-shell .ai-native-message-list .markdown-body {
+  color: var(--hai-text-2);
+}
+
+.ai-native-shell .ai-native-message-list .markdown-body code {
+  background: var(--hai-surface-2);
+  color: var(--hai-accent);
+}
+
+.ai-native-shell .ai-native-message-list .markdown-body table {
+  border: 1px solid var(--hai-border);
+  border-radius: var(--hai-radius);
+  overflow: hidden;
+}
+
+.ai-native-shell .ai-native-message-list .markdown-body th,
+.ai-native-shell .ai-native-message-list .markdown-body td {
+  border-color: var(--hai-border);
+  color: var(--hai-text-2);
+}
+
+.ai-native-shell .backdrop-blur-sm,
+.ai-native-shell .backdrop-blur {
+  backdrop-filter: none !important;
 }

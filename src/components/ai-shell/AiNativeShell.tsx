@@ -81,7 +81,7 @@ export function AiNativeShell() {
   const { role } = useUserStore();
 
   const [railCollapsed, setRailCollapsed] = useState(false);
-  const [lightTheme, setLightTheme] = useState(false);
+  const [darkTheme, setDarkTheme] = useState(false);
   const [drawer, setDrawer] = useState<DrawerState | null>(null);
   const [drawerWidth, setDrawerWidth] = useState(560);
   const [settingsOpen, setSettingsOpen] = useState(false);
@@ -186,7 +186,7 @@ export function AiNativeShell() {
 
   const activeSession = sessions.find((session) => session.id === currentSessionId);
   const groupedSessions = useMemo(() => groupSessions(sessions.filter((session) => session.role === role)), [sessions, role]);
-  const topMeta = `会话:${currentSessionId?.slice(-6) ?? 'new'} · 抽屉:${drawer ? drawerModeLabel(drawer.mode) : '关闭'}`;
+  const topMeta = `会话:${currentSessionId?.slice(-6) ?? '新建'} · 抽屉:${drawer ? drawerModeLabel(drawer.mode) : '关闭'}`;
 
   const autoNameSession = useCallback((content: string) => {
     const { currentSessionId: sid } = useSessionStore.getState();
@@ -333,14 +333,14 @@ export function AiNativeShell() {
   const streamHasConversation = messages.length > 0 || isTyping;
 
   return (
-    <div className={cn('ai-native-shell h-screen overflow-hidden text-[var(--hai-text)] bg-[var(--hai-bg)]', lightTheme && 'hai-light')}>
+    <div className={cn('ai-native-shell h-screen overflow-hidden bg-[var(--hai-bg)] text-[var(--hai-text)]', darkTheme && 'hai-dark')}>
       <div
         className="grid h-full overflow-hidden"
         style={{ gridTemplateColumns: `${railCollapsed ? 56 : 240}px minmax(560px, 1fr)` }}
       >
-        <aside className="min-w-0 flex flex-col border-r border-[var(--hai-border)] bg-[var(--hai-surface)]">
+        <aside className="hai-rail min-w-0 flex flex-col border-r border-[var(--hai-border)]">
           <div className="h-12 flex items-center gap-2.5 px-3 border-b border-[var(--hai-border)]">
-            <div className="w-6.5 h-6.5 min-w-6 rounded-[var(--hai-radius)] border border-[var(--hai-border)] bg-[var(--hai-bg)] text-[var(--hai-accent)] hai-mono grid place-items-center">▍</div>
+            <div className="hai-rail-brand h-7 w-7 min-w-7 rounded-[var(--hai-radius-sm)] border border-[var(--hai-border)] text-[var(--hai-accent)] hai-mono grid place-items-center">▍</div>
             {!railCollapsed && <div className="flex-1 truncate font-semibold">招聘智能体</div>}
             <button className="hai-button w-7 px-0" onClick={() => setRailCollapsed((value) => !value)} title="收起侧栏">
               <ChevronsLeft className={cn('h-3.5 w-3.5 transition-transform', railCollapsed && 'rotate-180')} />
@@ -370,9 +370,9 @@ export function AiNativeShell() {
                       key={session.id}
                       onClick={() => setCurrentSession(session.id)}
                       className={cn(
-                        'w-full text-left rounded-[var(--hai-radius)] border px-2 py-2 transition-colors',
+                        'relative w-full text-left rounded-[var(--hai-radius)] border px-2 py-2 transition-colors',
                         session.id === currentSessionId
-                          ? 'border-[var(--hai-border)] bg-[var(--hai-surface-2)] text-[var(--hai-text)]'
+                          ? 'hai-session-active border-[var(--hai-accent)] bg-[var(--hai-accent-bg)] text-[var(--hai-text)]'
                           : 'border-transparent text-[var(--hai-text-2)] hover:border-[var(--hai-border)] hover:bg-[var(--hai-surface-2)]'
                       )}
                       title={session.title}
@@ -393,9 +393,13 @@ export function AiNativeShell() {
           </div>
 
           <div className="border-t border-[var(--hai-border)] p-2">
-            <button className="hai-button mb-1 w-full justify-start" onClick={() => setLightTheme((value) => !value)}>
-              {lightTheme ? <Sun className="h-3.5 w-3.5" /> : <Moon className="h-3.5 w-3.5" />}
-              {!railCollapsed && <span>{lightTheme ? '浅色模式' : '深色模式'}</span>}
+            <button
+              className="hai-button mb-1 w-full justify-start"
+              onClick={() => setDarkTheme((value) => !value)}
+              title={darkTheme ? '切换浅色' : '切换深色'}
+            >
+              {darkTheme ? <Moon className="h-3.5 w-3.5" /> : <Sun className="h-3.5 w-3.5" />}
+              {!railCollapsed && <span>{darkTheme ? '深色模式' : '浅色模式'}</span>}
             </button>
             <button className="hai-button w-full justify-start" onClick={() => setSettingsOpen(true)}>
               <Settings className="h-3.5 w-3.5" />
@@ -405,7 +409,7 @@ export function AiNativeShell() {
         </aside>
 
         <main className="relative min-w-0 flex flex-col bg-[var(--hai-bg)]">
-          <header className="h-12 shrink-0 flex items-center justify-between border-b border-[var(--hai-border)] px-4">
+          <header className="hai-shell-header h-12 shrink-0 flex items-center justify-between border-b border-[var(--hai-border)] px-4">
             <div className="min-w-0">
               <div className="font-semibold">对话</div>
               <div className="hai-mono truncate text-[11px] text-[var(--hai-text-3)]">{topMeta}</div>
@@ -415,7 +419,7 @@ export function AiNativeShell() {
               <span>⌘\</span>
               <span>⌘,</span>
               <span>⌘B</span>
-              <a className="hover:text-[var(--hai-text)]" href="/classic">classic</a>
+              <a className="hover:text-[var(--hai-text)]" href="/classic">老版本</a>
             </div>
           </header>
 
@@ -455,7 +459,7 @@ export function AiNativeShell() {
                 )}
               </AnimatePresence>
 
-              <div className="hai-panel flex min-h-[46px] items-end gap-2 px-3 py-2">
+              <div className="hai-composer flex min-h-[46px] items-end gap-2 px-3 py-2">
                 <span className="hai-mono pt-2 text-[var(--hai-accent)]">▍</span>
                 <textarea
                   ref={inputRef}
@@ -484,7 +488,7 @@ export function AiNativeShell() {
                   placeholder={isTyping ? '智能体处理中' : '输入招聘问题，或按 / 查看指令'}
                   className="max-h-32 min-h-[30px] flex-1 resize-none bg-transparent py-1 text-sm text-[var(--hai-text)] outline-none placeholder:text-[var(--hai-text-3)] disabled:opacity-50"
                 />
-                <button className="hai-button" disabled={isTyping || !input.trim()} onClick={() => handleSend(input)}>
+                <button className={cn('hai-button', input.trim() && !isTyping && 'hai-button-primary')} disabled={isTyping || !input.trim()} onClick={() => handleSend(input)}>
                   运行
                 </button>
               </div>
@@ -537,9 +541,9 @@ export function AiNativeShell() {
 function EmptyState({ onPick }: { onPick: (prompt: string) => void }) {
   return (
     <div className="flex h-full items-center justify-center px-4">
-      <div className="hai-panel max-w-xl p-6 text-[var(--hai-text-2)]">
+      <div className="hai-panel max-w-xl p-6 text-[var(--hai-text-2)] shadow-[var(--hai-shadow-soft)]">
         <div className="hai-mono mb-3 text-[var(--hai-accent)]">输入 / 查看指令，或直接提问</div>
-        <p className="mb-4">主任务从对话开始。候选人、职位、漏斗和诊断结果需要深看时，才打开右侧抽屉。</p>
+        <p className="mb-4">主任务从对话开始。找人、写职位、看漏斗先在中间完成，需要深看和编辑时再打开右侧画布。</p>
         <div className="grid gap-2 sm:grid-cols-2">
           {slashCommands.slice(0, 4).map((item) => (
             <button key={item.command} className="hai-button justify-start" onClick={() => onPick(item.prompt)}>
@@ -560,7 +564,7 @@ function SlashMenu({ onPick }: { onPick: (item: typeof slashCommands[number]) =>
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: 8 }}
       transition={{ duration: 0.16 }}
-      className="absolute bottom-full left-0 z-30 mb-2 w-[320px] overflow-hidden rounded-[var(--hai-radius)] border border-[var(--hai-border)] bg-[var(--hai-surface)] shadow-[0_14px_36px_rgba(0,0,0,0.28)]"
+      className="absolute bottom-full left-0 z-30 mb-2 w-[320px] overflow-hidden rounded-[var(--hai-radius-lg)] border border-[var(--hai-border)] bg-[var(--hai-surface)] shadow-[var(--hai-shadow-soft)]"
     >
       {slashCommands.map((item) => (
         <button
@@ -595,7 +599,7 @@ function SettingsOverlay({
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.16 }}
-          className="absolute inset-x-0 bottom-0 top-12 z-50 border-l border-[var(--hai-border)] bg-[var(--hai-bg)]"
+          className="absolute inset-x-0 bottom-0 top-12 z-50 border-l border-[var(--hai-border)] bg-[var(--hai-bg)] shadow-[var(--hai-shadow-soft)]"
         >
           <div className="grid h-full grid-cols-[220px_minmax(0,1fr)]">
             <nav className="border-r border-[var(--hai-border)] bg-[var(--hai-surface)] p-3">
@@ -604,8 +608,8 @@ function SettingsOverlay({
                   key={item}
                   onClick={() => onTabChange(item)}
                   className={cn(
-                    'mb-1 w-full rounded-[var(--hai-radius)] px-3 py-2 text-left text-[var(--hai-text-2)] hover:bg-[var(--hai-surface-2)] hover:text-[var(--hai-text)]',
-                    item === activeTab && 'bg-[var(--hai-surface-2)] text-[var(--hai-text)]'
+                    'mb-1 w-full rounded-[var(--hai-radius-sm)] border border-transparent px-3 py-2 text-left text-[var(--hai-text-2)] hover:bg-[var(--hai-surface-2)] hover:text-[var(--hai-text)]',
+                    item === activeTab && 'border-[var(--hai-accent)] bg-[var(--hai-accent-bg)] text-[var(--hai-text)]'
                   )}
                 >
                   {item}
@@ -655,14 +659,14 @@ function CommandOverlay({
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.16 }}
-          className="absolute inset-x-0 bottom-0 top-12 z-[60] bg-[var(--hai-bg)]/95"
+          className="absolute inset-x-0 bottom-0 top-12 z-[60] bg-[var(--hai-overlay)]"
           onClick={onClose}
         >
           <motion.div
             initial={{ y: -8 }}
             animate={{ y: 0 }}
             exit={{ y: -8 }}
-            className="mx-auto mt-20 w-[min(620px,calc(100%-32px))] overflow-hidden rounded-[var(--hai-radius)] border border-[var(--hai-border)] bg-[var(--hai-surface)] shadow-[0_14px_36px_rgba(0,0,0,0.3)]"
+            className="mx-auto mt-20 w-[min(620px,calc(100%-32px))] overflow-hidden rounded-[var(--hai-radius-lg)] border border-[var(--hai-border)] bg-[var(--hai-surface)] shadow-[var(--hai-shadow-soft)]"
             onClick={(event) => event.stopPropagation()}
           >
             <div className="flex h-12 items-center gap-2 border-b border-[var(--hai-border)] px-4">
@@ -670,10 +674,10 @@ function CommandOverlay({
               <span className="text-[var(--hai-text-3)]">搜索命令、候选人、职位</span>
             </div>
             {[
-              { label: '打开候选人简历', meta: 'cand', icon: Users, kind: 'candidate' as const },
-              { label: '查看招聘漏斗', meta: 'pipeline', icon: BarChart3, kind: 'pipeline' as const },
-              { label: '优化职位描述', meta: 'jd', icon: FileText, kind: 'jd' as const },
-              { label: '诊断推荐原因', meta: 'charts', icon: Search, kind: 'diagnosis' as const },
+              { label: '打开候选人简历', meta: '简历', icon: Users, kind: 'candidate' as const },
+              { label: '查看招聘漏斗', meta: '漏斗', icon: BarChart3, kind: 'pipeline' as const },
+              { label: '优化职位描述', meta: '职位', icon: FileText, kind: 'jd' as const },
+              { label: '诊断推荐原因', meta: '诊断', icon: Search, kind: 'diagnosis' as const },
               { label: '打开设置', meta: '⌘,', icon: Settings, kind: 'settings' as const },
             ].map((item) => {
               const Icon = item.icon;
@@ -720,8 +724,8 @@ function Drawer({
           exit={{ x: '100%' }}
           transition={{ duration: 0.2, ease: [0.2, 0, 0, 1] }}
           className={cn(
-            'fixed bottom-0 right-0 top-0 z-[70] flex border-l border-[var(--hai-border)] bg-[var(--hai-bg)] text-[var(--hai-text)] shadow-[var(--hai-shadow-drawer)]',
-            state.mode === 'popout' && 'bottom-6 right-6 top-6 rounded-[var(--hai-radius)] border'
+            'fixed bottom-0 right-0 top-0 z-[70] flex border-l border-[var(--hai-border)] bg-[var(--hai-surface)] text-[var(--hai-text)] shadow-[var(--hai-shadow-drawer)]',
+            state.mode === 'popout' && 'bottom-6 right-6 top-6 overflow-hidden rounded-[var(--hai-radius-lg)] border'
           )}
           style={{ width }}
         >
@@ -732,8 +736,8 @@ function Drawer({
             ⋮
           </div>
           <div className="min-w-0 flex-1">
-            <header className="flex h-12 items-center gap-2 border-b border-[var(--hai-border)] px-3">
-              <div className="grid h-6 w-6 place-items-center rounded-[var(--hai-radius)] border border-[var(--hai-border)] text-[var(--hai-accent)] hai-mono">{view.mark}</div>
+            <header className="flex h-12 items-center gap-2 border-b border-[var(--hai-border)] bg-[var(--hai-surface)] px-3">
+              <div className="grid h-6 w-6 place-items-center rounded-[var(--hai-radius-sm)] border border-[var(--hai-border)] bg-[var(--hai-accent-bg)] text-[var(--hai-accent)] hai-mono">{view.mark}</div>
               <div className="min-w-0 flex-1">
                 <div className="truncate font-semibold">{view.title}</div>
                 <div className="hai-mono truncate text-[11px] text-[var(--hai-text-3)]">{drawerModeLabel(state.mode)} · {view.meta}</div>
@@ -748,9 +752,9 @@ function Drawer({
                 <X className="h-3.5 w-3.5" />
               </button>
             </header>
-            <div className="h-[calc(100%-48px)] overflow-y-auto p-4">
+            <div className="h-[calc(100%-48px)] overflow-y-auto bg-[var(--hai-bg)] p-4">
               {view.body}
-              <div className="mt-4 flex flex-wrap gap-2">
+              <div className="sticky bottom-0 -mx-4 -mb-4 mt-4 flex flex-wrap gap-2 border-t border-[var(--hai-border)] bg-[var(--hai-surface)] px-4 py-3">
                 {view.actions.map((action) => (
                   <button
                     key={action.label}
@@ -787,7 +791,7 @@ function candidateDrawer(payload: any) {
 
   return {
     title: '候选人简历',
-    meta: data.id ?? 'candidate',
+    meta: data.id ?? '候选人',
     mark: '简',
     actions: [
       { label: '加入候选池', primary: true, message: `${data.name} 加入候选池，并生成下一步推进建议` },
@@ -879,6 +883,7 @@ function pipelineDrawer(payload: any) {
     body: (
       <div className="space-y-4">
         <Section title="判断">{getPipelineSummary() || '候选池足够，但初筛到面试转化需要重点关注。'}</Section>
+        <div className="overflow-x-auto">
         <div className="grid min-w-[680px] grid-cols-5 gap-2">
           {['已搜寻', '已初筛', '面试', '录用', '入职'].map((stage, index) => (
             <div key={stage} className="hai-panel min-h-[320px]">
@@ -894,6 +899,7 @@ function pipelineDrawer(payload: any) {
               ))}
             </div>
           ))}
+        </div>
         </div>
       </div>
     ),
@@ -1055,15 +1061,15 @@ function formatSessionMeta(timestamp: number) {
 
 function settingsCards(tab: string) {
   const base = [
-    { title: '当前规则', meta: 'rule:active', body: '规则以结构化方式影响智能体推荐、解释和下一步动作，而不是要求用户填写长表单。' },
-    { title: '最近变更', meta: 'audit:7d', body: '保留配置变更记录，方便招聘、HRBP 和业务负责人回看决策依据。' },
-    { title: '默认策略', meta: 'strategy:default', body: '低频设置只服务高频对话，默认不干扰主流程。' },
-    { title: '同步状态', meta: 'sync:ok', body: '职位、候选人、日历、审批系统保持后台连接。' },
+    { title: '当前规则', meta: '规则:生效', body: '规则以结构化方式影响智能体推荐、解释和下一步动作，而不是要求用户填写长表单。' },
+    { title: '最近变更', meta: '审计:7天', body: '保留配置变更记录，方便招聘、HRBP 和业务负责人回看决策依据。' },
+    { title: '默认策略', meta: '策略:默认', body: '低频设置只服务高频对话，默认不干扰主流程。' },
+    { title: '同步状态', meta: '同步:正常', body: '职位、候选人、日历、审批系统保持后台连接。' },
   ];
   if (tab === '推荐策略') {
     return [
-      { title: '高信号优先', meta: 'weight:0.42', body: '优先推荐有推荐系统、增长实验、跨团队负责人经验的人。' },
-      { title: '风险解释', meta: 'required', body: '每个推荐必须带匹配理由、缺口和下一步验证问题。' },
+      { title: '高信号优先', meta: '权重:0.42', body: '优先推荐有推荐系统、增长实验、跨团队负责人经验的人。' },
+      { title: '风险解释', meta: '必须', body: '每个推荐必须带匹配理由、缺口和下一步验证问题。' },
       ...base.slice(2),
     ];
   }
