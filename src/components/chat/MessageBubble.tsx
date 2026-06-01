@@ -95,9 +95,25 @@ export function MessageBubble({ message, className }: MessageBubbleProps) {
 
 function shouldUseTypewriter(content: string): boolean {
   if (content.length > 900) return false;
-  if (/\n\s*\|.+\|\s*\n\s*\|[-:\s|]+\|/.test(content)) return false;
+  if (hasMarkdownTableSeparator(content)) return false;
   if (/```|<table|<\/table>/i.test(content)) return false;
   return true;
+}
+
+function hasMarkdownTableSeparator(content: string): boolean {
+  const lines = content.split('\n');
+  for (let index = 1; index < lines.length; index += 1) {
+    const previous = lines[index - 1];
+    const current = lines[index].trim();
+    if (!previous.includes('|') || !current.includes('|')) continue;
+
+    const body = current.replaceAll('|', '').trim();
+    if (!body) continue;
+    if ([...body].every((char) => char === '-' || char === ':' || char.trim() === '')) {
+      return true;
+    }
+  }
+  return false;
 }
 
 function getTypewriterStep(content: string): number {

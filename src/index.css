@@ -223,7 +223,7 @@
   --hai-bg: #f5f6f7;
   --hai-surface: #ffffff;
   --hai-surface-2: #f7f8fa;
-  --hai-surface-3: #eff3ff;
+  --hai-surface-3: #f5f8ff;
   --hai-text: #1f2329;
   --hai-text-2: #646a73;
   --hai-text-3: #8f959e;
@@ -241,11 +241,11 @@
   --hai-warn: #d8a31a;
   --hai-warn-bg: #fff8e6;
   --hai-overlay: rgba(245, 246, 247, 0.92);
-  --hai-rail-bg: #fbfbfc;
-  --hai-header-bg: #f8f9fa;
+  --hai-rail-bg: #f5f6f7;
+  --hai-header-bg: rgba(248, 249, 250, 0.92);
   --hai-radius: 8px;
   --hai-radius-sm: 6px;
-  --hai-radius-lg: 12px;
+  --hai-radius-lg: 10px;
   --hai-shadow-soft: 0 10px 24px rgba(31, 35, 41, 0.06), 0 2px 8px rgba(31, 35, 41, 0.03);
   --hai-shadow-drawer: -10px 0 28px rgba(31, 35, 41, 0.10);
   font-family: 'PingFang SC', Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
@@ -253,47 +253,37 @@
   line-height: 1.5;
 }
 
-.ai-native-shell.hai-dark {
-  --hai-bg: #0a0a0a;
-  --hai-surface: #111111;
-  --hai-surface-2: #1a1a1a;
-  --hai-surface-3: #172033;
-  --hai-text: #ededed;
-  --hai-text-2: #a1a1a1;
-  --hai-text-3: #6b6b6b;
-  --hai-border: #262626;
-  --hai-border-strong: #333333;
-  --hai-accent: #3370ff;
-  --hai-accent-2: #5b8cff;
-  --hai-accent-bg: #101b33;
-  --hai-accent-border: rgba(91, 140, 255, 0.34);
-  --hai-focus-shadow: 0 0 0 3px rgba(91, 140, 255, 0.14), 0 10px 24px rgba(0, 0, 0, 0.24);
-  --hai-success: #22c55e;
-  --hai-success-bg: #0d2118;
-  --hai-danger-bg: #2a1113;
-  --hai-warn-bg: #261e0d;
-  --hai-overlay: rgba(10, 10, 10, 0.90);
-  --hai-rail-bg: #111111;
-  --hai-header-bg: #101010;
-  --hai-shadow-soft: 0 10px 24px rgba(0, 0, 0, 0.24);
-  --hai-shadow-drawer: -12px 0 36px rgba(0, 0, 0, 0.24);
-}
-
 .ai-native-shell .hai-mono {
   font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+.ai-native-shell .hai-shell-grid {
+  display: grid;
+  grid-template-columns: var(--hai-rail-width) minmax(0, 1fr) var(--hai-task-width);
+  transition: grid-template-columns 180ms ease;
 }
 
 .ai-native-shell .hai-panel {
   background: var(--hai-surface);
   border: 1px solid var(--hai-border);
-  border-radius: var(--hai-radius-lg);
+  border-radius: var(--hai-radius);
 }
 
-.ai-native-shell .hai-rail {
-  background: var(--hai-rail-bg);
+.ai-native-shell .hai-left-rail {
+  box-shadow: inset -1px 0 0 rgba(255, 255, 255, 0.45);
 }
 
-.ai-native-shell .hai-rail-brand {
+.ai-native-shell .hai-brand-mark,
+.ai-native-shell .hai-task-mark,
+.ai-native-shell .hai-empty-mark {
+  width: 30px;
+  height: 30px;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  border: 1px solid var(--hai-border);
+  border-radius: var(--hai-radius-sm);
+  color: var(--hai-accent);
   background: var(--hai-surface);
 }
 
@@ -310,6 +300,47 @@
 
 .ai-native-shell .hai-shell-header {
   background: var(--hai-header-bg);
+  backdrop-filter: blur(12px);
+}
+
+.ai-native-shell .hai-shortcut,
+.ai-native-shell .hai-status-pill {
+  min-height: 22px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 0 7px;
+  border: 1px solid var(--hai-border);
+  border-radius: 999px;
+  color: var(--hai-text-3);
+  background: var(--hai-surface);
+  font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 11px;
+}
+
+.ai-native-shell .hai-status-running {
+  color: var(--hai-accent);
+  border-color: var(--hai-accent-border);
+  background: var(--hai-accent-bg);
+}
+
+.ai-native-shell .hai-status-done {
+  color: var(--hai-success);
+  border-color: rgba(18, 132, 95, 0.26);
+  background: var(--hai-success-bg);
+}
+
+.ai-native-shell .hai-project-chip {
+  min-height: 34px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 9px;
+  border: 1px solid var(--hai-border);
+  border-radius: var(--hai-radius);
+  background: var(--hai-surface);
+  color: var(--hai-text-2);
+  font-size: 12px;
 }
 
 .ai-native-shell .hai-composer {
@@ -326,6 +357,36 @@
   box-shadow: var(--hai-focus-shadow);
 }
 
+.ai-native-shell .hai-composer-wrap {
+  background: color-mix(in srgb, var(--hai-bg) 92%, transparent);
+}
+
+.ai-native-shell .hai-caret {
+  display: grid;
+  place-items: center;
+  color: var(--hai-accent);
+  padding-top: 3px;
+}
+
+.ai-native-shell .hai-composer-chip {
+  min-width: 0;
+  height: 28px;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 0 8px;
+  color: var(--hai-text-3);
+  border: 1px solid transparent;
+  border-radius: var(--hai-radius-sm);
+  transition: color 150ms ease, border-color 150ms ease, background 150ms ease;
+}
+
+.ai-native-shell .hai-composer-chip:hover {
+  color: var(--hai-text);
+  border-color: var(--hai-border);
+  background: var(--hai-surface-2);
+}
+
 .ai-native-shell .hai-button {
   min-height: 30px;
   display: inline-flex;
@@ -338,6 +399,25 @@
   border-radius: var(--hai-radius-sm);
   background: transparent;
   transition: color 150ms ease, border-color 150ms ease, background 150ms ease, box-shadow 150ms ease;
+}
+
+.ai-native-shell .hai-icon-button {
+  width: 30px;
+  height: 30px;
+  display: inline-grid;
+  place-items: center;
+  flex-shrink: 0;
+  color: var(--hai-text-3);
+  border: 1px solid transparent;
+  border-radius: var(--hai-radius-sm);
+  background: transparent;
+  transition: color 150ms ease, border-color 150ms ease, background 150ms ease;
+}
+
+.ai-native-shell .hai-icon-button:hover {
+  color: var(--hai-text);
+  border-color: var(--hai-border);
+  background: var(--hai-surface);
 }
 
 .ai-native-shell .hai-button:hover {
@@ -366,6 +446,31 @@
   border-color: var(--hai-accent-2);
 }
 
+.ai-native-shell .hai-send-button {
+  min-height: 32px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 0 12px;
+  color: var(--hai-text-3);
+  border: 1px solid var(--hai-border);
+  border-radius: var(--hai-radius-sm);
+  background: var(--hai-surface-2);
+  transition: color 150ms ease, border-color 150ms ease, background 150ms ease;
+}
+
+.ai-native-shell .hai-send-button-ready {
+  color: #ffffff;
+  background: var(--hai-accent);
+  border-color: var(--hai-accent);
+}
+
+.ai-native-shell .hai-send-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.68;
+}
+
 .ai-native-shell .hai-card-clickable {
   cursor: pointer;
 }
@@ -373,6 +478,149 @@
 .ai-native-shell .hai-card-clickable:hover > * {
   border-color: var(--hai-accent) !important;
   background: var(--hai-accent-bg) !important;
+}
+
+.ai-native-shell .hai-empty {
+  border: 1px solid var(--hai-border);
+  border-radius: var(--hai-radius-lg);
+  background: var(--hai-surface);
+  padding: 28px;
+  box-shadow: var(--hai-shadow-soft);
+}
+
+.ai-native-shell .hai-empty h1 {
+  margin-top: 14px;
+  font-size: 20px;
+  font-weight: 650;
+}
+
+.ai-native-shell .hai-empty p {
+  margin-top: 8px;
+  margin-bottom: 18px;
+  color: var(--hai-text-2);
+}
+
+.ai-native-shell .hai-starter {
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 12px;
+  border: 1px solid var(--hai-border);
+  border-radius: var(--hai-radius);
+  background: var(--hai-surface-2);
+  color: var(--hai-text-2);
+  text-align: left;
+}
+
+.ai-native-shell .hai-starter:hover {
+  color: var(--hai-text);
+  border-color: var(--hai-accent-border);
+  background: var(--hai-accent-bg);
+}
+
+.ai-native-shell .hai-task-panel {
+  height: 100%;
+  display: flex;
+  overflow: hidden;
+  box-shadow: var(--hai-shadow-drawer);
+}
+
+.ai-native-shell .hai-task-popout {
+  margin: 16px 16px 16px 0;
+  height: calc(100% - 32px);
+  border: 1px solid var(--hai-border);
+  border-radius: var(--hai-radius-lg);
+  box-shadow: var(--hai-shadow-soft);
+}
+
+.ai-native-shell .hai-task-resize {
+  width: 8px;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  cursor: col-resize;
+  color: var(--hai-text-3);
+  border-right: 1px solid var(--hai-border);
+  background: var(--hai-surface);
+}
+
+.ai-native-shell .hai-task-card {
+  border: 1px solid var(--hai-border);
+  border-radius: var(--hai-radius);
+  background: var(--hai-surface);
+}
+
+.ai-native-shell .hai-task-step {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--hai-text-3);
+  font-size: 12px;
+}
+
+.ai-native-shell .hai-task-step span {
+  width: 7px;
+  height: 7px;
+  border: 1px solid var(--hai-border-strong);
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.ai-native-shell .hai-task-step-done {
+  color: var(--hai-text-2);
+}
+
+.ai-native-shell .hai-task-step-done span {
+  border-color: var(--hai-accent);
+  background: var(--hai-accent);
+}
+
+.ai-native-shell .hai-task-step-current span {
+  box-shadow: 0 0 0 4px rgba(51, 112, 255, 0.10);
+}
+
+.ai-native-shell .hai-row-card {
+  border: 1px solid var(--hai-border);
+  border-radius: var(--hai-radius);
+  background: var(--hai-surface);
+  padding: 10px;
+}
+
+.ai-native-shell .hai-chip {
+  display: inline-flex;
+  align-items: center;
+  min-height: 20px;
+  padding: 0 6px;
+  color: var(--hai-text-2);
+  border: 1px solid var(--hai-border);
+  border-radius: 999px;
+  background: var(--hai-surface-2);
+  font-size: 11px;
+}
+
+.ai-native-shell .hai-score {
+  color: var(--hai-accent);
+  font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 12px;
+}
+
+.ai-native-shell .hai-kanban-lane {
+  min-height: 260px;
+  overflow: hidden;
+  border: 1px solid var(--hai-border);
+  border-radius: var(--hai-radius);
+  background: var(--hai-surface);
+}
+
+.ai-native-shell .hai-kanban-card {
+  margin: 8px;
+  padding: 9px;
+  border: 1px solid var(--hai-border);
+  border-radius: var(--hai-radius-sm);
+  background: var(--hai-bg);
+  color: var(--hai-text-2);
 }
 
 /* Legacy card adapter: keep old demo cards, but make them sit inside the CUI shell. */
@@ -541,4 +789,89 @@
 .ai-native-shell .backdrop-blur-sm,
 .ai-native-shell .backdrop-blur {
   backdrop-filter: none !important;
+}
+
+@media (max-width: 960px) {
+  .ai-native-shell .hai-shell-grid {
+    grid-template-columns: 56px minmax(0, 1fr) 0 !important;
+  }
+
+  .ai-native-shell .hai-left-rail {
+    width: 56px;
+  }
+
+  .ai-native-shell .hai-rail-head {
+    justify-content: center;
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+
+  .ai-native-shell .hai-rail-head .hai-icon-button {
+    display: none;
+  }
+
+  .ai-native-shell .hai-left-rail .hai-brand-mark + div,
+  .ai-native-shell .hai-left-rail .hai-project-chip,
+  .ai-native-shell .hai-left-rail .hai-button span,
+  .ai-native-shell .hai-left-rail .hai-session-item div {
+    display: none;
+  }
+
+  .ai-native-shell .hai-left-rail .hai-button,
+  .ai-native-shell .hai-left-rail .hai-session-item {
+    width: 38px;
+    justify-content: center;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .ai-native-shell .hai-task-panel {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 70;
+    width: min(420px, calc(100vw - 56px));
+    box-shadow: var(--hai-shadow-drawer);
+  }
+
+  .ai-native-shell .hai-task-popout {
+    margin: 10px;
+    height: calc(100% - 20px);
+  }
+
+  .ai-native-shell .hai-task-resize {
+    display: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .ai-native-shell .hai-shell-header {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  .ai-native-shell .hai-empty {
+    max-width: none;
+    padding: 20px;
+    box-shadow: none;
+  }
+
+  .ai-native-shell .hai-composer-wrap {
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+  }
+
+  .ai-native-shell .hai-composer-chip span {
+    display: none;
+  }
+
+  .ai-native-shell .hai-slash-menu {
+    width: min(360px, calc(100vw - 82px));
+  }
+
+  .ai-native-shell .hai-task-panel {
+    width: calc(100vw - 56px);
+  }
 }

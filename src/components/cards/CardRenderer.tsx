@@ -79,28 +79,28 @@ function normalizeCardForRender(card: unknown): AgentCard {
         card_type: 'candidate_profile',
         id: string(source.id),
         name: string(source.name),
-        current_company: string(source.current_company),
-        current_title: string(source.current_title),
-        experience_years: number(source.experience_years),
+        current_company: string(source.current_company || source.currentCompany || source.company),
+        current_title: string(source.current_title || source.currentTitle || source.title),
+        experience_years: number(source.experience_years || source.experience),
         education: string(source.education),
         location: string(source.location),
         skills: array(source.skills).map(toStringValue),
-        career: array(source.career).map(normalizeCareer),
+        career: array(source.career || source.careerHistory).map(normalizeCareer),
         projects: array(source.projects).map(normalizeProject),
-        match_score: score(source.match_score),
+        match_score: score(source.match_score ?? source.matchScore),
         tags: array(source.tags).map(toStringValue),
-        active_status: oneOf(source.active_status, ['active', 'passive', 'not_interested'], 'active'),
-        expected_salary: string(source.expected_salary),
-        interview_history: array(source.interview_history).map(normalizeInterviewRecord),
+        active_status: oneOf(source.active_status || source.status, ['active', 'passive', 'not_interested'], 'active'),
+        expected_salary: string(source.expected_salary || source.salary),
+        interview_history: array(source.interview_history || source.interviewHistory).map(normalizeInterviewRecord),
       } as AgentCard;
 
     case 'comparison':
       return {
         ...base,
         card_type: 'comparison',
-        candidate_a: normalizeCandidateRef(source.candidate_a, '候选人 A'),
-        candidate_b: normalizeCandidateRef(source.candidate_b, '候选人 B'),
-        dimensions: array(source.dimensions).map(normalizeDimension),
+        candidate_a: normalizeCandidateRef(source.candidate_a || source.candidateA, '候选人 A'),
+        candidate_b: normalizeCandidateRef(source.candidate_b || source.candidateB, '候选人 B'),
+        dimensions: array(source.dimensions || source.items).map(normalizeDimension),
         recommendation: string(source.recommendation),
       } as AgentCard;
 
@@ -108,7 +108,7 @@ function normalizeCardForRender(card: unknown): AgentCard {
       return {
         ...base,
         card_type: 'job_detail',
-        job: normalizeJob(source.job),
+        job: normalizeJob(source.job || source),
         is_published: boolean(source.is_published, true),
       } as AgentCard;
 
@@ -127,23 +127,25 @@ function normalizeCardForRender(card: unknown): AgentCard {
         ...base,
         card_type: 'market_analysis',
         position: string(source.position, '目标岗位'),
-        analysis_type: oneOf(source.analysis_type, ['distribution', 'supply_demand', 'trend', 'competitor'], 'distribution'),
+        analysis_type: oneOf(source.analysis_type || source.analysisType, ['distribution', 'supply_demand', 'trend', 'competitor'], 'distribution'),
         data: array(source.data).map(normalizeMarketPoint),
         insights: array(source.insights).map(toStringValue),
-        chart_type: oneOf(source.chart_type, ['bar', 'pie', 'trend', 'map'], 'bar'),
+        chart_type: oneOf(source.chart_type || source.chartType, ['bar', 'pie', 'trend', 'map'], 'bar'),
       } as AgentCard;
 
-    case 'pipeline_report':
+    case 'pipeline_report': {
+      const report = normalizePipelineReport(source);
       return {
         ...base,
         card_type: 'pipeline_report',
-        report_type: oneOf(source.report_type, ['weekly', 'monthly', 'ad_hoc'], 'weekly'),
-        period: string(source.period, '本期'),
-        metrics: normalizeMetrics(source.metrics),
-        funnel: array(source.funnel).map(normalizeFunnelStage),
-        insights: array(source.insights).map(toStringValue),
-        alerts: array(source.alerts).map(normalizeAlert),
+        report_type: report.report_type,
+        period: report.period,
+        metrics: report.metrics,
+        funnel: report.funnel,
+        insights: report.insights,
+        alerts: report.alerts,
       } as AgentCard;
+    }
 
     case 'interview_kit':
       return {
@@ -206,12 +208,12 @@ function normalizeCandidate(value: unknown) {
   return {
     id: string(item.id, string(item.name, 'candidate')),
     name: string(item.name, '候选人'),
-    current_company: string(item.current_company || item.company),
-    current_title: string(item.current_title || item.title),
+    current_company: string(item.current_company || item.currentCompany || item.company),
+    current_title: string(item.current_title || item.currentTitle || item.title),
     experience_years: number(item.experience_years || item.experience, 0),
-    match_score: score(item.match_score),
-    match_highlights: array(item.match_highlights).map(toStringValue),
-    gap_points: array(item.gap_points).map(toStringValue),
+    match_score: score(item.match_score ?? item.matchScore),
+    match_highlights: array(item.match_highlights || item.matchHighlights).map(toStringValue),
+    gap_points: array(item.gap_points || item.gapPoints).map(toStringValue),
     tags: array(item.tags).map(toStringValue),
     status: oneOf(item.status, ['active', 'interview', 'hired', 'rejected'], 'active'),
   };
@@ -232,7 +234,7 @@ function normalizeProject(value: unknown) {
   return {
     name: string(item.name, '项目经历'),
     description: string(item.description),
-    tech_stack: array(item.tech_stack).map(toStringValue),
+    tech_stack: array(item.tech_stack || item.techStack).map(toStringValue),
   };
 }
 
@@ -255,11 +257,12 @@ function normalizeCandidateRef(value: unknown, fallbackName: string) {
 
 function normalizeDimension(value: unknown) {
   const item = asRecord(value);
+  const advantage = item.advantage === 'A' ? 'a' : item.advantage === 'B' ? 'b' : item.advantage;
   return {
     label: string(item.label, '对比维度'),
-    candidate_a: string(item.candidate_a),
-    candidate_b: string(item.candidate_b),
-    advantage: oneOf(item.advantage, ['a', 'b', 'neutral'], 'neutral'),
+    candidate_a: string(item.candidate_a || item.candidateA),
+    candidate_b: string(item.candidate_b || item.candidateB),
+    advantage: oneOf(advantage, ['a', 'b', 'neutral'], 'neutral'),
   };
 }
 
@@ -324,6 +327,58 @@ function normalizeMetrics(value: unknown) {
     hired_this_period: number(item.hired_this_period, 0),
     avg_time_to_hire_days: number(item.avg_time_to_hire_days, 0),
     offer_accept_rate: number(item.offer_accept_rate, 0),
+  };
+}
+
+function normalizePipelineReport(source: CardRecord) {
+  const jobs = array(source.jobs);
+  const stages = jobs.flatMap((job) => {
+    const item = asRecord(job);
+    return array(item.stages || item.pipeline);
+  }).map(asRecord);
+  const baseCount = stages
+    .filter((stage) => string(stage.stage) === '简历筛选')
+    .reduce((sum, stage) => sum + number(stage.count), 0) || 1;
+  const byStage = new Map<string, number>();
+  for (const stage of stages) {
+    const label = string(stage.stage, '阶段');
+    byStage.set(label, (byStage.get(label) || 0) + number(stage.count));
+  }
+
+  const fallbackFunnel = Array.from(byStage.entries()).slice(0, 7).map(([stage, count]) => ({
+    stage,
+    count,
+    conversion_rate: count / baseCount,
+  }));
+  const fallbackAlerts = jobs
+    .map(asRecord)
+    .filter((job) => job.status === 'at_risk' || job.status === 'stuck')
+    .map((job) => ({
+      job_id: string(job.job_id || job.jobId, 'job'),
+      title: string(job.title, '风险岗位'),
+      status: oneOf(job.status, ['at_risk', 'stuck'], 'at_risk'),
+      reason: string(array(job.bottlenecks)[0], number(job.open_days || job.openDays) > 45 ? `已开放 ${number(job.open_days || job.openDays)} 天` : '需要关注推进节奏'),
+    }));
+
+  return {
+    report_type: oneOf(source.report_type || source.reportType, ['weekly', 'monthly', 'ad_hoc'], 'weekly'),
+    period: string(source.period, '本期'),
+    metrics: source.metrics
+      ? normalizeMetrics(source.metrics)
+      : {
+        open_positions: jobs.length,
+        active_candidates: stages.reduce((sum, stage) => sum + number(stage.count), 0),
+        hired_this_period: byStage.get('Offer') || 0,
+        avg_time_to_hire_days: jobs.length
+          ? Math.round(jobs.map(asRecord).reduce((sum, job) => sum + number(job.open_days || job.openDays), 0) / jobs.length)
+          : 0,
+        offer_accept_rate: 0,
+      },
+    funnel: array(source.funnel).length ? array(source.funnel).map(normalizeFunnelStage) : fallbackFunnel,
+    insights: array(source.insights).length
+      ? array(source.insights).map(toStringValue)
+      : string(source.summary) ? [string(source.summary)] : [],
+    alerts: array(source.alerts).length ? array(source.alerts).map(normalizeAlert) : fallbackAlerts,
   };
 }
 

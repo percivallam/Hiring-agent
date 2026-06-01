@@ -38,7 +38,7 @@ interface MessageListProps {
   onQuickAction?: (message: string) => void;
   onCardClick?: (cardId: string, payload: CardActionPayload) => void;
   onCandidateOpen?: (candidate: any) => void;
-  onDrawerOpen?: (kind: 'candidate' | 'jd' | 'pipeline' | 'diagnosis', payload?: any) => void;
+  onDrawerOpen?: (kind: 'candidate' | 'jd' | 'pipeline' | 'diagnosis' | 'salary' | 'interview' | 'message' | 'comparison', payload?: any) => void;
   className?: string;
 }
 
@@ -53,32 +53,36 @@ function MessageItem({
   onQuickAction?: (message: string) => void;
   onCardClick?: (cardId: string, payload: CardActionPayload) => void;
   onCandidateOpen?: (candidate: any) => void;
-  onDrawerOpen?: (kind: 'candidate' | 'jd' | 'pipeline' | 'diagnosis', payload?: any) => void;
+  onDrawerOpen?: (kind: 'candidate' | 'jd' | 'pipeline' | 'diagnosis' | 'salary' | 'interview' | 'message' | 'comparison', payload?: any) => void;
 }) {
   const shouldIgnoreDrawerClick = (event: React.MouseEvent) => {
     const target = event.target as HTMLElement | null;
     return Boolean(target?.closest('button,a,input,textarea,select,[role="button"]'));
   };
 
-  if ((message as any).card_type) {
-    const cardType = (message as any).card_type;
+  const rendererCardType = getRendererCardType(message);
+  if (rendererCardType) {
+    const cardType = rendererCardType;
     return (
       <div
         className={cn(
           'ml-9',
-          cardType === 'job_detail' || cardType === 'pipeline_report' || cardType === 'market_analysis'
+          cardType === 'candidate_profile' || cardType === 'comparison' || cardType === 'job_detail' || cardType === 'pipeline_report' || cardType === 'market_analysis' || cardType === 'interview_kit'
             ? 'hai-card-clickable'
             : ''
         )}
         onClick={(event) => {
           if (shouldIgnoreDrawerClick(event)) return;
+          if (cardType === 'candidate_profile') onDrawerOpen?.('candidate', message);
+          if (cardType === 'comparison') onDrawerOpen?.('comparison', message);
           if (cardType === 'job_detail') onDrawerOpen?.('jd', message);
           if (cardType === 'pipeline_report') onDrawerOpen?.('pipeline', message);
           if (cardType === 'market_analysis') onDrawerOpen?.('diagnosis', message);
+          if (cardType === 'interview_kit') onDrawerOpen?.('interview', message);
         }}
       >
         <CardRenderer
-          card={message as any}
+          card={{ ...(message as any), card_type: cardType }}
           onActionClick={(msg) => onQuickAction?.(msg)}
           onCandidateOpen={onCandidateOpen}
         />
@@ -226,7 +230,9 @@ function MessageItem({
 
     case 'comparison':
       return (
-        <div className="ml-9">
+        <div className="ml-9 hai-card-clickable" onClick={(event) => {
+          if (!shouldIgnoreDrawerClick(event)) onDrawerOpen?.('comparison', message);
+        }}>
           <ComparisonCard
             title={message.title}
             candidateA={message.candidateA}
@@ -251,7 +257,9 @@ function MessageItem({
 
     case 'interview_questions':
       return (
-        <div className="ml-9">
+        <div className="ml-9 hai-card-clickable" onClick={(event) => {
+          if (!shouldIgnoreDrawerClick(event)) onDrawerOpen?.('interview', message);
+        }}>
           <InterviewQuestionsCard
             candidateName={message.candidateName}
             position={message.position}
@@ -277,7 +285,9 @@ function MessageItem({
 
     case 'salary_benchmark':
       return (
-        <div className="ml-9">
+        <div className="ml-9 hai-card-clickable" onClick={(event) => {
+          if (!shouldIgnoreDrawerClick(event)) onDrawerOpen?.('salary', message);
+        }}>
           <SalaryBenchmarkCard
             title={message.title}
             position={message.position}
@@ -380,7 +390,9 @@ function MessageItem({
 
     case 'message_template':
       return (
-        <div className="ml-9">
+        <div className="ml-9 hai-card-clickable" onClick={(event) => {
+          if (!shouldIgnoreDrawerClick(event)) onDrawerOpen?.('message', message);
+        }}>
           <MessageTemplateCard
             templateType={message.templateType}
             subject={message.subject}
@@ -407,6 +419,27 @@ function MessageItem({
       }
       return null;
   }
+}
+
+function getRendererCardType(message: Message): string | null {
+  const raw = message as any;
+  const type = raw.card_type ?? raw.type;
+  const map: Record<string, string> = {
+    candidate_list: 'candidate_list',
+    candidate_profile: 'candidate_profile',
+    profile_card: 'candidate_profile',
+    comparison: 'comparison',
+    job_detail: 'job_detail',
+    jd_card: 'job_detail',
+    job_profile: 'job_profile',
+    market_analysis: 'market_analysis',
+    pipeline_report: 'pipeline_report',
+    pipeline_overview: 'pipeline_report',
+    interview_kit: 'interview_kit',
+    memory_recall: 'memory_recall',
+    clarification: 'clarification',
+  };
+  return map[type] ?? null;
 }
 
 export function MessageList({

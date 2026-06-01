@@ -4,8 +4,8 @@
 > Active Slice: 全部完成 ✅
 > Active Branch: main
 
-> Preview Slice: S8 ai-native shell visual fusion ✅
-> Preview Branch: codex/ai-native-recruiting-shell-preview
+> Preview Slice: S8 light CUI task drawer redesign ✅
+> Preview Branch: codex/light-cui-task-drawer-redesign
 
 ---
 
@@ -54,10 +54,12 @@
 
 ## Preview 分支状态
 
-- 2026-05-30: UI Agent 在 `codex/ai-native-recruiting-shell-preview` 完成 S8 新壳浅色招聘工作台视觉融合。
-- 默认 `/` 保持 AI-native CUI shell，`/classic` 保留老 Demo 回退入口。
+- 2026-06-01: UI Agent 在 `codex/light-cui-task-drawer-redesign` 完成 S8 浅色 CUI + 任务抽屉重设计。
+- 默认 `/` 保持 AI-native CUI shell：左侧会话/项目/设置管理，中间对话主流程，右侧任务抽屉按招聘意图触发。
+- 右侧任务抽屉已覆盖：候选人搜索、候选人简历、职位描述、招聘漏斗、推荐诊断、薪酬对标、面试包、沟通模板、候选人对比。
+- `/classic` 保留老 Demo 回退入口。
 - 本轮未修改 `src/contracts/*`、`src/engine/*`、`src/tools/*`，未改动历史会话 localStorage key。
-- 本轮未推送、未部署。
+- 本地验证：`npm run build`、`npx vitest run`、`npx tsx eval/suite/runner.ts --validate-cases`、本地浏览器默认入口 smoke。
 
 ---
 
